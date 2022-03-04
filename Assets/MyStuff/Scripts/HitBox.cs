@@ -33,18 +33,14 @@ public class HitBox : MonoBehaviour
                 }
                 otherBrain = ability.owner;
             }
-            if (otherBrain == brain)
+            if (otherBrain == brain || (otherBrain is BasicAI && brain is BasicAI))
             {
                 return;
             }
-            var damagers = other.GetComponents<DamageDealer>().ToList();
+            var damagers = other.GetComponentsInParent<DamageDealer>().ToList();
             if (damagers == null)
             {
                 damagers = other.GetComponentsInParent<DamageDealer>().ToList();
-            }
-            else
-            {
-                damagers.AddRange(other.GetComponentsInParent<DamageDealer>());
             }
             int damage = 0;
             foreach (var damager in damagers)

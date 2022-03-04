@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: 
-  maxHealth: 20
+  maxHealth: 50
   currentHealth: 0
   maxMana: 0
   currentMana: 0
@@ -900,7 +900,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Detachable: 0
-  brain: {fileID: 0}
 --- !u!65 &2049323892197518815
 BoxCollider:
   m_ObjectHideFlags: 0
