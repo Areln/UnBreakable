@@ -1,0 +1,145 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HudManager : MonoBehaviour
+{
+
+    private static HudManager m_Instance;
+
+    private static object m_Lock = new object();
+    public static HudManager Instance
+    {
+        get
+        {
+            lock (m_Lock)
+            {
+                if (m_Instance == null)
+                {
+                    // Search for existing instance.
+                    m_Instance = (HudManager)FindObjectOfType(typeof(HudManager));
+
+                    // Create new instance if one doesn't already exist.
+                    if (m_Instance == null)
+                    {
+                        // Need to create a new GameObject to attach the singleton to.
+                        var singletonObject = new GameObject();
+                        m_Instance = singletonObject.AddComponent<HudManager>();
+                        singletonObject.name = typeof(HudManager).ToString() + " (Singleton)";
+
+                        // Make instance persistent.
+                        //DontDestroyOnLoad(singletonObject);
+                    }
+                }
+
+                return m_Instance;
+            };
+        }
+    }
+
+    public PlayerBrain playerBrain;
+
+    //Canvases
+    public Canvas charInvCanvas;
+    public Canvas abilityBarCanvas;
+    public Canvas chestCanvas;
+
+    //Health And Mana Sliders
+    public Slider healthSlider;
+    public Slider manaSlider;
+
+    //Health And Mana Text
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI manaText;
+
+    //AbilityIcons
+    public Image ability1Icon;
+    public Image ability2Icon;
+    public Image ability3Icon;
+    public Image ability4Icon;
+
+    //Ability Icon Shades
+    public Image ability1Shade;
+    public Image ability2Shade;
+    public Image ability3Shade;
+    public Image ability4Shade;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Health And Mana
+        healthText.text = playerBrain.currentHealth.ToString();
+        healthSlider.value = playerBrain.currentHealth;
+        manaText.text = playerBrain.currentMana.ToString();
+        manaSlider.value = playerBrain.currentMana;
+        //Update CD Shades
+        if (playerBrain.playerCombat.ability1 != null)
+        {
+            ability1Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability1.GetCDPercentage()));
+        }
+        else
+        {
+            ability1Shade.color = Color.clear;
+        }
+        if (playerBrain.playerCombat.ability2 != null)
+        {
+            ability2Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability2.GetCDPercentage()));
+        }
+        else
+        {
+            ability2Shade.color = Color.clear;
+        }
+        if (playerBrain.playerCombat.ability3 != null)
+        {
+            ability3Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability3.GetCDPercentage()));
+        }
+        else
+        {
+            ability3Shade.color = Color.clear;
+        }
+        if (playerBrain.playerCombat.ability4 != null)
+        {
+            ability4Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability4.GetCDPercentage()));
+        }
+        else
+        {
+            ability4Shade.color = Color.clear;
+        }
+    }
+
+    public void OpenChest()
+    {
+
+    }
+
+    public void CloseChest()
+    {
+
+    }
+
+    public void ToggleInventory()
+    {
+        charInvCanvas.enabled = !charInvCanvas.enabled;
+    }
+    public void ToggleInventory(bool _value)
+    {
+        charInvCanvas.enabled = _value;
+    }
+
+    //calcs alpha value for ability cooldown UI
+    public int ShadeCalculator(float cdPercentage)
+    {
+        if (cdPercentage != 0)
+            return 60 + (int)(cdPercentage * 140);
+        else
+            return 0;
+    }
+}
