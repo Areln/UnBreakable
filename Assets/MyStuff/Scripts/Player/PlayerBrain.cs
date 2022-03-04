@@ -130,18 +130,8 @@ public class PlayerBrain : CharacterBrain
             playerCombat.animator.SetBool("IsWalking", isMoving);
         }
     }
-    public void TakeDamage(int _damage)
-    {
-        currentHealth -= _damage;
-        hpScript.ChangeHP(-_damage, gameObject.transform.position);
 
-        if (currentHealth <= 0)
-        {
-            CharacterDie();
-        }
-    }
-
-    void CharacterDie()
+	public override void CharacterDie()
     {
         Debug.Log("Die");
     }

@@ -11,4 +11,17 @@ public abstract class CharacterBrain : MonoBehaviour
 
     internal NavMeshAgent agent;
     internal Stats Stats;
+
+    public abstract void CharacterDie();
+
+    public void TakeDamage(int _damage)
+    {
+        currentHealth -= _damage;
+        GetComponent<HPScript>().ChangeHP(-_damage, gameObject.transform.position);
+
+        if (currentHealth <= 0)
+        {
+            CharacterDie();
+        }
+    }
 }

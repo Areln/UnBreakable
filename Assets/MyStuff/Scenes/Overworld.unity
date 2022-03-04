@@ -1514,6 +1514,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2079778957 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7534517011041805227, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6621349972420570575}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5517698464520087651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1839,6 +1845,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4370350683273760484, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
+        type: 3}
+      propertyPath: WeaponHitBox
+      value: 
+      objectReference: {fileID: 2079778957}
     - target: {fileID: 6621349970582242534, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1898,6 +1909,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534517011041805227, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324528849837452506, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93eac9814f734cc43a51a5e7a0bfd7c8, type: 3}

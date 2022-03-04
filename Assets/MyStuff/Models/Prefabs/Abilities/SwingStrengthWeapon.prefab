@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2934538167062644291}
   - component: {fileID: 2934538167062644288}
-  - component: {fileID: 4964010526583450834}
   m_Layer: 0
   m_Name: SwingStrengthWeapon
   m_TagString: Untagged
@@ -46,20 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   StatModifier: 1
-  abilityName: Smash
+  abilityName: Swing
   manaCost: 0
   maxCooldown: 0.5
   currentCooldown: 0
---- !u!65 &4964010526583450834
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2934538167062644289}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.40103614, y: 1.6655722, z: 0.38824987}
-  m_Center: {x: -0.14775676, y: 0.33278608, z: 0.48793346}

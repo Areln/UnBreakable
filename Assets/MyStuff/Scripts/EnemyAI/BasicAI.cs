@@ -176,7 +176,7 @@ public class BasicAI : CharacterBrain
 		}
 	}
 
-	void CharacterDie()
+	public override void CharacterDie()
 	{
 		//drop loot
 		Vector3 dropPos = gameObject.transform.position;
