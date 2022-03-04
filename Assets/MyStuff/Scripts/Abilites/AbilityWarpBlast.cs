@@ -22,7 +22,7 @@ public class AbilityWarpBlast : Ability
         }
     }
 
-    public override void Activate()
+    public override void Activate(Vector3 targetPosition)
     {
         //checks if ability is on cooldown
         if (currentCooldown > 0)
@@ -30,7 +30,10 @@ public class AbilityWarpBlast : Ability
             return;
         }
 
-        CastSetup();
+        character.gameObject.transform.LookAt(targetPosition);
+        portLocation = targetPosition;
+        portLoactionSet = true;
+        //CastSetup();
 
         //checks to see if we can tele
         if (portLoactionSet == false)
@@ -77,29 +80,28 @@ public class AbilityWarpBlast : Ability
         yield return new WaitForSeconds(sec);
         wepHitBox.enabled = false;
     }
-    public void CastSetup()
-    {
-        if (GetComponentInParent<BasicAI>())
-        {
-            Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
-            character.gameObject.transform.LookAt(targetPostition);
-        }
-        else
-        {
-            RaycastHit hit;
+    //public void CastSetup()
+    //{
+    //    if (GetComponentInParent<BasicAI>())
+    //    {
+    //        Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
+    //        character.gameObject.transform.LookAt(targetPostition);
+    //    }
+    //    else
+    //    {
+    //        RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, hitMask))
-            {
-                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                character.gameObject.transform.LookAt(targetPostition);
+    //        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, hitMask))
+    //        {
+    //            Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
 
-                //set port location
-                portLoactionSet = true;
-                portLocation = hit.point;
-            }
-        }
+    //            //set port location
+    //            portLoactionSet = true;
+    //            portLocation = hit.point;
+    //        }
+    //    }
         
-    }
+    //}
 
     public void HitCheck()
     {

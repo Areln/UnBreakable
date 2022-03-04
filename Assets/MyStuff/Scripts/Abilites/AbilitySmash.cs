@@ -11,6 +11,11 @@ public class AbilitySmash : Ability
     public GameObject weaponPrefab;
     public Animator animator;
 
+    public void Awake()
+	{
+        animator = gameObject.GetComponentInParent<Animator>();
+	}
+
     public void Update()
     {
         if (currentCooldown > 0)
@@ -18,14 +23,17 @@ public class AbilitySmash : Ability
             currentCooldown -= Time.deltaTime;
         }
     }
-    public override void Activate()
+
+    public override void Activate(Vector3 targetPosition)
     {
         if (currentCooldown > 0)
         {
             return;
         }
         currentCooldown = maxCooldown;
-        CastSetup();
+        character.gameObject.transform.LookAt(targetPosition);
+        agent.isStopped = true;
+        //CastSetup();
         animator.SetTrigger("Attack");
 
         if (owner.currentMana >= manaCost)
@@ -34,42 +42,46 @@ public class AbilitySmash : Ability
         }
     }
 
-    public void CastSetup()
-    {
-        if (GetComponentInParent<BasicAI>())
-        {
-            Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
-            character.gameObject.transform.LookAt(targetPostition);
-        }
-        else
-        {
-            RaycastHit hit;
+    //public void CastSetup()
+    //{
+    //    if (GetComponentInParent<BasicAI>())
+    //    {
+    //        Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
+    //        character.gameObject.transform.LookAt(targetPostition);
+    //    }
+    //    else
+    //    {
+    //        RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, hitMask))
-            {
-                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                character.gameObject.transform.LookAt(targetPostition);
-            }
-        }
+    //        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, hitMask))
+    //        {
+    //            Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+    //            character.gameObject.transform.LookAt(targetPostition);
+    //        }
+    //    }
 
-        agent.isStopped = true;
-    }
+    //    agent.isStopped = true;
+    //}
 
     public void DoneCasting()
     {
         agent.isStopped = false;
     }
-    public void TurnHitBoxOn()
-    {
-        wepHitBox.enabled = true;
-    }
-    public void HitCheck()
-    {
-        DoneCasting();
 
-        //disable hitbox
-        wepHitBox.enabled = false;
-    }
+    //// referenced from the animation.
+    //public void TurnHitBoxOn()
+    //{
+    //    wepHitBox.enabled = true;
+    //}
+
+    //// referenced from the animation.
+    //public void HitCheck()
+    //{
+    //    DoneCasting();
+
+    //    //disable hitbox
+    //    wepHitBox.enabled = false;
+    //}
 
 
     public override void SetupAbility(CharacterBrain _owner, NavMeshAgent _agent)

@@ -16,7 +16,7 @@ public abstract class Ability : MonoBehaviour
     public int damage;
     public float maxCooldown;
     public float currentCooldown;
-    public abstract void Activate();
+    public abstract void Activate(Vector3 targetPosition);
 
     public abstract void SetupAbility(CharacterBrain _owner, NavMeshAgent _agent);
 

@@ -389,6 +389,7 @@ MonoBehaviour:
   isIdle: 0
   maxIdleTime: 3
   currentIdleTime: 0
+  WeaponHitBox: {fileID: 3976594932568418115}
   animator: {fileID: 8906772662981070359}
   hpScript: {fileID: 5590220699408097070}
   lootChestPrefab: {fileID: 7099251450696765119, guid: 60f1e130a6276414198a8d762cd3f4d8,
@@ -1805,6 +1806,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1820,6 +1826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1831,16 +1842,6 @@ PrefabInstance:
     - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7593443503150587221, guid: f2260748fe3dd2a4bbc1c53fa9315548,
@@ -1883,3 +1884,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d88af4d2f2914343b65a3231a0300c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3976594932568418115 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5115242320499932585, guid: f2260748fe3dd2a4bbc1c53fa9315548,
+    type: 3}
+  m_PrefabInstance: {fileID: 8201980488473811690}
+  m_PrefabAsset: {fileID: 0}

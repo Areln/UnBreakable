@@ -42,7 +42,7 @@ public class HammerDinSpin : Ability
         transform.parent.Rotate(new Vector3(0, 1, 0) * yRot);
     }
 
-    public override void Activate()
+    public override void Activate(Vector3 targetPosition)
     {
         throw new System.NotImplementedException();
     }

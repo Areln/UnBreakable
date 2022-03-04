@@ -7,7 +7,7 @@ public class AbilityHammerDin : Ability
 {
     public GameObject hammerDinPrefab;
 
-    public override void Activate()
+    public override void Activate(Vector3 targetPosition)
     {
         if (currentCooldown > 0)
         {

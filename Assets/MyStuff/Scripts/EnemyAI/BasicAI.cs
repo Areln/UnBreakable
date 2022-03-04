@@ -26,6 +26,7 @@ public class BasicAI : CharacterBrain
     public bool isIdle;
     public float maxIdleTime;
     public float currentIdleTime;
+    public Collider WeaponHitBox;
 
     public Animator animator;
 
@@ -195,6 +196,21 @@ public class BasicAI : CharacterBrain
         }
     }
 
+    // referenced from the animation.
+    public void TurnHitBoxOn()
+    {
+        WeaponHitBox.enabled = true;
+    }
+
+    // referenced from the animation.
+    public void HitCheck()
+    {
+        //DoneCasting();
+        agent.isStopped = false;
+        //disable hitbox
+        WeaponHitBox.enabled = false;
+    }
+
     void CheckAttackRange()
     {
         if (ability1.currentCooldown <= 0)
@@ -202,7 +218,8 @@ public class BasicAI : CharacterBrain
             //check range
             if (agent.remainingDistance <= 1.5)
             {
-                ability1.Activate();
+                Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
+                ability1.Activate(targetPostition);
             }
         }
 

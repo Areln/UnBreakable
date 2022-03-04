@@ -51,19 +51,37 @@ public class PlayerBrain : CharacterBrain
         //Inputs
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            playerCombat.ability1.Activate();
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+            {
+                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                playerCombat.ability1.Activate(targetPostition);
+            }
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            playerCombat.ability2.Activate();
+            Debug.Log("w pressed");
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+            {
+                Debug.Log("raycaseted");
+                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                playerCombat.ability2.Activate(targetPostition);
+            }
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            playerCombat.ability3.Activate();
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+            {
+                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                playerCombat.ability3.Activate(targetPostition);
+            }
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            playerCombat.ability4.Activate();
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+            {
+                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                playerCombat.ability4.Activate(targetPostition);
+            }
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
