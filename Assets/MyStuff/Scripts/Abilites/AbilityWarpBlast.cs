@@ -24,7 +24,6 @@ public class AbilityWarpBlast : Ability
 
     public override void Activate()
     {
-
         //checks if ability is on cooldown
         if (currentCooldown > 0)
         {
@@ -56,13 +55,14 @@ public class AbilityWarpBlast : Ability
 
         //teleport player
         agent.gameObject.transform.position = portLocation;
-        if (!agent.GetComponent<PlayerBrain>().isMoving)
-        {
-            agent.destination = portLocation;
-        }
+        agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
+		//if (!agent.GetComponent<PlayerBrain>().isMoving)
+		//{
+		//	agent.destination = portLocation;
+		//}
 
-        //instantiates particle object
-        Instantiate(particlePrefab, transform.position, transform.rotation);
+		//instantiates particle object
+		Instantiate(particlePrefab, transform.position, transform.rotation);
 
         //hitbox
         HitCheck();

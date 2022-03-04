@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //sets destination for navmesh and creates marker
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             RaycastHit hit;
 
@@ -46,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
             Destroy(destinationMarkerPlaced);
         }
     }
+
+    internal void StopPlayerFromMoving()
+	{
+        Destroy(destinationMarkerPlaced);
+        agent.destination = gameObject.transform.position;
+	}
 
     public void SetDestination(Vector3 newDest) 
     {
