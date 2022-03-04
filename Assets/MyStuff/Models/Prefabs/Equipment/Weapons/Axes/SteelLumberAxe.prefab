@@ -209,7 +209,7 @@ MonoBehaviour:
   Damage: 10
   StatModifier: 1
   PossibleAbilities:
-  - {fileID: 7593443503150587223, guid: f2260748fe3dd2a4bbc1c53fa9315548, type: 3}
+  - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
 --- !u!1 &4184260420629797440
 GameObject:
   m_ObjectHideFlags: 0
