@@ -5,7 +5,12 @@ using UnityEngine;
 public class AIRangeDetection : MonoBehaviour
 {
 
-    public BasicAI aiBrain;
+    internal BasicAI aiBrain;
+
+    public void Start()
+	{
+        aiBrain = GetComponentInParent<BasicAI>();
+	}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,13 +23,6 @@ public class AIRangeDetection : MonoBehaviour
             }
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

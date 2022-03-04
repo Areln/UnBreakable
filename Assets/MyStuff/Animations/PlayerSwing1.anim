@@ -432,7 +432,8 @@ AnimationClip:
   - time: 0.2
     functionName: TurnHitBoxOn
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 0d88af4d2f2914343b65a3231a0300c6,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

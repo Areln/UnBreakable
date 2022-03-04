@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
 public class HammerDinSpin : Ability
 {
@@ -19,7 +16,7 @@ public class HammerDinSpin : Ability
     // Start is called before the first frame update
     void Start()
     {
-        initPos = gameObject.transform.parent.position;
+        initPos = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -28,18 +25,18 @@ public class HammerDinSpin : Ability
         timeCounter += Time.deltaTime * speed;
         if (timeCounter >= lifeTime)
         {
-            Destroy(gameObject.transform.parent.gameObject);
+            Destroy(gameObject.transform.gameObject);
         }
         radiusGrowth += (growthRate/1000);
 
         float xPos = Mathf.Sin(timeCounter) * radiusGrowth;
         float zPos = Mathf.Cos(timeCounter) * radiusGrowth;
 
-        transform.position = new Vector3(xPos + initPos.x, transform.position.y, zPos + initPos.z);
+        transform.GetChild(0).position = new Vector3(xPos + initPos.x, transform.GetChild(0).position.y, zPos + initPos.z);
 
         float yRot = Time.deltaTime * rotSpeed;
 
-        transform.parent.Rotate(new Vector3(0, 1, 0) * yRot);
+        transform.Rotate(new Vector3(0, 1, 0) * yRot);
     }
 
     public override void Activate(Vector3 targetPosition)
@@ -47,9 +44,9 @@ public class HammerDinSpin : Ability
         throw new System.NotImplementedException();
     }
 
-    public override void SetupAbility(CharacterBrain _owner, NavMeshAgent _agent)
+    public override void SetupAbility(CharacterBrain _owner)
     {
-        throw new System.NotImplementedException();
+        owner = _owner;
     }
 
     public override void RemoveAbility()

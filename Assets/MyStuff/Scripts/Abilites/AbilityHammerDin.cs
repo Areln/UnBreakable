@@ -26,9 +26,7 @@ public class AbilityHammerDin : Ability
         }
 
         HammerDinSpin tempSpin = Instantiate(hammerDinPrefab, transform.position, transform.rotation).GetComponentInChildren<HammerDinSpin>();
-        tempSpin.owner = GetComponentInParent<CharacterBrain>();
-        
-
+        tempSpin.SetupAbility(GetComponentInParent<CharacterBrain>());
     }
 
     public override void RemoveAbility()
@@ -36,10 +34,9 @@ public class AbilityHammerDin : Ability
         throw new System.NotImplementedException();
     }
 
-    public override void SetupAbility(CharacterBrain _owner, NavMeshAgent _agent)
+    public override void SetupAbility(CharacterBrain _owner)
     {
         owner = _owner;
-        character = _owner.gameObject;
     }
 
     // Start is called before the first frame update

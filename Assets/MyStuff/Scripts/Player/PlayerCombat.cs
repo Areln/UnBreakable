@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerCombat : MonoBehaviour
 {
 
     public Animator animator;
-    public PlayerBrain playerBrain;
-    public NavMeshAgent agent;
     public Collider WeaponHitBox;
 
     //Abilites
@@ -19,10 +15,10 @@ public class PlayerCombat : MonoBehaviour
 
     public void Start()
     {
-        ability1.SetupAbility(playerBrain, agent);
-        ability4.SetupAbility(playerBrain, agent);
-        ability3.SetupAbility(playerBrain, agent);
-        ability2.SetupAbility(playerBrain, agent);
+        ability1.SetupAbility(GameManager.Instance.clientPlayer);
+        ability4.SetupAbility(GameManager.Instance.clientPlayer);
+        ability3.SetupAbility(GameManager.Instance.clientPlayer);
+        ability2.SetupAbility(GameManager.Instance.clientPlayer);
     }
 
 
@@ -36,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
     public void HitCheck()
     {
         //DoneCasting();
-        agent.isStopped = false;
+        GameManager.Instance.clientPlayer.agent.isStopped = false;
         //disable hitbox
         WeaponHitBox.enabled = false;
     }

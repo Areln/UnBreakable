@@ -1,22 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerBrain : CharacterBrain
 {
-    public PlayerCombat playerCombat;
-    public PlayerLook playerLook;
-    public PlayerMovement playerMovement;
-
-    public HPScript hpScript;
-
-    public HudManager hudManager;
+    internal PlayerCombat playerCombat;
+    internal PlayerLook playerLook;
+    internal PlayerMovement playerMovement;
+    internal HPScript hpScript;
 
     public float manaRegenTime;
-    public float manaRegenCurrentTime;
+    internal float manaRegenCurrentTime;
     public int manaRegenAmount;
 
-    public bool isMoving = false;
+    internal bool isMoving = false;
 
     //
     public int interactableRange = 3;
@@ -26,6 +24,9 @@ public class PlayerBrain : CharacterBrain
     {
         currentHealth = maxHealth;
         currentMana = maxMana;
+        agent = GetComponent<NavMeshAgent>();
+        Stats = GetComponent<Stats>();
+        hpScript = GetComponent<HPScript>();
         playerCombat = GetComponent<PlayerCombat>();
         playerLook = GetComponent<PlayerLook>();
         playerMovement = GetComponent<PlayerMovement>();
@@ -45,6 +46,10 @@ public class PlayerBrain : CharacterBrain
             {
                 currentMana += manaRegenAmount;
                 manaRegenCurrentTime = manaRegenTime;
+                if(currentMana > maxMana)
+				{
+                    currentMana = maxMana;
+				}
             }
         }
 
@@ -59,10 +64,8 @@ public class PlayerBrain : CharacterBrain
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("w pressed");
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
             {
-                Debug.Log("raycaseted");
                 Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
                 playerCombat.ability2.Activate(targetPostition);
             }
@@ -82,6 +85,11 @@ public class PlayerBrain : CharacterBrain
                 Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
                 playerCombat.ability4.Activate(targetPostition);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            // stop char movement
+            playerMovement.StopPlayerFromMoving();
         }
         if (Input.GetKeyDown(KeyCode.B))
         {

@@ -1,18 +1,20 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AbilityWarpBlast : Ability
 {
-    public NavMeshAgent agent;
-    public SphereCollider wepHitBox;
-    public LayerMask hitMask;
+    internal Collider wepHitBox;
     public GameObject particlePrefab;
     Vector3 portLocation;
     bool portLoactionSet = false;
     public float maxCastTime;
     float currentCastTime;
+
+    public void Start()
+	{
+        wepHitBox = GetComponentInChildren<Collider>();
+	}
 
     public void Update()
     {
@@ -30,10 +32,9 @@ public class AbilityWarpBlast : Ability
             return;
         }
 
-        character.gameObject.transform.LookAt(targetPosition);
+        owner.gameObject.transform.LookAt(targetPosition);
         portLocation = targetPosition;
         portLoactionSet = true;
-        //CastSetup();
 
         //checks to see if we can tele
         if (portLoactionSet == false)
@@ -57,8 +58,8 @@ public class AbilityWarpBlast : Ability
 
 
         //teleport player
-        agent.gameObject.transform.position = portLocation;
-        agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
+        owner.agent.gameObject.transform.position = portLocation;
+        owner.agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
 		//if (!agent.GetComponent<PlayerBrain>().isMoving)
 		//{
 		//	agent.destination = portLocation;
@@ -80,28 +81,6 @@ public class AbilityWarpBlast : Ability
         yield return new WaitForSeconds(sec);
         wepHitBox.enabled = false;
     }
-    //public void CastSetup()
-    //{
-    //    if (GetComponentInParent<BasicAI>())
-    //    {
-    //        Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
-    //        character.gameObject.transform.LookAt(targetPostition);
-    //    }
-    //    else
-    //    {
-    //        RaycastHit hit;
-
-    //        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, hitMask))
-    //        {
-    //            Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-
-    //            //set port location
-    //            portLoactionSet = true;
-    //            portLocation = hit.point;
-    //        }
-    //    }
-        
-    //}
 
     public void HitCheck()
     {
@@ -113,11 +92,9 @@ public class AbilityWarpBlast : Ability
         throw new System.NotImplementedException();
     }
 
-    public override void SetupAbility(CharacterBrain _owner, NavMeshAgent _agent)
+    public override void SetupAbility(CharacterBrain _owner)
     {
-        agent = _agent;
         owner = _owner;
-        character = owner.gameObject;
     }
 
 }

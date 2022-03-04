@@ -1,24 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
-public abstract class Ability : MonoBehaviour
+public abstract class Ability : DamageDealer
 {
-
-    public enum AbilityType { WeaponAbility, WAbility };
-
-    public CharacterBrain owner;
-    public GameObject character;
-    public AbilityType abilityType;
+    internal CharacterBrain owner;
     public string abilityName;
     public int manaCost;
-    public int damage;
     public float maxCooldown;
     public float currentCooldown;
     public abstract void Activate(Vector3 targetPosition);
 
-    public abstract void SetupAbility(CharacterBrain _owner, NavMeshAgent _agent);
+    public abstract void SetupAbility(CharacterBrain _owner);
+
+    public void Update()
+	{
+        if (currentCooldown > 0)
+        {
+            currentCooldown -= Time.deltaTime;
+        }
+    }
 
     public abstract void RemoveAbility();
 

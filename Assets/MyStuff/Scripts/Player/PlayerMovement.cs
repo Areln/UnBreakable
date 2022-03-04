@@ -6,19 +6,17 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     //player's move agent
-    public NavMeshAgent agent;
+    internal NavMeshAgent agent;
 
     //DestinationMarker
     public GameObject destinationMarkerPrefab;
     //currently placed destinationMarker
-    public GameObject destinationMarkerPlaced;
-
-    public LayerMask moveMask;
+    internal GameObject destinationMarkerPlaced;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -29,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, moveMask))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, LayerMask.GetMask("Ground")))
             {
 
                 if (destinationMarkerPlaced != null)

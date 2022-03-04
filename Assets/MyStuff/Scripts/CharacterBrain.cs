@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class CharacterBrain : MonoBehaviour
 {
@@ -9,4 +8,7 @@ public abstract class CharacterBrain : MonoBehaviour
     public int currentHealth;
     public int maxMana;
     public int currentMana;
+
+    internal NavMeshAgent agent;
+    internal Stats Stats;
 }

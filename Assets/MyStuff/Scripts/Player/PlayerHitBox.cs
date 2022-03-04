@@ -11,10 +11,19 @@ public class PlayerHitBox : MonoBehaviour
     //hitbox
     public void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == "Weapon")
+        if (other.gameObject.tag == "DamageDealer")
         {
-            if (other.GetComponentInParent<Ability>().owner == playerBrain)
+            var enemy = other.GetComponentInParent<CharacterBrain>();
+            if (enemy == null)
+            {
+                var ability = other.GetComponent<Ability>();
+                if (ability == null)
+                {
+                    ability = other.GetComponentInParent<Ability>();
+                }
+                enemy = ability.owner;
+            }
+            if (enemy == playerBrain)
             {
                 return;
             }
@@ -22,8 +31,18 @@ public class PlayerHitBox : MonoBehaviour
             {
                 return;
             }
-            playerBrain.TakeDamage(other.GetComponentInParent<Ability>().damage);
+
+            var damager = other.GetComponent<DamageDealer>();
+            if (damager == null)
+            {
+                damager = other.GetComponentInParent<DamageDealer>();
+            }
+            
+            int damage = damager.CalculateDamageDealt(enemy);
+            playerBrain.TakeDamage(damage);
         }
     }
+
+
 
 }
