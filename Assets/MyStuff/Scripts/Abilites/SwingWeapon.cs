@@ -11,7 +11,14 @@ public class SwingWeapon : Ability
         {
             animator = gameObject.GetComponentInParent<Animator>();
         }
-	}
+    }
+    public void Update()
+    {
+        if (currentCooldown > 0)
+        {
+            currentCooldown -= Time.deltaTime;
+        }
+    }
 
     public override void Activate(Vector3 targetPosition)
     {

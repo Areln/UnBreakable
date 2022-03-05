@@ -24,4 +24,9 @@ public abstract class CharacterBrain : MonoBehaviour
             CharacterDie();
         }
     }
+
+    public void StopCharacterFromMoving()
+    {
+        agent.destination = gameObject.transform.position;
+    }
 }

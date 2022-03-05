@@ -11,14 +11,6 @@ public abstract class Ability : DamageDealer
 
     public abstract void SetupAbility(CharacterBrain _owner);
 
-    public void Update()
-	{
-        if (currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime;
-        }
-    }
-
     public abstract void RemoveAbility();
 
     public virtual float GetCDPercentage() 

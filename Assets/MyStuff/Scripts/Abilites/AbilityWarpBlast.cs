@@ -56,14 +56,9 @@ public class AbilityWarpBlast : Ability
             }
         }
 
-
         //teleport player
         owner.agent.gameObject.transform.position = portLocation;
         owner.agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
-		//if (!agent.GetComponent<PlayerBrain>().isMoving)
-		//{
-		//	agent.destination = portLocation;
-		//}
 
 		//instantiates particle object
 		Instantiate(particlePrefab, transform.position, transform.rotation);

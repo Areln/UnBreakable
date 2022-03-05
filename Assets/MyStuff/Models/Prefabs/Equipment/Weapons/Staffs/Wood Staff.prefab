@@ -247,4 +247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 5
   StatModifier: 1
-  PossibleAbilities: []
+  PossibleAbilities:
+  - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
+  - {fileID: 1858707421012363883, guid: 6a3a56803a091dd439b017c116f9847a, type: 3}
