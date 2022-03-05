@@ -1060,9 +1060,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1840425257}
-  distanceCameraFromGround: 20
-  camOffset: 1
-  camRotationSpeed: 1
+  distanceCameraFromGround: 15
+  RotationSpeed: 5
+  MoveSpeed: 3
+  MaxDistanceFromTarget: 20
   InvertCamRotation: 0
 --- !u!114 &1141358542 stripped
 MonoBehaviour:

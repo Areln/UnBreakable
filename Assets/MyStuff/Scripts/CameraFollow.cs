@@ -4,87 +4,67 @@ using System;
 
 public class CameraFollow : MonoBehaviour
 {
-  public Transform target;
-  public float distanceCameraFromGround = 40;
-  public float camOffset = 1.5f;
-  public float camRotationSpeed = 1;
-  public bool InvertCamRotation;
+	public Transform target;
+	public float distanceCameraFromGround = 40;
+	public float RotationSpeed = 1;
+	public float MoveSpeed = 1;
+	public float MaxDistanceFromTarget = 10;
+	public bool InvertCamRotation;
 
-  float camHeight = 100f;
-  float camX;
-  float camZ;
-  float targetXLast;
-  float targetZLast;
-  float targetDistanceFromTarget;
+	private float camHeight = 100f;
 
-  void Start()
-  {
-    if(InvertCamRotation)
-    {
-      camRotationSpeed = -camRotationSpeed;
-    }
-    camX = target.transform.position.x;
-    camZ = target.transform.position.z - camHeight / camOffset;
-    targetXLast = target.position.x;
-    targetZLast = target.position.z;
-  }
+	void Start()
+	{
+		if (InvertCamRotation)
+		{
+			RotationSpeed = -RotationSpeed;
+		}
+	}
 
-  void LateUpdate()
-  {
-    if (target)
-    {
-      camHeight = GetCamHeight();
-      targetDistanceFromTarget = camHeight / camOffset;
-      camX += target.position.x - targetXLast;
-      camZ += target.position.z - targetZLast;
-      transform.position = new Vector3(camX, camHeight, camZ);
+	void FixedUpdate()
+	{
+		if (target)
+		{
+			SetCamHeight();
 
-      var targetsPositionFromCamera = new Vector3(target.position.x, camHeight, target.position.z);
-      if (Vector3.Distance(transform.position, targetsPositionFromCamera) > targetDistanceFromTarget)
-      {
-        transform.position = Vector3.MoveTowards(transform.position, targetsPositionFromCamera, 10 * Time.deltaTime);
-        camX = transform.position.x;
-        camZ = transform.position.z;
-      }
-      //else if (Vector3.Distance(transform.position, targetsPositionFromCamera) < targetDistanceFromTarget)
-      //{
-      //  transform.position = Vector3.MoveTowards(transform.position, -transform.forward, camOffset * Time.deltaTime);
-      //  camX = transform.position.x;
-      //  camZ = transform.position.z;
-      //}
+			Vector3 newPos = transform.position;
+			var newTarget = new Vector3(target.position.x, camHeight, target.position.z);
+			var distanceFromTarget = Vector3.Distance(transform.position, newTarget);
+			if (distanceFromTarget > MaxDistanceFromTarget)
+			{
+				newPos = Vector3.MoveTowards(transform.position, newTarget, Time.fixedDeltaTime * MoveSpeed);
+			}
+			transform.LookAt(target, Vector3.up);
+			transform.position = new Vector3(newPos.x, camHeight, newPos.z);			
 
-      if (Input.GetKey(KeyCode.LeftControl))
-      {
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {//rotate camera
-          transform.RotateAround(target.position, Vector3.up, -camRotationSpeed);
-          camX = transform.position.x;
-          camZ = transform.position.z;
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-        {//rotate camera
-          transform.RotateAround(target.position, Vector3.up, camRotationSpeed);
-          camX = transform.position.x;
-          camZ = transform.position.z;
-        }
-      }
-      targetXLast = target.position.x;
-      targetZLast = target.position.z;
-    }
+			if (Input.GetKey(KeyCode.LeftControl))
+			{
+				if (Input.GetAxis("Mouse ScrollWheel") < 0)
+				{//rotate camera
+					transform.RotateAround(target.position, Vector3.up, -RotationSpeed);
+				}
+				if (Input.GetAxis("Mouse ScrollWheel") > 0)
+				{//rotate camera
+					transform.RotateAround(target.position, Vector3.up, RotationSpeed);
+				}
+			}
+		}
 
-  }
+	}
 
-  private float GetCamHeight()
-  {
-    var camH = camHeight;
-    Ray r = new Ray(transform.position, Vector3.down);
-    RaycastHit hit;
-    if (Physics.Raycast(r, out hit, 1000, LayerMask.GetMask("Ground")))
-    {
-      camH = hit.point.y + distanceCameraFromGround;
-    }
+	private void SetCamHeight()
+	{
+		Ray r = new Ray(transform.position, Vector3.down);
+		RaycastHit hit;
+		if (Physics.Raycast(r, out hit, 1000, LayerMask.GetMask("Ground")))
+		{
+			camHeight = hit.point.y + distanceCameraFromGround;
+		}
+	}
+	private float GetCamAngle()
+	{
+		float angle = 0;
 
-
-    return camH;
-  }
+		return angle;
+	}
 }
