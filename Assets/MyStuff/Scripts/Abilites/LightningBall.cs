@@ -7,7 +7,7 @@ public class LightningBall : Ability
 {
 	public float MoveSpeed;
 	public GameObject LightingPrefab;
-
+	public GameObject LightningParticlesPrefab;
 	private Vector3 targetPosition;
 
 	// Update is called once per frame
@@ -24,6 +24,9 @@ public class LightningBall : Ability
 	{
 		var script = Instantiate(LightingPrefab, transform.position, Quaternion.identity).GetComponent<LightningStrike>();
 		script.SetupAbility(owner);
+
+		Instantiate(LightningParticlesPrefab, transform.position, Quaternion.identity);
+
 		Destroy(gameObject);
 	}
 

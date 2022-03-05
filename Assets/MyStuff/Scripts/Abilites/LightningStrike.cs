@@ -12,7 +12,10 @@ public class LightningStrike : Ability
 	{
 		startScale = transform.localScale;
 		endScale = new Vector3(transform.localScale.x * 8, transform.localScale.y * 8, transform.localScale.z * 8);
-		startPosition = transform.up * 10;
+		startPosition = transform.position;
+		startPosition += transform.up * 100;
+		startPosition.x += UnityEngine.Random.Range(-2f, 2f);
+		startPosition.z += UnityEngine.Random.Range(-2f, 2f);
 		lineRenderer = GetComponent<LineRenderer>();
 
 		//Enables line renderer
@@ -25,8 +28,8 @@ public class LightningStrike : Ability
 			var pos = Vector3.Lerp(startPosition, transform.position, i / 4f);
 
 			//randomises lines position
-			pos.x += UnityEngine.Random.Range(-0.4f, 0.4f);
-			pos.y += UnityEngine.Random.Range(-0.4f, 0.4f);
+			pos.x += UnityEngine.Random.Range(-0.6f, 0.6f);
+			pos.z += UnityEngine.Random.Range(-0.6f, 0.6f);
 
 			lineRenderer.SetPosition(i, pos);
 		}
