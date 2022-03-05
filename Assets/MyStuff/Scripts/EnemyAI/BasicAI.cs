@@ -231,8 +231,10 @@ public class BasicAI : CharacterBrain
 		if (ability1 != null && ability1.currentCooldown <= 0)
 		{
 			//check range
-			if (agent.remainingDistance <= 1.5)
+			var distance = Vector3.Distance(transform.position, MainTarget.transform.position);
+			if (distance <= 1.5 && !agent.isPathStale)
 			{
+				Debug.Log(MainTarget.transform.parent.name + "|" + agent.destination + "|" + distance);
 				Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
 				ability1.Activate(targetPostition);
 			}
