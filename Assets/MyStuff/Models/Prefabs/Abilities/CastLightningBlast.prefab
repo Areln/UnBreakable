@@ -53,6 +53,8 @@ MonoBehaviour:
   currentCooldown: 0
   BlastPrefab: {fileID: 8262041921401545342, guid: b9913f50a814ff04ba69ab06fec6c6d4,
     type: 3}
+  CastParticles: {fileID: 3052674236250025542, guid: 357bbef2321354847991b8d8425807ba,
+    type: 3}
   CastTime: 2.5
 --- !u!54 &6632362520110933075
 Rigidbody:

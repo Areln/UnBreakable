@@ -4,6 +4,7 @@ using UnityEngine;
 public class AbilityLightningBlast : Ability
 {
 	public GameObject BlastPrefab;
+	public GameObject CastParticles;
 	public float CastTime;
 
 	private GameObject lightingBallObject;
@@ -54,12 +55,15 @@ public class AbilityLightningBlast : Ability
 	{
 		currentCooldown = maxCooldown;
 		owner.gameObject.transform.LookAt(targetPosition);
-		owner.agent.isStopped = true;
+		var newPosition = owner.transform.position + owner.transform.forward * 1f;
+		Instantiate(CastParticles, newPosition, owner.transform.rotation);
 		animator.SetBool("Casting", true);
+		var temp = owner.agent.destination;
+		owner.agent.destination = owner.transform.position;
 		yield return new WaitForSeconds(sec);
 		animator.SetBool("Casting", false);
 		lightingBallObject.SetActive(true);
-		owner.agent.isStopped = false;
+		owner.agent.destination = temp;
 	}
 
 	public override void SetupAbility(CharacterBrain _owner)

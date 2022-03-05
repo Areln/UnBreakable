@@ -6,11 +6,9 @@ public class LightningStrike : Ability
 {
 	private LineRenderer lineRenderer;
 	private Vector3 startPosition;
-	private Vector3 startScale;
 	private Vector3 endScale;
 	void Start()
 	{
-		startScale = transform.localScale;
 		endScale = new Vector3(transform.localScale.x * 8, transform.localScale.y * 8, transform.localScale.z * 8);
 		startPosition = transform.position;
 		startPosition += transform.up * 100;
