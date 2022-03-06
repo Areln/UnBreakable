@@ -60,7 +60,8 @@ public class AbilityWarpBlast : Ability
         owner.agent.isStopped = true;
 
         //teleport player
-        owner.agent.gameObject.transform.position = portLocation;
+        owner.gameObject.transform.position = portLocation;
+        owner.agent.Warp(portLocation);
         owner.agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
 
         //enable agent

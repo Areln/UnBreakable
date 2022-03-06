@@ -165,16 +165,6 @@ public class BasicAI : CharacterBrain
 	{
 		MainTarget = TargetsInRange[0];
 	}
-	public void TakeDamage(int _damage)
-	{
-		currentHealth -= _damage;
-		hpScript.ChangeHP(-_damage, gameObject.transform.position);
-
-		if (currentHealth <= 0)
-		{
-			CharacterDie();
-		}
-	}
 
 	public override void CharacterDie()
 	{

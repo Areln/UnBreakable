@@ -60,11 +60,5 @@ public class GameStateManager : MonoBehaviour
             default:
                 break;
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
