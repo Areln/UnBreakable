@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,4 +36,26 @@ public class GameManager : MonoBehaviour
     }
 
     public PlayerBrain clientPlayer;
+
+    public List<GameObject> PossibleItems = new List<GameObject>();
+
+    static Dictionary<string, GameObject> ItemDirectory = new Dictionary<string, GameObject>();
+
+    private void Awake()
+    {
+        foreach (GameObject item in PossibleItems)
+        {
+            ItemDirectory.Add(item.GetComponent<Item>().InternalName, item);
+        }
+    }
+
+    public GameObject SearchItems(string itemName)
+    {
+        GameObject returnItem;
+        
+        ItemDirectory.TryGetValue(itemName, out returnItem);
+
+        return returnItem;
+    }
+
 }

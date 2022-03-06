@@ -14,6 +14,7 @@ public abstract class Item : MonoBehaviour
 {
     public ItemType ItemType;
     public string ItemName;
+    public string InternalName;
     public string Description;
     public Sprite ItemSprite;
     public int MonetaryValue;

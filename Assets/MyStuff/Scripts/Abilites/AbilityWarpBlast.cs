@@ -12,9 +12,9 @@ public class AbilityWarpBlast : Ability
     float currentCastTime;
 
     public void Start()
-	{
+    {
         wepHitBox = GetComponentInChildren<Collider>();
-	}
+    }
 
     public void Update()
     {
@@ -56,12 +56,18 @@ public class AbilityWarpBlast : Ability
             }
         }
 
+        //disable agent
+        owner.agent.isStopped = true;
+
         //teleport player
         owner.agent.gameObject.transform.position = portLocation;
         owner.agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
 
-		//instantiates particle object
-		Instantiate(particlePrefab, transform.position, transform.rotation);
+        //enable agent
+        //owner.agent.isStopped = false;
+
+        //instantiates particle object
+        Instantiate(particlePrefab, transform.position, transform.rotation);
 
         //hitbox
         HitCheck();
