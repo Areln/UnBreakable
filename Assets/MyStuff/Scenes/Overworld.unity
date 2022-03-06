@@ -1064,6 +1064,7 @@ MonoBehaviour:
   RotationSpeed: 5
   MoveSpeed: 3
   MaxDistanceFromTarget: 20
+  MinDistanceFromTarget: 19
   InvertCamRotation: 0
 --- !u!114 &1141358542 stripped
 MonoBehaviour:
