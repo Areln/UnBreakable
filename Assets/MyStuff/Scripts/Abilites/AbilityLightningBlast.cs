@@ -58,12 +58,11 @@ public class AbilityLightningBlast : Ability
 		var newPosition = owner.transform.position + owner.transform.forward * 1f;
 		Instantiate(CastParticles, newPosition, owner.transform.rotation);
 		animator.SetBool("Casting", true);
-		var temp = owner.agent.destination;
-		owner.agent.destination = owner.transform.position;
+		owner.agent.isStopped = true;
 		yield return new WaitForSeconds(sec);
 		animator.SetBool("Casting", false);
 		lightingBallObject.SetActive(true);
-		owner.agent.destination = temp;
+		owner.agent.isStopped = false;
 	}
 
 	public override void SetupAbility(CharacterBrain _owner)
