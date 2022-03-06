@@ -134,6 +134,11 @@ public class HudManager : MonoBehaviour
         charInvCanvas.enabled = _value;
     }
 
+    public void RedrawInventory() 
+    {
+        
+    }
+
     //calcs alpha value for ability cooldown UI
     public int ShadeCalculator(float cdPercentage)
     {

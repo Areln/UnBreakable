@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3989671415524103434}
   - component: {fileID: 3291744172453098375}
   - component: {fileID: 2167938077881287805}
+  - component: {fileID: 1841755723060100451}
   m_Layer: 0
   m_Name: SteelChestpiece(GoldTrim)
   m_TagString: Player
@@ -85,6 +86,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1841755723060100451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779745711940179492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Steel Chest Piece
+  Description: Gold Trimmed
+  ItemSprite: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+  MonetaryValue: 69
+  EquipType: 1
+  ArmorType: 1
 --- !u!1 &4058292298231116018
 GameObject:
   m_ObjectHideFlags: 0
