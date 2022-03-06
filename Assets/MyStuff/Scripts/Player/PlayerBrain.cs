@@ -8,6 +8,7 @@ public class PlayerBrain : CharacterBrain
     internal PlayerCombat playerCombat;
     internal PlayerLook playerLook;
     internal PlayerMovement playerMovement;
+    //internal PlayerInventory playerInventory;
     internal HPScript hpScript;
 
     public float manaRegenTime;
@@ -30,6 +31,7 @@ public class PlayerBrain : CharacterBrain
         playerCombat = GetComponent<PlayerCombat>();
         playerLook = GetComponent<PlayerLook>();
         playerMovement = GetComponent<PlayerMovement>();
+        //playerInventory = GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
