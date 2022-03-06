@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 6633076331754650852}
   - component: {fileID: 7840235431994593964}
   m_Layer: 0
-  m_Name: WoodShield(GoldTrim)
+  m_Name: WoodShield(GoldTrim) 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

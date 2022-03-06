@@ -57,7 +57,8 @@ public class AbilityWarpBlast : Ability
         }
 
         //teleport player
-        owner.agent.gameObject.transform.position = portLocation;
+        owner.gameObject.transform.position = portLocation;
+        owner.agent.Warp(portLocation);
         owner.agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
 
 		//instantiates particle object
