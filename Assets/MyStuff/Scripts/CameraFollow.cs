@@ -5,10 +5,11 @@ using System;
 public class CameraFollow : MonoBehaviour
 {
 	public Transform target;
-	public float distanceCameraFromGround = 40;
+	public float distanceCameraFromGround = 15;
 	public float RotationSpeed = 1;
 	public float MoveSpeed = 1;
-	public float MaxDistanceFromTarget = 10;
+	public float MaxDistanceFromTarget = 20;
+	public float MinDistanceFromTarget = 19;
 	public bool InvertCamRotation;
 
 	private float camHeight = 100f;
@@ -33,6 +34,13 @@ public class CameraFollow : MonoBehaviour
 			if (distanceFromTarget > MaxDistanceFromTarget)
 			{
 				newPos = Vector3.MoveTowards(transform.position, newTarget, Time.fixedDeltaTime * MoveSpeed);
+			}
+			else if(distanceFromTarget < MinDistanceFromTarget)
+			{
+				var newDirection = transform.position - newTarget;
+				newDirection.Normalize();
+				
+				newPos = transform.position + (newDirection * (Time.fixedDeltaTime * MoveSpeed)); Vector3.MoveTowards(transform.position, newTarget, Time.fixedDeltaTime * MoveSpeed);
 			}
 			transform.LookAt(target, Vector3.up);
 			transform.position = new Vector3(newPos.x, camHeight, newPos.z);			
