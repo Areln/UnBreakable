@@ -91,8 +91,11 @@ public class PlayerBrain : CharacterBrain
         if (Input.GetKeyDown(KeyCode.S))
         {
             // stop char movement
-            CurrentlyCastingAbility.IsCanceled = true;
-            CurrentlyCastingAbility = null;
+            if (CurrentlyCastingAbility)
+            {
+                CurrentlyCastingAbility.IsCanceled = true;
+                CurrentlyCastingAbility = null;
+            }
             playerMovement.StopPlayerFromMoving();
         }
         if (Input.GetKeyDown(KeyCode.B))

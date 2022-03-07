@@ -9,16 +9,17 @@ public class AbilityHammerDin : Ability
 
     public override void Activate(Vector3 targetPosition)
     {
-        if (currentCooldown > 0)
+        //checks if ability is on cooldown or if the player is casting an ability already.
+        if (currentCooldown > 0 || owner.CurrentlyCastingAbility != null)
         {
             return;
         }
-        currentCooldown = maxCooldown;
 
         //uses mana
         if (owner.currentMana >= manaCost)
         {
             owner.currentMana -= manaCost;
+            currentCooldown = maxCooldown;
         }
         else
         {

@@ -29,6 +29,7 @@ public class AbilityLightningBlast : Ability
 		{
 			animator.SetBool("Casting", false);
 			owner.agent.isStopped = false;
+			owner.CurrentlyCastingAbility = null;
 			Destroy(lightingBallObject);
 			Destroy(castParticles);
 		}
@@ -70,6 +71,7 @@ public class AbilityLightningBlast : Ability
 		yield return new WaitForSeconds(sec);
 		if (!IsCanceled)
 		{
+			owner.CurrentlyCastingAbility = null;
 			finishedCasting = true;
 			animator.SetBool("Casting", false);
 			lightingBallObject.SetActive(true);
