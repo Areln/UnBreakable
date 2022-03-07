@@ -3083,8 +3083,9 @@ MonoBehaviour:
   ability3Shade: {fileID: 5517698464284983057}
   ability4Shade: {fileID: 5517698463764057969}
   InventoryItemSlots: []
-  ItemSlotPrefab: {fileID: 0}
-  ItemSlotHolder: {fileID: 0}
+  ItemSlotPrefab: {fileID: 5321675876255745466, guid: 2d12834c5be244242824f741a3594f8c,
+    type: 3}
+  ItemSlotHolder: {fileID: 444324204562132321}
 --- !u!1 &5517698464493199641
 GameObject:
   m_ObjectHideFlags: 0
