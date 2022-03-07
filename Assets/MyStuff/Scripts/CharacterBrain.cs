@@ -12,6 +12,8 @@ public abstract class CharacterBrain : MonoBehaviour
     internal NavMeshAgent agent;
     internal Stats Stats;
 
+    internal Ability CurrentlyCastingAbility { get; set; }
+
     public abstract void CharacterDie();
 
     public void TakeDamage(int _damage)

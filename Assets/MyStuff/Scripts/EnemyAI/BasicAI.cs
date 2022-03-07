@@ -122,7 +122,7 @@ public class BasicAI : CharacterBrain
 					NextPatrolTarget();
 				}
 				// Debug.Log(Vector3.Distance(MainTarget.transform.position, gameObject.transform.position));
-				if (Vector3.Distance(MainTarget.transform.position, gameObject.transform.position) <= 2)
+				if (Vector3.Distance(MainTarget.transform.position, gameObject.transform.position) <= 5)
 				{
 					//Debug.Log("idling");
 					isIdle = true;

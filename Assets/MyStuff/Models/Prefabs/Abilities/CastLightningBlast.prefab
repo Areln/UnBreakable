@@ -48,7 +48,7 @@ MonoBehaviour:
   Damage: 0
   StatModifier: 0
   abilityName: Lightning Blast
-  manaCost: 100
+  manaCost: 25
   maxCooldown: 5
   currentCooldown: 0
   BlastPrefab: {fileID: 8262041921401545342, guid: b9913f50a814ff04ba69ab06fec6c6d4,

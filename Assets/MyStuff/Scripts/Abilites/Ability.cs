@@ -7,6 +7,9 @@ public abstract class Ability : DamageDealer
     public int manaCost;
     public float maxCooldown;
     public float currentCooldown;
+
+    internal bool IsCanceled { get; set; }
+
     public abstract void Activate(Vector3 targetPosition);
 
     public abstract void SetupAbility(CharacterBrain _owner);
