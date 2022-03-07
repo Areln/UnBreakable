@@ -22,18 +22,19 @@ public class SwingWeapon : Ability
 
     public override void Activate(Vector3 targetPosition)
     {
-        if (currentCooldown > 0)
+        //checks if ability is on cooldown or if the player is casting an ability already.
+        if (currentCooldown > 0 || owner.CurrentlyCastingAbility != null)
         {
             return;
         }
-        currentCooldown = maxCooldown;
-        owner.gameObject.transform.LookAt(targetPosition);
-        owner.agent.isStopped = true;
-        animator.SetTrigger("Attack");
 
         if (owner.currentMana >= manaCost)
         {
+            currentCooldown = maxCooldown;
             owner.currentMana -= manaCost;
+            owner.gameObject.transform.LookAt(targetPosition);
+            owner.agent.isStopped = true;
+            animator.SetTrigger("Attack");
         }
     }
 

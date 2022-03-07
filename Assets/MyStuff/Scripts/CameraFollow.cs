@@ -33,14 +33,13 @@ public class CameraFollow : MonoBehaviour
 			var distanceFromTarget = Vector3.Distance(transform.position, newTarget);
 			if (distanceFromTarget > MaxDistanceFromTarget)
 			{
-				newPos = Vector3.MoveTowards(transform.position, newTarget, Time.fixedDeltaTime * MoveSpeed);
+				newPos = Vector3.MoveTowards(transform.position, newTarget, Time.fixedDeltaTime * (MoveSpeed * (float)Math.Truncate(distanceFromTarget - MaxDistanceFromTarget)));
 			}
 			else if(distanceFromTarget < MinDistanceFromTarget)
 			{
 				var newDirection = transform.position - newTarget;
-				newDirection.Normalize();
-				
-				newPos = transform.position + (newDirection * (Time.fixedDeltaTime * MoveSpeed)); Vector3.MoveTowards(transform.position, newTarget, Time.fixedDeltaTime * MoveSpeed);
+				newDirection.Normalize();				
+				newPos = transform.position + (newDirection * (Time.fixedDeltaTime * MoveSpeed)); Vector3.MoveTowards(transform.position, newTarget, Time.fixedDeltaTime * (MoveSpeed * (float)Math.Truncate(MinDistanceFromTarget - distanceFromTarget)));
 			}
 			transform.LookAt(target, Vector3.up);
 			transform.position = new Vector3(newPos.x, camHeight, newPos.z);			
@@ -54,6 +53,27 @@ public class CameraFollow : MonoBehaviour
 				if (Input.GetAxis("Mouse ScrollWheel") > 0)
 				{//rotate camera
 					transform.RotateAround(target.position, Vector3.up, RotationSpeed);
+				}
+			}
+			else
+			{
+				if (Input.GetAxis("Mouse ScrollWheel") < 0)
+				{//zoom camera Out
+					if (MaxDistanceFromTarget < 20)
+					{
+						distanceCameraFromGround++;
+						MaxDistanceFromTarget++;
+						MinDistanceFromTarget++;
+					}
+				}
+				if (Input.GetAxis("Mouse ScrollWheel") > 0)
+				{//zoom camera in
+					if (distanceCameraFromGround > 5)
+					{
+						distanceCameraFromGround--;
+						MaxDistanceFromTarget--;
+						MinDistanceFromTarget--;
+					}
 				}
 			}
 		}

@@ -10,6 +10,8 @@ public class AbilityLightningBlast : Ability
 	private GameObject lightingBallObject;
 	private Animator animator;
 	private Vector3 targetPosition;
+	private GameObject castParticles;
+	private bool finishedCasting;
 
 	public void Awake()
 	{
@@ -23,6 +25,14 @@ public class AbilityLightningBlast : Ability
 
 	public void Update()
 	{
+		if(IsCanceled && !finishedCasting)
+		{
+			animator.SetBool("Casting", false);
+			owner.agent.isStopped = false;
+			owner.CurrentlyCastingAbility = null;
+			Destroy(lightingBallObject);
+			Destroy(castParticles);
+		}
 		if (currentCooldown > 0)
 		{
 			currentCooldown -= Time.deltaTime;
@@ -31,19 +41,15 @@ public class AbilityLightningBlast : Ability
 
 	public override void Activate(Vector3 targetPosition)
 	{
-		if (currentCooldown <= 0)
+		if (currentCooldown <= 0 && manaCost <= owner.currentMana)
 		{
+			owner.CurrentlyCastingAbility = this;
 			var newPos = targetPosition + -transform.up * 1;
 			this.targetPosition = newPos;
 			lightingBallObject = Instantiate(BlastPrefab, owner.transform.position, Quaternion.identity);
 			lightingBallObject.GetComponent<LightningBall>().InitializeSpell(targetPosition, owner);
-			CastSpell();
+			StartCoroutine(CastSpell(CastTime));
 		}
-	}
-
-	public void CastSpell()
-	{
-		StartCoroutine(waitForSec(CastTime));
 	}
 
 	public override void RemoveAbility()
@@ -51,18 +57,30 @@ public class AbilityLightningBlast : Ability
 		throw new System.NotImplementedException();
 	}
 
-	private IEnumerator waitForSec(float sec)
+	private IEnumerator CastSpell(float sec)
 	{
+		owner.currentMana -= manaCost;
+		IsCanceled = false;
+		finishedCasting = false;
 		currentCooldown = maxCooldown;
 		owner.gameObject.transform.LookAt(targetPosition);
 		var newPosition = owner.transform.position + owner.transform.forward * 1f;
-		Instantiate(CastParticles, newPosition, owner.transform.rotation);
+		castParticles = Instantiate(CastParticles, newPosition, owner.transform.rotation);
 		animator.SetBool("Casting", true);
 		owner.agent.isStopped = true;
 		yield return new WaitForSeconds(sec);
-		animator.SetBool("Casting", false);
-		lightingBallObject.SetActive(true);
-		owner.agent.isStopped = false;
+		if (!IsCanceled)
+		{
+			owner.CurrentlyCastingAbility = null;
+			finishedCasting = true;
+			animator.SetBool("Casting", false);
+			lightingBallObject.SetActive(true);
+			owner.agent.isStopped = false;
+		}
+		else
+		{
+			IsCanceled = false;
+		}
 	}
 
 	public override void SetupAbility(CharacterBrain _owner)
