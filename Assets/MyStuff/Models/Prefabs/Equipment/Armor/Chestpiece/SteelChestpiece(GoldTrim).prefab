@@ -103,6 +103,8 @@ MonoBehaviour:
   InternalName: steelchestpiecegoldtrim
   Description: Gold Trimmed
   ItemSprite: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 1
   MonetaryValue: 69
   EquipType: 1
   EquipComponents: []

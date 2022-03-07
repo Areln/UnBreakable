@@ -66,6 +66,22 @@ public class HudManager : MonoBehaviour
     public Image ability3Shade;
     public Image ability4Shade;
 
+    //
+    public List<ItemSlot> InventoryItemSlots = new List<ItemSlot>();
+    public GameObject ItemSlotPrefab;
+    public Transform ItemSlotHolder;
+
+    private void Awake()
+    {
+        // instantiate itemslots for the inventory
+        for (int i = 0; i < 25; i++)
+        {
+            GameObject _tempObject = Instantiate(ItemSlotPrefab, ItemSlotHolder);
+            ItemSlot _slot = _tempObject.GetComponent<ItemSlot>();
+            InventoryItemSlots.Add(_slot);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

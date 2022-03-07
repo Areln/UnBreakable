@@ -20,9 +20,30 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab) 
     {
+        // Instantiates Item's gameobject and sets the parent as the InventoryHolder
         GameObject _tempObject = Instantiate(itemPrefab, InventoryHolder);
-        ItemEquippable _tempItem = _tempObject.GetComponent<ItemEquippable>();
-        _tempItem.OnUnEquip();
+        
+        // Grab reference to the item script
+        Item _tempItem = _tempObject.GetComponent<Item>();
+
+        _tempItem.OnItemPickup();
+
+        // Find the first open inventory slot and set the slotted item. we should have already checked if player's inventory is full
+        FindFirstOpenItemSlot().SetSlottedItem(_tempItem);
+
+
+    }
+
+    ItemSlot FindFirstOpenItemSlot() 
+    {
+        foreach (ItemSlot itemSlot in HudManager.Instance.InventoryItemSlots)
+        {
+            if (itemSlot.SlottedItem == null)
+            {
+                return itemSlot;
+            }
+        }
+        return null;
     }
 
     void EquipItemToCharacter() 

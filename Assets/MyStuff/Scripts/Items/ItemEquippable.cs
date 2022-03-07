@@ -15,6 +15,11 @@ public abstract class ItemEquippable : Item
     public List<Behaviour> EquipComponents = new List<Behaviour>();
     public List<MeshRenderer> EquipRenderers = new List<MeshRenderer>();
 
+    public override void OnItemPickup()
+    {
+        base.OnItemPickup();
+        ToggleEquipComponents(false);
+    }
 
     public virtual void OnEquip()
     {

@@ -17,6 +17,8 @@ public abstract class Item : MonoBehaviour
     public string InternalName;
     public string Description;
     public Sprite ItemSprite;
+    public int MaxUseCount = 1;
+    public int CurrentUseCount;
     public int MonetaryValue;
 
     public virtual void OnItemPickup() 

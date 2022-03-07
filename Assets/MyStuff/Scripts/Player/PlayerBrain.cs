@@ -33,11 +33,13 @@ public class PlayerBrain : CharacterBrain
         playerMovement = GetComponent<PlayerMovement>();
         playerInventory = GetComponent<PlayerInventory>();
 
-        GameObject _temp = GameManager.Instance.SearchItems("steelchestpiecegoldtrim");
+        GameObject _temp = GameManager.Instance.SearchItems("steelchestpiecegoldtrim"); 
         playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
         _temp = GameManager.Instance.SearchItems("steelchestpieceredtrim");
         playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
         _temp = GameManager.Instance.SearchItems("purplewizardrobes");
+        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
+        _temp = GameManager.Instance.SearchItems("leatherchestpiece");
         playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
 
     }
