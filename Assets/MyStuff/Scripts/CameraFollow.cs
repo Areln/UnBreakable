@@ -56,6 +56,27 @@ public class CameraFollow : MonoBehaviour
 					transform.RotateAround(target.position, Vector3.up, RotationSpeed);
 				}
 			}
+			else
+			{
+				if (Input.GetAxis("Mouse ScrollWheel") < 0)
+				{//zoom camera Out
+					if (MaxDistanceFromTarget < 20)
+					{
+						distanceCameraFromGround++;
+						MaxDistanceFromTarget++;
+						MinDistanceFromTarget++;
+					}
+				}
+				if (Input.GetAxis("Mouse ScrollWheel") > 0)
+				{//zoom camera in
+					if (distanceCameraFromGround > 5)
+					{
+						distanceCameraFromGround--;
+						MaxDistanceFromTarget--;
+						MinDistanceFromTarget--;
+					}
+				}
+			}
 		}
 
 	}
