@@ -78,6 +78,7 @@ public class HudManager : MonoBehaviour
         {
             GameObject _tempObject = Instantiate(ItemSlotPrefab, ItemSlotHolder);
             ItemSlot _slot = _tempObject.GetComponent<ItemSlot>();
+            _slot.ClearSlot();
             InventoryItemSlots.Add(_slot);
         }
     }

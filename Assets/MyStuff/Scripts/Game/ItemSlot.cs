@@ -15,7 +15,24 @@ public class ItemSlot : MonoBehaviour
     {
         SlottedItem = item;
         ItemSprite.sprite = item.ItemSprite;
-        CountTextObject.text = $"x{item.CurrentUseCount}";
+        ItemSprite.color = new Color(1, 1, 1, 1);
+        if (item.CurrentUseCount != 1)
+        {
+            CountTextObject.text = $"x{item.CurrentUseCount}";
+        }
+        else
+        {
+            CountTextObject.text = "";
+        }
+        
+    }
+
+    public void ClearSlot() 
+    {
+        SlottedItem = null;
+        ItemSprite.sprite = null;
+        ItemSprite.color = new Color(0, 0, 0, 0);
+        CountTextObject.text = "";
     }
 
 }
