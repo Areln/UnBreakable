@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 2370119961719065}
   - component: {fileID: 3364518573543082258}
   - component: {fileID: 261584909293955824}
+  - component: {fileID: 6781648735464471108}
   m_Layer: 10
   m_Name: SteelChestpiece(RedTrim)
   m_TagString: Untagged
@@ -322,6 +323,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6781648735464471108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833613713007867481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 0
+  ItemName: Steel Chest Piece
+  InternalName: steelchestpieceredtrim
+  Description: Suwu
+  ItemSprite: {fileID: 21300000, guid: 9895f5f95566ceb47bb239149d90cb44, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 1
+  MonetaryValue: 20
+  EquipType: 1
+  EquipComponents: []
+  EquipRenderers:
+  - {fileID: 261584909293955824}
+  - {fileID: 4813571901676039283}
+  - {fileID: 7816448685620860357}
+  - {fileID: 7049996145156818111}
+  - {fileID: 3248751641829037151}
+  - {fileID: 6233073909528200558}
+  - {fileID: 5295386720940613212}
+  ArmorType: 1
 --- !u!1 &7336080873479319719
 GameObject:
   m_ObjectHideFlags: 0

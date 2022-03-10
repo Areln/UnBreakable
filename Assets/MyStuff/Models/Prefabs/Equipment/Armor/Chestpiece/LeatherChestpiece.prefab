@@ -799,6 +799,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2370119961719065}
+  - component: {fileID: 3079971277905162434}
   m_Layer: 10
   m_Name: LeatherChestpiece
   m_TagString: Untagged
@@ -837,6 +838,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3079971277905162434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833613713007867481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Leather Chest Piece
+  InternalName: leatherchestpiece
+  Description: 
+  ItemSprite: {fileID: 21300000, guid: 1e6fb62cd45e3ef49aca264efdedd28f, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 1
+  MonetaryValue: 0
+  EquipType: 1
+  EquipComponents: []
+  EquipRenderers:
+  - {fileID: 3339618964275780719}
+  - {fileID: 7315073806092387065}
+  - {fileID: 7637834521659081094}
+  - {fileID: 1903544679431976568}
+  - {fileID: 4091085189642261871}
+  - {fileID: 5092307501374156109}
+  - {fileID: 6158480881133858520}
+  - {fileID: 1071521707898971989}
+  - {fileID: 2409644185829976311}
+  - {fileID: 6276857686198212979}
+  - {fileID: 7741174158999048767}
+  - {fileID: 6274252766729942175}
+  - {fileID: 7354400463574799816}
+  - {fileID: 6487737931531268609}
+  - {fileID: 4938351006271991793}
+  - {fileID: 8216953569581749272}
+  - {fileID: 7550289807806776583}
+  ArmorType: 1
 --- !u!1 &7001931659240046425
 GameObject:
   m_ObjectHideFlags: 0

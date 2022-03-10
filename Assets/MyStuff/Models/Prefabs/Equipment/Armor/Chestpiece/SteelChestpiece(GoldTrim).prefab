@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3989671415524103434}
   - component: {fileID: 3291744172453098375}
   - component: {fileID: 2167938077881287805}
+  - component: {fileID: 1841755723060100451}
   m_Layer: 0
   m_Name: SteelChestpiece(GoldTrim)
   m_TagString: Player
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2779745711940179492}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.0000255, z: 0}
   m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_Children:
@@ -85,6 +86,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1841755723060100451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779745711940179492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Steel Chest Piece
+  InternalName: steelchestpiecegoldtrim
+  Description: Gold Trimmed
+  ItemSprite: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 1
+  MonetaryValue: 69
+  EquipType: 1
+  EquipComponents: []
+  EquipRenderers:
+  - {fileID: 2167938077881287805}
+  - {fileID: 7008303638538975143}
+  - {fileID: 7716930395484552789}
+  - {fileID: 9097004758550281433}
+  - {fileID: 713682579054673419}
+  - {fileID: 243273129139277655}
+  - {fileID: 1039612174459926426}
+  ArmorType: 1
 --- !u!1 &4058292298231116018
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +128,6 @@ GameObject:
   - component: {fileID: 8448389340893573487}
   - component: {fileID: 1267123521896966467}
   - component: {fileID: 243273129139277655}
-  - component: {fileID: 3676968801587223988}
   m_Layer: 0
   m_Name: chestpiece (4)
   m_TagString: Player
@@ -165,19 +196,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3676968801587223988
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4058292298231116018}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4269463970457884830
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +207,6 @@ GameObject:
   - component: {fileID: 6462041043734942935}
   - component: {fileID: 1125185125206966831}
   - component: {fileID: 7716930395484552789}
-  - component: {fileID: 6148029455372280010}
   m_Layer: 0
   m_Name: chestpiece (1)
   m_TagString: Player
@@ -258,19 +275,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6148029455372280010
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4269463970457884830}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6138988632033658949
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +286,6 @@ GameObject:
   - component: {fileID: 7120482094034737887}
   - component: {fileID: 7152753205133190379}
   - component: {fileID: 9097004758550281433}
-  - component: {fileID: 1002201038062792800}
   m_Layer: 0
   m_Name: chestpiece (2)
   m_TagString: Player
@@ -351,19 +354,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1002201038062792800
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6138988632033658949}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6699591277648376905
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +365,6 @@ GameObject:
   - component: {fileID: 2328955207592145656}
   - component: {fileID: 2678663981249521568}
   - component: {fileID: 7008303638538975143}
-  - component: {fileID: 7361190157733172530}
   m_Layer: 0
   m_Name: chestpiece
   m_TagString: Player
@@ -444,19 +433,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7361190157733172530
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6699591277648376905}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8597494672211304594
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +444,6 @@ GameObject:
   - component: {fileID: 8000097287075216883}
   - component: {fileID: 7076546809010949298}
   - component: {fileID: 1039612174459926426}
-  - component: {fileID: 5612684238687159619}
   m_Layer: 0
   m_Name: chestpiece (5)
   m_TagString: Player
@@ -537,19 +512,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5612684238687159619
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8597494672211304594}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8635571452929439022
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +523,6 @@ GameObject:
   - component: {fileID: 5726553642228892879}
   - component: {fileID: 624462153753467513}
   - component: {fileID: 713682579054673419}
-  - component: {fileID: 5804915233824111710}
   m_Layer: 0
   m_Name: chestpiece (3)
   m_TagString: Player
@@ -630,16 +591,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5804915233824111710
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8635571452929439022}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

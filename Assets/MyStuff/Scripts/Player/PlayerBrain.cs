@@ -8,8 +8,8 @@ public class PlayerBrain : CharacterBrain
     internal PlayerCombat playerCombat;
     internal PlayerLook playerLook;
     internal PlayerMovement playerMovement;
-    //internal PlayerInventory playerInventory;
     internal HPScript hpScript;
+    internal PlayerInventory playerInventory;
 
     public float manaRegenTime;
     internal float manaRegenCurrentTime;
@@ -31,7 +31,17 @@ public class PlayerBrain : CharacterBrain
         playerCombat = GetComponent<PlayerCombat>();
         playerLook = GetComponent<PlayerLook>();
         playerMovement = GetComponent<PlayerMovement>();
-        //playerInventory = GetComponent<PlayerInventory>();
+        playerInventory = GetComponent<PlayerInventory>();
+
+        GameObject _temp = GameManager.Instance.SearchItems("steelchestpiecegoldtrim"); 
+        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
+        _temp = GameManager.Instance.SearchItems("steelchestpieceredtrim");
+        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
+        _temp = GameManager.Instance.SearchItems("purplewizardrobes");
+        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
+        _temp = GameManager.Instance.SearchItems("leatherchestpiece");
+        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
+
     }
 
     // Update is called once per frame
