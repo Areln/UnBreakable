@@ -331,7 +331,6 @@ namespace RTS_Cam
         /// <returns></returns>
         private float DistanceToGround()
         {
-            return 10;
             int layer = 10;
             LayerMask layermask = ~((1 << layer));
             layermask = ~layermask;
