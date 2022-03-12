@@ -6,7 +6,8 @@ namespace Networking
 {
 	public enum Packets
 	{
-		signIn = 0,
+		welcome = 0,
+		signIn,
 		signUp,
 		disconnect,
 	}

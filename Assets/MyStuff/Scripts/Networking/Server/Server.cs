@@ -129,10 +129,13 @@ namespace Server.Networking
 				Clients.Add(i, new ServerClient(i));
 			}
 
-			PacketHandlers = new Dictionary<int, PacketHandler>()
+			PacketHandlers = new Dictionary<int, PacketHandler>();
+			var list = InterfaceGetter.GetEnumerableOfType<IServerHandle>();
+			foreach (var item in list)
 			{
-				{ (int)Packets.signIn, ServerLoginMessage.SignInRecieved },
-			};
+				IServerHandle networkAction = (IServerHandle)Activator.CreateInstance(item);
+				PacketHandlers.Add(networkAction.GetMessageId(), networkAction.ReadMessage);
+			}
 
 			Console.WriteLine("Initialized packets.");
 		}

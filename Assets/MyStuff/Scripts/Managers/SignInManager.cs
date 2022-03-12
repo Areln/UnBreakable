@@ -1,11 +1,12 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SignInManager : MonoBehaviour
 {
-    public Text LoginUsername;
-    public Text LoginPassword;
-    public Text LoginErrorMessage;
+    public TextMeshProUGUI LoginUsername;
+    public TextMeshProUGUI LoginPassword;
     public GameObject LoginScreen;
     internal static SignInManager Instance;
 
@@ -30,7 +31,7 @@ public class SignInManager : MonoBehaviour
 
     public void SignInPressed()
 	{
-        new SignInHandle().WriteMessage();
-        LoginScreen.SetActive(false);
+        new SignInHandle().WriteMessage(LoginUsername.text, LoginPassword.text);
+        SceneManager.LoadScene("Overworld");
     }
 }

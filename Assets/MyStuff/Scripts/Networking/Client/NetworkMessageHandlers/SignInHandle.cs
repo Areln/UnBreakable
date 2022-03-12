@@ -15,13 +15,13 @@ public class SignInHandle : IHandle // : MonoBehaviour
 		Debug.Log($"Message from server: {_msg}");
 	}
 
-	public void WriteMessage()
+	public void WriteMessage(string username, string password)
 	{
 		using (Packet _packet = new Packet(GetMessageId()))
 		{
-			_packet.Write(SignInManager.Instance.LoginUsername.text);
+			_packet.Write(username);
 			// TODO: Securely send the password.
-			_packet.Write(SignInManager.Instance.LoginPassword.text);
+			_packet.Write(password);
 
 			ClientSend.SendTcpData(_packet);
 		}
