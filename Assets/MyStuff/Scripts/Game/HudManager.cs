@@ -67,9 +67,100 @@ public class HudManager : MonoBehaviour
     public Image ability4Shade;
 
     //
+    public ItemSlot EquippedHeadPieceSlot;
+    public ItemSlot EquippedChestPieceSlot;
+    public ItemSlot EquippedGlovesPieceSlot;
+    public ItemSlot EquippedLegsPieceSlot;
+    public ItemSlot EquippedRing1PieceSlot;
+    public ItemSlot EquippedRing2PieceSlot;
+    public ItemSlot EquippedMainHandWeaponSlot;
+    public ItemSlot EquippedOffHandWeaponSlot;
+    public ItemSlot EquippedKnecklacePieceSlot;
     public List<ItemSlot> InventoryItemSlots = new List<ItemSlot>();
     public GameObject ItemSlotPrefab;
     public Transform ItemSlotHolder;
+
+    public void EquippedItem(ItemEquippable itemEquippable) 
+    {
+        if (typeof(ItemArmor).IsAssignableFrom(itemEquippable.GetType()))
+        {
+            switch (itemEquippable.GetComponent<ItemArmor>().ArmorType)
+            {
+                case ArmorType.HeadPiece:
+                    break;
+                case ArmorType.ChestPiece:
+                    EquippedChestPieceSlot.SetSlottedItem(itemEquippable);
+                    break;
+                case ArmorType.GlovePiece:
+                    break;
+                case ArmorType.LegPiece:
+                    break;
+                case ArmorType.Ring:
+                    break;
+                case ArmorType.Knecklace:
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (typeof(ItemWeapon).IsAssignableFrom(itemEquippable.GetType()))
+        {
+            switch (itemEquippable.GetComponent<ItemWeapon>().WeaponType)
+            {
+                case WeaponType.MainHand:
+                    break;
+                case WeaponType.OffHand:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void UnEquippedItem(ItemEquippable itemEquippable) 
+    {
+        if (typeof(ItemArmor).IsAssignableFrom(itemEquippable.GetType()))
+        {
+            switch (itemEquippable.GetComponent<ItemArmor>().ArmorType)
+            {
+                case ArmorType.HeadPiece:
+                    EquippedHeadPieceSlot.ClearSlot();
+                    break;
+                case ArmorType.ChestPiece:
+                    EquippedChestPieceSlot.ClearSlot();
+                    break;
+                case ArmorType.GlovePiece:
+                    EquippedGlovesPieceSlot.ClearSlot();
+                    break;
+                case ArmorType.LegPiece:
+                    EquippedLegsPieceSlot.ClearSlot();
+                    break;
+                case ArmorType.Ring:
+                    EquippedRing1PieceSlot.ClearSlot();
+                    EquippedRing2PieceSlot.ClearSlot();
+                    break;
+                case ArmorType.Knecklace:
+                    EquippedKnecklacePieceSlot.ClearSlot();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (typeof(ItemWeapon).IsAssignableFrom(itemEquippable.GetType()))
+        {
+            switch (itemEquippable.GetComponent<ItemWeapon>().WeaponType)
+            {
+                case WeaponType.MainHand:
+                    EquippedMainHandWeaponSlot.ClearSlot();
+                    break;
+                case WeaponType.OffHand:
+                    EquippedOffHandWeaponSlot.ClearSlot();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -78,7 +169,7 @@ public class HudManager : MonoBehaviour
         {
             GameObject _tempObject = Instantiate(ItemSlotPrefab, ItemSlotHolder);
             ItemSlot _slot = _tempObject.GetComponent<ItemSlot>();
-            _slot.ClearSlot();
+            _slot.Setup();
             InventoryItemSlots.Add(_slot);
         }
     }
@@ -142,9 +233,10 @@ public class HudManager : MonoBehaviour
 
     }
 
-    public void ToggleInventory()
+    public bool ToggleInventory()
     {
         charInvCanvas.enabled = !charInvCanvas.enabled;
+        return charInvCanvas.enabled;
     }
     public void ToggleInventory(bool _value)
     {

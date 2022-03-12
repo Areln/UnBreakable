@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerBrain : CharacterBrain
 {
@@ -20,6 +22,10 @@ public class PlayerBrain : CharacterBrain
     //
     public int interactableRange = 3;
 
+    public GraphicRaycaster graphicRaycaster;
+    PointerEventData m_PointerEventData;
+    public EventSystem m_EventSystem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,14 +39,12 @@ public class PlayerBrain : CharacterBrain
         playerMovement = GetComponent<PlayerMovement>();
         playerInventory = GetComponent<PlayerInventory>();
 
-        GameObject _temp = GameManager.Instance.SearchItems("steelchestpiecegoldtrim"); 
-        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
-        _temp = GameManager.Instance.SearchItems("steelchestpieceredtrim");
-        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
-        _temp = GameManager.Instance.SearchItems("purplewizardrobes");
-        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
-        _temp = GameManager.Instance.SearchItems("leatherchestpiece");
-        playerInventory.AddPrefabItemObjectToPlayerInventory(_temp);
+        // Debug adds items to inventory
+        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpiecegoldtrim"));
+        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpieceredtrim"));
+        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("purplewizardrobes"));
+        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("leatherchestpiece"));
+        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("advstlchest"));
 
     }
 
@@ -65,7 +69,10 @@ public class PlayerBrain : CharacterBrain
             }
         }
 
-        //Inputs
+
+        ////////////////////////////////
+        // Inputs
+        ////////////////////////////////
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
@@ -111,7 +118,7 @@ public class PlayerBrain : CharacterBrain
         if (Input.GetKeyDown(KeyCode.B))
         {
             //toggle inv/char
-            HudManager.Instance.ToggleInventory();
+            playerMovement.SetInMenu(HudManager.Instance.ToggleInventory());
         }
 
         //Right click

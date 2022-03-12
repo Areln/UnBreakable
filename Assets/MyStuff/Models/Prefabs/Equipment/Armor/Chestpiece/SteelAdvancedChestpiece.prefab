@@ -1280,6 +1280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3989671415524103434}
+  - component: {fileID: -2672896706440207046}
   m_Layer: 0
   m_Name: SteelAdvancedChestpiece
   m_TagString: Player
@@ -1321,6 +1322,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2672896706440207046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779745711940179492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Advanced Steel Chest Piece
+  InternalName: advstlchest
+  Description: 
+  ItemSprite: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 0
+  MonetaryValue: 0
+  EquipType: 1
+  EquipComponents: []
+  EquipRenderers:
+  - {fileID: 1513275339850234614}
+  - {fileID: 2300510286693437158}
+  - {fileID: 8858150845315146966}
+  - {fileID: 3619352869957802537}
+  - {fileID: 857006465843831554}
+  - {fileID: 4237095474962033792}
+  - {fileID: 1467754630166564612}
+  - {fileID: 3287040080273381923}
+  - {fileID: 5874663294035947215}
+  - {fileID: 632158834904153450}
+  - {fileID: 3352590863882606805}
+  - {fileID: 6251090629799604935}
+  - {fileID: 3891195509559626397}
+  - {fileID: 2689641848730373360}
+  - {fileID: 2963633009756412825}
+  - {fileID: 6857008826121773545}
+  - {fileID: 8412094882795663048}
+  - {fileID: 8603219887934871249}
+  - {fileID: 7987647477716818024}
+  - {fileID: 3556025912104886963}
+  - {fileID: 3994000332082789385}
+  - {fileID: 1641616176294949463}
+  - {fileID: 4901867309393938304}
+  - {fileID: 4896415920828318695}
+  - {fileID: 3834495115604883260}
+  - {fileID: 2064102799983110790}
+  - {fileID: 7580347301581157975}
+  - {fileID: 7434880144867421680}
+  - {fileID: 8932568327723435779}
+  - {fileID: 2069089625082663717}
+  - {fileID: 6543827330666382362}
+  - {fileID: 6230953217786144939}
+  - {fileID: 1829704364912787058}
+  - {fileID: 435824707700417083}
+  - {fileID: 1273520676219425701}
+  - {fileID: 5970539668893663040}
+  - {fileID: 2019098757349210238}
+  - {fileID: 6339042638280606329}
+  - {fileID: 8481413924838044307}
+  - {fileID: 7821893293974790447}
+  - {fileID: 6523151297493928296}
+  - {fileID: 2525274821681852596}
+  - {fileID: 7424509136404927990}
+  - {fileID: 7543003501176648689}
+  - {fileID: 3319755598915230768}
+  - {fileID: 2680469807098360610}
+  - {fileID: 146675646332319950}
+  - {fileID: 3492462453011159041}
+  - {fileID: 8105610847440525986}
+  - {fileID: 4982564627197723315}
+  - {fileID: 3612488635445509156}
+  - {fileID: 1950087161658591391}
+  ArmorType: 1
 --- !u!1 &2933693166415975454
 GameObject:
   m_ObjectHideFlags: 0

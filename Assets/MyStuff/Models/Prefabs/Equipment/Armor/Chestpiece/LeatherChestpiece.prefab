@@ -856,7 +856,7 @@ MonoBehaviour:
   Description: 
   ItemSprite: {fileID: 21300000, guid: 1e6fb62cd45e3ef49aca264efdedd28f, type: 3}
   MaxUseCount: 1
-  CurrentUseCount: 1
+  CurrentUseCount: 0
   MonetaryValue: 0
   EquipType: 1
   EquipComponents: []

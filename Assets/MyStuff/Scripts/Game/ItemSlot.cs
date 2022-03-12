@@ -2,21 +2,32 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
     public Item SlottedItem;
     public Image ItemSprite;
     public Image ItemBackground;
     public TextMeshProUGUI CountTextObject;
+    bool IsSlottedValue = false;
 
-    public void SetSlottedItem(Item item) 
+    public bool IsSlotted()
+    {
+        return IsSlottedValue;
+    }
+    public void Setup()
+    {
+        ClearSlot();
+    }
+
+    public void SetSlottedItem(Item item)
     {
         SlottedItem = item;
         ItemSprite.sprite = item.ItemSprite;
         ItemSprite.color = new Color(1, 1, 1, 1);
-        if (item.CurrentUseCount != 1)
+        if (item.CurrentUseCount != 1 && item.CurrentUseCount > 0)
         {
             CountTextObject.text = $"x{item.CurrentUseCount}";
         }
@@ -24,15 +35,61 @@ public class ItemSlot : MonoBehaviour
         {
             CountTextObject.text = "";
         }
-        
+        IsSlottedValue = true;
     }
 
-    public void ClearSlot() 
+    public void ClearSlot()
     {
         SlottedItem = null;
         ItemSprite.sprite = null;
         ItemSprite.color = new Color(0, 0, 0, 0);
         CountTextObject.text = "";
+        IsSlottedValue = false;
     }
 
+    public void OnDrop(PointerEventData eventData)
+    {
+        transform.position = Vector2.zero;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (IsSlotted())
+        {
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                // Get type of item then decide what to do
+                if (typeof(ItemEquippable).IsAssignableFrom(SlottedItem.GetType()))
+                {
+                    // Check stats if we can equip then handle inventory then equip item
+                    HudManager.Instance.playerBrain.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquippable>(), this);
+                }
+                else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
+                {
+                    Debug.Log("Left Clicked BasicItem");
+                }
+                else if (typeof(ItemConsumable).IsAssignableFrom(SlottedItem.GetType()))
+                {
+                    Debug.Log("Left Clicked Consumable");
+                }
+
+            }
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                if (typeof(ItemEquippable).IsAssignableFrom(SlottedItem.GetType()))
+                {
+                    Debug.Log("Right Clicked Equippable");
+                }
+                else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
+                {
+                    Debug.Log("Right Clicked BasicItem");
+                }
+                else if (typeof(ItemConsumable).IsAssignableFrom(SlottedItem.GetType()))
+                {
+                    Debug.Log("Right Clicked Consumable");
+                }
+            }
+
+        }
+    }
 }

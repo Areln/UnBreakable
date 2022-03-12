@@ -341,7 +341,7 @@ MonoBehaviour:
   Description: Suwu
   ItemSprite: {fileID: 21300000, guid: 9895f5f95566ceb47bb239149d90cb44, type: 3}
   MaxUseCount: 1
-  CurrentUseCount: 1
+  CurrentUseCount: 0
   MonetaryValue: 20
   EquipType: 1
   EquipComponents: []

@@ -103,7 +103,7 @@ MonoBehaviour:
   Description: magical garments
   ItemSprite: {fileID: 21300000, guid: 719c2201c2f5f6c4aafffaeb5abdf5f9, type: 3}
   MaxUseCount: 1
-  CurrentUseCount: 1
+  CurrentUseCount: 0
   MonetaryValue: 10
   EquipType: 1
   EquipComponents: []

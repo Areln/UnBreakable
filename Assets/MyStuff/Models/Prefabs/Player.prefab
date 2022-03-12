@@ -910,6 +910,8 @@ MonoBehaviour:
   manaRegenTime: 2
   manaRegenAmount: 5
   interactableRange: 3
+  graphicRaycaster: {fileID: 0}
+  m_EventSystem: {fileID: 0}
 --- !u!114 &6621349970582242531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1957,7 +1959,7 @@ PrefabInstance:
     - target: {fileID: 2779745711940179492, guid: 2eab91e2123daa54bbb623a0c3547b6f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2779745711940179492, guid: 2eab91e2123daa54bbb623a0c3547b6f,
         type: 3}
