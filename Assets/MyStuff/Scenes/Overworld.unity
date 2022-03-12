@@ -1169,6 +1169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3223750860847082150, guid: cdce96043aa1c074ca6124062f2ca447,
+        type: 3}
+      propertyPath: clientPlayer
+      value: 
+      objectReference: {fileID: 1840425265}
     - target: {fileID: 3223750860847082151, guid: cdce96043aa1c074ca6124062f2ca447,
         type: 3}
       propertyPath: m_RootOrder
@@ -2245,6 +2250,11 @@ PrefabInstance:
     - target: {fileID: 3531582288584180170, guid: 0c26d89f59a6a894e9800268bead2220,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670813498549748205, guid: 0c26d89f59a6a894e9800268bead2220,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4383705308996617173, guid: 0c26d89f59a6a894e9800268bead2220,
