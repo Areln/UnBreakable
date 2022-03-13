@@ -34,7 +34,7 @@ public class ItemEquipSlot : ItemSlot
         }
     }
 
-    bool EquipCheck(Item item) 
+    bool EquipCheck(Item item)
     {
         if (typeof(ItemEquippable).IsAssignableFrom(item.GetType()))
         {
@@ -48,7 +48,7 @@ public class ItemEquipSlot : ItemSlot
                     return true;
                 }
             }
-            else if(typeof(ItemWeapon).IsAssignableFrom(item.GetType()) && slotEquipType == EquipType.Weapon)
+            else if (typeof(ItemWeapon).IsAssignableFrom(item.GetType()) && slotEquipType == EquipType.Weapon)
             {
                 ItemWeapon itemWeapon = item.GetComponent<ItemWeapon>();
                 if (itemWeapon.WeaponType == slotWeaponType)
@@ -66,17 +66,7 @@ public class ItemEquipSlot : ItemSlot
             // Un-equip item
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                switch (slotEquipType)
-                {
-                    case EquipType.Weapon:
-                        GameManager.Instance.clientPlayer.playerInventory.UnEquipWeapon(slotWeaponType, GameManager.Instance.clientPlayer.playerInventory.FindFirstOpenItemSlot());
-                        break;
-                    case EquipType.Armor:
-                        GameManager.Instance.clientPlayer.playerInventory.UnEquipArmor(slotArmorType, GameManager.Instance.clientPlayer.playerInventory.FindFirstOpenItemSlot());
-                        break;
-                    default:
-                        break;
-                }
+                UnEquipSlottedItem();
             }
 
             if (eventData.button == PointerEventData.InputButton.Right)
@@ -85,5 +75,26 @@ public class ItemEquipSlot : ItemSlot
             }
 
         }
+    }
+    public void UnEquipSlottedItem(ItemSlot _itemSlot = null)
+    {
+
+        if (_itemSlot == null)
+        {
+            _itemSlot = GameManager.Instance.clientPlayer.playerInventory.FindFirstOpenItemSlot();
+        }
+
+        switch (slotEquipType)
+        {
+            case EquipType.Weapon:
+                GameManager.Instance.clientPlayer.playerInventory.UnEquipWeapon(slotWeaponType, _itemSlot);
+                break;
+            case EquipType.Armor:
+                GameManager.Instance.clientPlayer.playerInventory.UnEquipArmor(slotArmorType, _itemSlot);
+                break;
+            default:
+                break;
+        }
+
     }
 }

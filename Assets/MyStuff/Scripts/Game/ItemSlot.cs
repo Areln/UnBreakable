@@ -51,14 +51,23 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         {
             if (SlottedItem != null)
             {
-                var tempItem = SlottedItem;
-                SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
-                GameManager.Instance.DraggingObject.SetSlottedItem(tempItem);
+                //var tempItem = SlottedItem;
+                //SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
+                //GameManager.Instance.DraggingObject.SetSlottedItem(tempItem);
             }
 			else
             {
-                SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
-                GameManager.Instance.DraggingObject.ClearSlot();
+
+                //if we are draggin from equip slot, then un equip the item
+                if (typeof(ItemEquipSlot).IsAssignableFrom(GameManager.Instance.DraggingObject.GetType()))
+                {
+                    GameManager.Instance.DraggingObject.GetComponent<ItemEquipSlot>().UnEquipSlottedItem();
+                }
+                else
+                {
+                    SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
+                    GameManager.Instance.DraggingObject.ClearSlot();
+                }
             }
         }
 	}
