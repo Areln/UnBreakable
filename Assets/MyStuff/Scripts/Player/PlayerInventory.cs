@@ -114,7 +114,7 @@ public class PlayerInventory : MonoBehaviour
     }
     void UnEquipWeapon(WeaponType weaponType, ItemSlot itemSlot = null)
     {
-        ItemWeapon _tempSel = EquippedMainHandWeapon;
+        ItemWeapon _tempSel = default;
 
         switch (weaponType)
         {
