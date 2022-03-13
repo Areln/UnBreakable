@@ -40,11 +40,17 @@ public class PlayerBrain : CharacterBrain
         playerInventory = GetComponent<PlayerInventory>();
 
         // Debug adds items to inventory
-        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpiecegoldtrim"));
-        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpieceredtrim"));
-        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("purplewizardrobes"));
-        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("leatherchestpiece"));
-        playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("advstlchest"));
+        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpiecegoldtrim"));
+        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpieceredtrim"));
+        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("purplewizardrobes"));
+        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("leatherchestpiece"));
+        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("advstlchest"));
+        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("prpwizhat"));
+
+        foreach (GameObject item in GameManager.Instance.PossibleItems)
+        {
+            playerInventory.AddPrefabItemObjectToPlayerInventory(item);
+        }
 
     }
 
@@ -62,10 +68,10 @@ public class PlayerBrain : CharacterBrain
             {
                 currentMana += manaRegenAmount;
                 manaRegenCurrentTime = manaRegenTime;
-                if(currentMana > maxMana)
-				{
+                if (currentMana > maxMana)
+                {
                     currentMana = maxMana;
-				}
+                }
             }
         }
 
@@ -155,7 +161,7 @@ public class PlayerBrain : CharacterBrain
         }
     }
 
-	public override void CharacterDie()
+    public override void CharacterDie()
     {
         Debug.Log("Die");
     }

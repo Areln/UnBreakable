@@ -10,7 +10,7 @@ public class ItemWeapon : ItemEquippable
     //public Sprite ItemSprite;
     //public int MonetaryValue;
     public WeaponType WeaponType;
-    public GameObject WeaponObjectPrefab;
+
     public override void OnEquip()
     {
         base.OnEquip();

@@ -87,17 +87,22 @@ public class HudManager : MonoBehaviour
             switch (itemEquippable.GetComponent<ItemArmor>().ArmorType)
             {
                 case ArmorType.HeadPiece:
+                    EquippedHeadPieceSlot.SetSlottedItem(itemEquippable);
                     break;
                 case ArmorType.ChestPiece:
                     EquippedChestPieceSlot.SetSlottedItem(itemEquippable);
                     break;
                 case ArmorType.GlovePiece:
+                    EquippedGlovesPieceSlot.SetSlottedItem(itemEquippable);
                     break;
                 case ArmorType.LegPiece:
+                    EquippedLegsPieceSlot.SetSlottedItem(itemEquippable);
                     break;
                 case ArmorType.Ring:
+                    EquippedRing1PieceSlot.SetSlottedItem(itemEquippable);
                     break;
                 case ArmorType.Knecklace:
+                    EquippedKnecklacePieceSlot.SetSlottedItem(itemEquippable);
                     break;
                 default:
                     break;
@@ -108,8 +113,10 @@ public class HudManager : MonoBehaviour
             switch (itemEquippable.GetComponent<ItemWeapon>().WeaponType)
             {
                 case WeaponType.MainHand:
+                    EquippedMainHandWeaponSlot.SetSlottedItem(itemEquippable);
                     break;
                 case WeaponType.OffHand:
+                    EquippedOffHandWeaponSlot.SetSlottedItem(itemEquippable);
                     break;
                 default:
                     break;

@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2190521484435353287}
+  - component: {fileID: -7504055469255950533}
   m_Layer: 0
   m_Name: SteelHelmet(GoldTrim)
   m_TagString: Player
@@ -222,6 +223,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7504055469255950533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813272157311081446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Steel Helmet Gold Trim
+  InternalName: stlhelmgoldtrim
+  Description: 
+  ItemSprite: {fileID: 21300000, guid: fd666b3e14dbc7746908bdcb98eda9c3, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 0
+  MonetaryValue: 0
+  EquipType: 1
+  EquipComponents: []
+  EquipRenderers:
+  - {fileID: 3503181436068979756}
+  - {fileID: 7013191354910499491}
+  - {fileID: 6555996220170000861}
+  - {fileID: 4520756024218486344}
+  - {fileID: 3593058138942148420}
+  - {fileID: 2671526159967052008}
+  ArmorType: 0
 --- !u!1 &4579517967153447037
 GameObject:
   m_ObjectHideFlags: 0

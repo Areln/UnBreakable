@@ -404,6 +404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1974485159031463659}
+  - component: {fileID: 8237577669658120625}
   m_Layer: 10
   m_Name: SteelHelmet(RedTrim)
   m_TagString: Untagged
@@ -418,9 +419,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8911658517431633507}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.4196234, z: -0.28471008}
+  m_LocalScale: {x: 1.9635179, y: 1.9635179, z: 1.9635179}
   m_Children:
   - {fileID: 1016696182616278314}
   - {fileID: 5762353193751887446}
@@ -431,6 +432,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8237577669658120625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911658517431633507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Steel Helm Red Trim
+  InternalName: stlhelmredtrim
+  Description: 
+  ItemSprite: {fileID: 21300000, guid: 042057cb2dc00ed46b7ad96a1bad3a79, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 0
+  MonetaryValue: 0
+  EquipType: 1
+  EquipComponents: []
+  EquipRenderers:
+  - {fileID: 183064917233266994}
+  - {fileID: 6843208353727156981}
+  - {fileID: 4844192940494316713}
+  - {fileID: 1342840341531104535}
+  - {fileID: 1046213557969082789}
+  - {fileID: 765608405506355553}
+  ArmorType: 0
 --- !u!1 &9208808422628196096
 GameObject:
   m_ObjectHideFlags: 0

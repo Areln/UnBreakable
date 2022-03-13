@@ -98,8 +98,12 @@ public class PlayerInventory : MonoBehaviour
         switch (itemWeapon.WeaponType)
         {
             case WeaponType.MainHand:
+                itemWeapon.gameObject.transform.SetParent(MainHandWeaponTransform, false);
+                EquippedMainHandWeapon = itemWeapon;
                 return true;
             case WeaponType.OffHand:
+                itemWeapon.gameObject.transform.SetParent(OffHandWeaponTransform, false);
+                EquippedOffHandWeapon = itemWeapon;
                 return true;
             default:
                 break;

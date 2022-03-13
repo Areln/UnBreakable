@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 4240155622287716256}
   - component: {fileID: -1691019077483786421}
   - component: {fileID: 7910120200107799402}
+  - component: {fileID: 2365990204190212655}
   m_Layer: 0
   m_Name: Wood Staff
   m_TagString: DamageDealer
@@ -250,3 +251,30 @@ MonoBehaviour:
   PossibleAbilities:
   - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
   - {fileID: 1858707421012363883, guid: 6a3a56803a091dd439b017c116f9847a, type: 3}
+--- !u!114 &2365990204190212655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140589588958442948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bed3f86d8d77e40868ab61f7d67b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Wood Staff
+  InternalName: woodstaff
+  Description: 
+  ItemSprite: {fileID: 21300000, guid: f507f03eb80bcbf49bb458bd6a54bd9a, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 0
+  MonetaryValue: 0
+  EquipType: 0
+  EquipComponents:
+  - {fileID: 7910120200107799402}
+  EquipRenderers:
+  - {fileID: 6623735491878329766}
+  - {fileID: 2566932275176638021}
+  WeaponType: 0

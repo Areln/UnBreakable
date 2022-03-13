@@ -911,6 +911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9187229541426522354}
+  - component: {fileID: 4403063401796643586}
   m_Layer: 0
   m_Name: Wizard Hat
   m_TagString: Untagged
@@ -946,6 +947,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4403063401796643586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049400667703385555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  ItemName: Purple Wizard Hat
+  InternalName: prpwizhat
+  Description: 
+  ItemSprite: {fileID: 21300000, guid: abe32abd0f6ab574384c4b99aa714063, type: 3}
+  MaxUseCount: 1
+  CurrentUseCount: 0
+  MonetaryValue: 0
+  EquipType: 1
+  EquipComponents: []
+  EquipRenderers:
+  - {fileID: 5873854775949320729}
+  - {fileID: 5819996999732922737}
+  - {fileID: 2657159017469004949}
+  - {fileID: 8626960857686619786}
+  - {fileID: 7112826291780493285}
+  - {fileID: 5598698803387086146}
+  - {fileID: 876844729619222423}
+  - {fileID: 5983650608107166642}
+  - {fileID: 6721079471449388872}
+  - {fileID: 3852767735455529452}
+  - {fileID: 4915203421911577396}
+  - {fileID: 8345170404767385094}
+  - {fileID: 5108853514839427197}
+  - {fileID: 8765762039180372516}
+  ArmorType: 0
 --- !u!1 &6077299105598134876
 GameObject:
   m_ObjectHideFlags: 0
