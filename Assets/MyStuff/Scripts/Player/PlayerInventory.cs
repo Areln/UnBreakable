@@ -56,7 +56,7 @@ public class PlayerInventory : MonoBehaviour
         FindFirstOpenItemSlot().SetSlottedItem(_tempItem);
     }
 
-    ItemSlot FindFirstOpenItemSlot()
+    public ItemSlot FindFirstOpenItemSlot()
     {
         foreach (ItemSlot itemSlot in HudManager.Instance.InventoryItemSlots)
         {
@@ -118,7 +118,7 @@ public class PlayerInventory : MonoBehaviour
 
         return false;
     }
-    void UnEquipWeapon(WeaponType weaponType, ItemSlot itemSlot = null)
+    public void UnEquipWeapon(WeaponType weaponType, ItemSlot itemSlot = null)
     {
         ItemWeapon _tempSel = default;
 
@@ -146,7 +146,10 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            _tempSel.gameObject.transform.SetParent(null, false);
+            // TODO: this should drop the item on the ground but for now we are just deleting 
+            //_tempSel.gameObject.transform.SetParent(null, false);
+
+            Destroy(_tempSel.gameObject);
         }
     }
     bool EquipArmor(ItemArmor itemArmor, ItemSlot itemSlot)
@@ -208,7 +211,7 @@ public class PlayerInventory : MonoBehaviour
 
         return false;
     }
-    void UnEquipArmor(ArmorType armorType, ItemSlot itemSlot = null)
+    public void UnEquipArmor(ArmorType armorType, ItemSlot itemSlot = null)
     {
         ItemArmor _tempSel = EquippedChestPiece;
 
@@ -266,7 +269,9 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            _tempSel.gameObject.transform.SetParent(null, false);
+            // TODO: this should drop the item on the ground but for now we are just deleting 
+            //_tempSel.gameObject.transform.SetParent(null, false);
+            Destroy(_tempSel.gameObject);
         }
     }
     ItemArmor GetEquippedArmor(ArmorType armorType)

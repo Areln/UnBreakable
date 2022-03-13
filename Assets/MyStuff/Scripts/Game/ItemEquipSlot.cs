@@ -59,5 +59,31 @@ public class ItemEquipSlot : ItemSlot
         }
         return false;
     }
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        if (IsSlotted())
+        {
+            // Un-equip item
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                switch (slotEquipType)
+                {
+                    case EquipType.Weapon:
+                        GameManager.Instance.clientPlayer.playerInventory.UnEquipWeapon(slotWeaponType, GameManager.Instance.clientPlayer.playerInventory.FindFirstOpenItemSlot());
+                        break;
+                    case EquipType.Armor:
+                        GameManager.Instance.clientPlayer.playerInventory.UnEquipArmor(slotArmorType, GameManager.Instance.clientPlayer.playerInventory.FindFirstOpenItemSlot());
+                        break;
+                    default:
+                        break;
+                }
+            }
 
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+
+            }
+
+        }
+    }
 }
