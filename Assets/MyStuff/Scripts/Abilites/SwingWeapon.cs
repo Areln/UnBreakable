@@ -6,7 +6,6 @@ public class SwingWeapon : Ability
 
     public void Awake()
     {
-        animator = gameObject.GetComponent<Animator>();
         if (animator == null)
         {
             animator = gameObject.GetComponentInParent<Animator>();

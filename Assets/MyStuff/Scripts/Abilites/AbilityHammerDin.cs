@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class AbilityHammerDin : Ability
 {
+    internal Animator animator;
     public GameObject hammerDinPrefab;
+    public float CastTime;
+    private bool finishedCasting;
 
     public override void Activate(Vector3 targetPosition)
     {
@@ -26,10 +29,30 @@ public class AbilityHammerDin : Ability
             return;
         }
 
-        HammerDinSpin tempSpin = Instantiate(hammerDinPrefab, transform.position, transform.rotation).GetComponentInChildren<HammerDinSpin>();
-        tempSpin.SetupAbility(GetComponentInParent<CharacterBrain>());
-    }
+        StartCoroutine(CastSpell(CastTime));
 
+    }
+    private IEnumerator CastSpell(float sec)
+    {
+        IsCanceled = false;
+        finishedCasting = false;
+        animator.SetBool("Casting", true);
+        owner.agent.isStopped = true;
+        yield return new WaitForSeconds(sec);
+        if (!IsCanceled)
+        {
+            owner.CurrentlyCastingAbility = null;
+            finishedCasting = true;
+            animator.SetBool("Casting", false);
+            HammerDinSpin tempSpin = Instantiate(hammerDinPrefab, transform.position, transform.rotation).GetComponentInChildren<HammerDinSpin>();
+            tempSpin.SetupAbility(GetComponentInParent<CharacterBrain>());
+            owner.agent.isStopped = false;
+        }
+        else
+        {
+            IsCanceled = false;
+        }
+    }
     public override void RemoveAbility()
     {
         throw new System.NotImplementedException();
@@ -40,10 +63,12 @@ public class AbilityHammerDin : Ability
         owner = _owner;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-        
+        if (animator == null)
+        {
+            animator = gameObject.GetComponentInParent<Animator>();
+        }
     }
 
 }
