@@ -45,6 +45,7 @@ public class AbilityHammerDin : Ability
         finishedCasting = false;
         animator.SetBool("Casting", true);
         owner.agent.isStopped = true;
+        owner.CurrentlyCastingAbility = this;
         yield return new WaitForSeconds(sec);
         if (!IsCanceled)
         {
@@ -75,6 +76,14 @@ public class AbilityHammerDin : Ability
         if (animator == null)
         {
             animator = gameObject.GetComponentInParent<Animator>();
+        }
+    }
+
+    public void Update()
+    {
+        if (currentCooldown > 0)
+        {
+            currentCooldown -= Time.deltaTime;
         }
     }
 
