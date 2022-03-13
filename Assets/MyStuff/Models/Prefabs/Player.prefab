@@ -1045,9 +1045,15 @@ MonoBehaviour:
   EquippedChestPiece: {fileID: 0}
   ChestPieceTransform: {fileID: 6621349971200015461}
   EquippedGlovePiece: {fileID: 0}
-  GlovePieceTransform: {fileID: 0}
+  RightGlovePieceTransform: {fileID: 7690935084407866006}
+  LeftGlovePieceTransform: {fileID: 8401786193356091704}
+  RightGloveArmorObject: {fileID: 0}
+  LeftGloveArmorObject: {fileID: 0}
   EquippedLegPiece: {fileID: 0}
-  LegPieceTransform: {fileID: 2947491744348374985}
+  RightLegPieceTransform: {fileID: 970374736085672921}
+  LeftLegPieceTransform: {fileID: 2947491744348374985}
+  RightLegArmorObject: {fileID: 0}
+  LeftLegArmorObject: {fileID: 0}
   EquippedKnecklacePiece: {fileID: 0}
   KnecklacePieceTransform: {fileID: 0}
   EquippedRing1Piece: {fileID: 0}
@@ -1380,6 +1386,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteelPantLeg(GoldTrim)
       objectReference: {fileID: 0}
+    - target: {fileID: 1217870494843384377, guid: fa0abcbc87a360e478af1ee5dcfb8e0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8380699674781193480, guid: fa0abcbc87a360e478af1ee5dcfb8e0c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1454,6 +1465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SteelPantLeg(GoldTrim)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217870494843384377, guid: fa0abcbc87a360e478af1ee5dcfb8e0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1217870494843384377, guid: fa0abcbc87a360e478af1ee5dcfb8e0c,
         type: 3}
@@ -1934,6 +1950,21 @@ PrefabInstance:
         type: 3}
       propertyPath: Damage
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335427750552991403, guid: 4841e39e36e22674793234fc7f6853fd,
+        type: 3}
+      propertyPath: CastTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335427750552991403, guid: 4841e39e36e22674793234fc7f6853fd,
+        type: 3}
+      propertyPath: manaCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335427750552991403, guid: 4841e39e36e22674793234fc7f6853fd,
+        type: 3}
+      propertyPath: maxCooldown
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4841e39e36e22674793234fc7f6853fd, type: 3}

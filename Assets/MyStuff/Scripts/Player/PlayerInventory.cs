@@ -13,7 +13,10 @@ public class PlayerInventory : MonoBehaviour
     public Transform ChestPieceTransform;
 
     public ItemArmor EquippedGlovePiece;
-    public Transform GlovePieceTransform;
+    public Transform RightGlovePieceTransform;
+    public Transform LeftGlovePieceTransform;
+    public GameObject RightGloveArmorObject;
+    public GameObject LeftGloveArmorObject;
 
     public ItemArmor EquippedLegPiece;
     public Transform RightLegPieceTransform;
@@ -165,14 +168,20 @@ public class PlayerInventory : MonoBehaviour
                 itemArmor.gameObject.transform.SetParent(HeadTransform, false);
                 EquippedHelmetPiece = itemArmor;
                 return true;
+
             case ArmorType.ChestPiece:
                 itemArmor.gameObject.transform.SetParent(ChestPieceTransform, false);
                 EquippedChestPiece = itemArmor;
                 return true;
+
             case ArmorType.GlovePiece:
-                itemArmor.gameObject.transform.SetParent(GlovePieceTransform, false);
+                
+                // Instantiate both glove armor objects
+                RightGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, RightGlovePieceTransform);
+                LeftGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftGlovePieceTransform);
                 EquippedGlovePiece = itemArmor;
                 return true;
+
             case ArmorType.LegPiece:
 
                 // Instantiate both leg armor objects
@@ -180,14 +189,17 @@ public class PlayerInventory : MonoBehaviour
                 LeftLegArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftLegPieceTransform);
                 EquippedLegPiece = itemArmor;
                 return true;
+
             case ArmorType.Ring:
                 itemArmor.gameObject.transform.SetParent(Ring1PieceTransform, false);
                 EquippedRing1Piece = itemArmor;
                 return true;
+
             case ArmorType.Knecklace:
                 itemArmor.gameObject.transform.SetParent(Ring2PieceTransform, false);
                 EquippedRing2Piece = itemArmor;
                 return true;
+
             default:
                 break;
         }
@@ -204,31 +216,40 @@ public class PlayerInventory : MonoBehaviour
                 _tempSel = EquippedHelmetPiece;
                 EquippedHelmetPiece = null;
                 break;
+
             case ArmorType.ChestPiece:
                 _tempSel = EquippedChestPiece;
                 EquippedChestPiece = null;
                 break;
+
             case ArmorType.GlovePiece:
+
+                // Destroy armor objects
+                Destroy(RightGloveArmorObject);
+                Destroy(LeftGloveArmorObject);
                 _tempSel = EquippedGlovePiece;
                 EquippedGlovePiece = null;
                 break;
+
             case ArmorType.LegPiece:
 
                 // Destroy armor objects
                 Destroy(RightLegArmorObject);
                 Destroy(LeftLegArmorObject);
-
                 _tempSel = EquippedLegPiece;
                 EquippedLegPiece = null;
                 break;
+
             case ArmorType.Ring:
                 _tempSel = EquippedRing1Piece;
                 EquippedRing1Piece = null;
                 break;
+
             case ArmorType.Knecklace:
                 _tempSel = EquippedKnecklacePiece;
                 EquippedKnecklacePiece = null;
                 break;
+
             default:
                 break;
         }
