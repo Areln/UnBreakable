@@ -1,5 +1,4 @@
-﻿using Networking;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 
@@ -46,7 +45,7 @@ namespace Server.Networking
 
 				stream.BeginRead(receiveBuffer, 0, DataBufferSize, new AsyncCallback(ReceiveCallback), null);
 
-				ServerWelcomeMessage.WelcomeSend(id, "Welcome to the server!");
+				ServerWelcomeHandle.WelcomeSend(id, "Welcome to the server!");
 			}
 
 			public void SendData(Packet _packet)

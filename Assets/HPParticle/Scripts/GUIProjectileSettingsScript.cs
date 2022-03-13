@@ -1,7 +1,6 @@
 ﻿// GUI script to change the Projectile Settings in Demo
 
 using UnityEngine;
-using System.Collections;
 
 public class GUIProjectileSettingsScript : MonoBehaviour {
 

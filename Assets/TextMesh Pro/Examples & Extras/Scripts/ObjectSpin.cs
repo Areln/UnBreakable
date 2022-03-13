@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 
 namespace TMPro.Examples
 {
-    
-    public class ObjectSpin : MonoBehaviour
+
+	public class ObjectSpin : MonoBehaviour
     {
 
 #pragma warning disable 0414

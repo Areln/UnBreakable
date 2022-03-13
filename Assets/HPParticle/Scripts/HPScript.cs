@@ -1,7 +1,6 @@
 ﻿// this script controls the HP and Instantiates an HP Particle
 
 using UnityEngine;
-using System.Collections;
 
 public class HPScript : MonoBehaviour {
 

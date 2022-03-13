@@ -1,7 +1,6 @@
 ﻿// This script controls the camera
 
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 

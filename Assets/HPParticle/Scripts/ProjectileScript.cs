@@ -1,7 +1,6 @@
 ﻿// This Script is attached to the projectile
 
 using UnityEngine;
-using System.Collections;
 
 public class ProjectileScript : MonoBehaviour {
 

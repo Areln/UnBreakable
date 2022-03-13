@@ -3,7 +3,6 @@ Destorys a the GameObject it is attached to after time
 */
 
 using UnityEngine;
-using System.Collections;
 
 public class DestroyAfter : MonoBehaviour {
 

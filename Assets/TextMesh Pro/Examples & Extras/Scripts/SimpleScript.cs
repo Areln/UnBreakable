@@ -1,11 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
 
 namespace TMPro.Examples
 {
-    
-    public class SimpleScript : MonoBehaviour
+
+	public class SimpleScript : MonoBehaviour
     {
 
         private TextMeshPro m_textMeshPro;

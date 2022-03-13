@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -35,11 +36,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public PlayerBrain clientPlayer;
+	internal PlayerBrain ClientPlayer;
 
-    public List<GameObject> PossibleItems = new List<GameObject>();
+    internal Dictionary<int, PlayerBrain> LoadedPlayers { get; set; } = new Dictionary<int, PlayerBrain>();
 
-    static Dictionary<string, GameObject> ItemDirectory = new Dictionary<string, GameObject>();
+    public List<GameObject> PossibleItems;
+    public GameObject BasePlayerPrefab;
+
+    static readonly Dictionary<string, GameObject> ItemDirectory = new Dictionary<string, GameObject>();
 
     internal bool UsingUI;
     internal ItemSlot DraggingObject;
@@ -52,13 +56,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public GameObject SearchItems(string itemName)
+    public GameObject GetItem(string itemName)
     {
         GameObject returnItem;
         
         ItemDirectory.TryGetValue(itemName, out returnItem);
 
         return returnItem;
+    }
+
+    internal void LoadConnectingPlayer(PlayerData playerData)
+    {
+        var player = Instantiate(BasePlayerPrefab, playerData.Position, Quaternion.Euler(new Vector3(0, playerData.Rotation, 0)));
+        var playerBrain = player.GetComponent<PlayerBrain>();
+        playerBrain.InitializeData(playerData);
+
+        if (playerData.IsClientPlayer)
+		{
+            Camera.main.GetComponent<CameraFollow>().target = player.transform;
+            ClientPlayer = playerBrain;
+		}
+        LoadedPlayers.Add(playerData.PlayerId, playerBrain);
     }
 
 }

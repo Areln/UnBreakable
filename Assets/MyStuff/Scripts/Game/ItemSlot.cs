@@ -70,10 +70,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
             if (eventData.button == PointerEventData.InputButton.Left)
             {
                 // Get type of item then decide what to do
-                if (typeof(ItemEquippable).IsAssignableFrom(SlottedItem.GetType()))
+                if (typeof(ItemEquipable).IsAssignableFrom(SlottedItem.GetType()))
                 {
                     // Check stats if we can equip then handle inventory then equip item
-                    HudManager.Instance.playerBrain.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquippable>(), this);
+                    GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquipable>(), this);
                 }
                 else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
                 {
@@ -87,7 +87,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
             }
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                if (typeof(ItemEquippable).IsAssignableFrom(SlottedItem.GetType()))
+                if (typeof(ItemEquipable).IsAssignableFrom(SlottedItem.GetType()))
                 {
                     Debug.Log("Right Clicked Equippable");
                 }

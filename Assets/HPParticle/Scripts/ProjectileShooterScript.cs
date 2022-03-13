@@ -1,7 +1,6 @@
 ﻿//The CannonScript produces the projectiles 
 
 using UnityEngine;
-using System.Collections;
 
 public class ProjectileShooterScript : MonoBehaviour {
 

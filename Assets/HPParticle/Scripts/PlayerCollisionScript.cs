@@ -1,7 +1,6 @@
 ﻿// This Script changes the player's HP when the player get's hit by a projectile
 
 using UnityEngine;
-using System.Collections;
 
 public class PlayerCollisionScript : MonoBehaviour {
 

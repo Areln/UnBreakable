@@ -1,7 +1,6 @@
 ﻿// GUI script to change the camera view in Demo
 
 using UnityEngine;
-using System.Collections;
 
 public class GUICameraScript : MonoBehaviour {
 

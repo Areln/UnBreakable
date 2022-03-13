@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerBrain : CharacterBrain
@@ -20,7 +21,7 @@ public class PlayerBrain : CharacterBrain
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         currentMana = maxMana;
@@ -40,10 +41,10 @@ public class PlayerBrain : CharacterBrain
         //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("advstlchest"));
         //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("prpwizhat"));
 
-        foreach (GameObject item in GameManager.Instance.PossibleItems)
-        {
-            playerInventory.AddPrefabItemObjectToPlayerInventory(item);
-        }
+        //foreach (GameObject item in GameManager.Instance.PossibleItems)
+        //{
+        //    playerInventory.AddPrefabItemObjectToPlayerInventory(item);
+        //}
 
     }
 
@@ -68,74 +69,76 @@ public class PlayerBrain : CharacterBrain
             }
         }
 
-
-        ////////////////////////////////
-        // Inputs
-        ////////////////////////////////
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (GetComponent<PlayerBrain>() == GameManager.Instance.ClientPlayer)
         {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+            ////////////////////////////////
+            // Inputs
+            ////////////////////////////////
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                playerCombat.ability1.Activate(targetPostition);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
-            {
-                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                playerCombat.ability2.Activate(targetPostition);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
-            {
-                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                playerCombat.ability3.Activate(targetPostition);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
-            {
-                Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                playerCombat.ability4.Activate(targetPostition);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            // stop char movement
-            if (CurrentlyCastingAbility)
-            {
-                CurrentlyCastingAbility.IsCanceled = true;
-                CurrentlyCastingAbility = null;
-            }
-            playerMovement.StopPlayerFromMoving();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            //toggle inv/char
-            HudManager.Instance.ToggleInventory();
-        }
-
-        //Right click
-        //sets destination for navmesh and creates marker
-        if (Input.GetMouseButtonDown(1))
-        {
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-            {
-                Debug.Log("Right Click " + hit.collider.tag);
-                if (hit.collider.tag == "WorldObject")
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
                 {
-                    WorldObject temp = hit.collider.GetComponentInParent<WorldObject>();
+                    Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                    playerCombat.ability1.Activate(targetPostition);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+                {
+                    Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                    playerCombat.ability2.Activate(targetPostition);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+                {
+                    Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                    playerCombat.ability3.Activate(targetPostition);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
+                {
+                    Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
+                    playerCombat.ability4.Activate(targetPostition);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                // stop char movement
+                if (CurrentlyCastingAbility)
+                {
+                    CurrentlyCastingAbility.IsCanceled = true;
+                    CurrentlyCastingAbility = null;
+                }
+                playerMovement.StopPlayerFromMoving();
+            }
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                //toggle inv/char
+                HudManager.Instance.ToggleInventory();
+            }
 
-                    if (Vector3.Distance(gameObject.transform.position, temp.transform.position) <= interactableRange)
+            //Right click
+            //gets object info
+            if (Input.GetMouseButtonDown(1))
+            {
+                RaycastHit hit;
+
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+                {
+                    Debug.Log("Right Click " + hit.collider.tag);
+                    if (hit.collider.tag == "WorldObject")
                     {
-                        temp.Activate(this);
+                        WorldObject temp = hit.collider.GetComponentInParent<WorldObject>();
+
+                        if (Vector3.Distance(gameObject.transform.position, temp.transform.position) <= interactableRange)
+                        {
+                            temp.Activate(this);
+                        }
                     }
                 }
             }
@@ -154,7 +157,65 @@ public class PlayerBrain : CharacterBrain
         }
     }
 
-    public override void CharacterDie()
+	internal void InitializeData(PlayerData playerData)
+    {
+        characterName = playerData.CharacterName;
+
+        ItemSlot tempSlot;
+
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedHelmetPiece))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedHelmetPiece));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedChestPiece))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedChestPiece));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedGlovePiece))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedGlovePiece));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedLegPiece))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedLegPiece));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedNecklacePiece))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedNecklacePiece));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedRing1Piece))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedRing1Piece));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedRing2Piece))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedRing2Piece));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedMainHandWeapon))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedMainHandWeapon));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+        if (!string.IsNullOrWhiteSpace(playerData.EquippedOffHandWeapon))
+        {
+            tempSlot = playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(playerData.EquippedOffHandWeapon));
+            playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
+        }
+
+        foreach (var item in playerData.Items)
+		{
+            playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(item));
+		}
+    }
+
+	public override void CharacterDie()
     {
         Debug.Log("Die");
     }

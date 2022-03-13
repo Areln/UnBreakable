@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -15,10 +14,10 @@ public class PlayerCombat : MonoBehaviour
 
     public void Start()
     {
-        ability1.SetupAbility(GameManager.Instance.clientPlayer);
-        ability4.SetupAbility(GameManager.Instance.clientPlayer);
-        ability3.SetupAbility(GameManager.Instance.clientPlayer);
-        ability2.SetupAbility(GameManager.Instance.clientPlayer);
+        ability1.SetupAbility(GameManager.Instance.ClientPlayer);
+        ability4.SetupAbility(GameManager.Instance.ClientPlayer);
+        ability3.SetupAbility(GameManager.Instance.ClientPlayer);
+        ability2.SetupAbility(GameManager.Instance.ClientPlayer);
     }
 
     public void SetWeaponHitBox(Collider hitbox) 
@@ -40,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
     public void HitCheck()
     {
         //DoneCasting();
-        GameManager.Instance.clientPlayer.agent.isStopped = false;
+        GameManager.Instance.ClientPlayer.agent.isStopped = false;
         //disable hitbox
         WeaponHitBox.enabled = false;
     }

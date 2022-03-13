@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ItemConsumable : Item
+﻿public class ItemConsumable : Item
 {
     //public ItemType ItemType;
     //public string ItemName;

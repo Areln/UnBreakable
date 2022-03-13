@@ -287,6 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 496043221}
   - component: {fileID: 496043220}
+  - component: {fileID: 496043223}
   - component: {fileID: 496043222}
   m_Layer: 0
   m_Name: ServerManager
@@ -317,7 +318,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496043219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -335,6 +336,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9fa8e85f933b145bf6117ef337453c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &496043223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496043219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104f4f000fa1e404fbb302fa4720a3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PossibleItems:
+  - {fileID: 6833613713007867481, guid: 8c6651efbf12eac47a0e9084196ec701, type: 3}
+  - {fileID: 3104788353099502410, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437, type: 3}
+  - {fileID: 2779745711940179492, guid: fbf6158f0ef2c64439bded1034ce7424, type: 3}
+  - {fileID: 6833613713007867481, guid: 408ea053a8e21fe4fb97eed858a46aad, type: 3}
+  - {fileID: 2779745711940179492, guid: 7a86ea8845c2b044ea94e51c6a04d717, type: 3}
+  - {fileID: 5049400667703385555, guid: 1900b0f6adb41fe4987dc039ce36e92a, type: 3}
+  - {fileID: 2813272157311081446, guid: f238125e3091a9f4bb60b0732c992a7f, type: 3}
+  - {fileID: 8911658517431633507, guid: 58939b76a7f69c347a1ea721d054d9af, type: 3}
+  - {fileID: 3596582057088069105, guid: 1f717ed2752b2be45812eefe9b12d696, type: 3}
+  - {fileID: 2311894314349637726, guid: b4ab306dbfeade74b9a193c1ffe29037, type: 3}
+  - {fileID: 9140589588958442948, guid: 770effa9692f82345b8db9630bf4b52b, type: 3}
+  - {fileID: 6139093279525781614, guid: 14a0708df7e3cbf40acc4f6e688eafb5, type: 3}
+  - {fileID: 3167050743238269471, guid: ac83cfb799935274eb27ae0c14654914, type: 3}
+  BasePlayerPrefab: {fileID: 6621349970582242535, guid: f41ee6e07b635b5408438b5cb3a0f558,
+    type: 3}
+  SpawnPoint: {x: 0, y: 0, z: -20}
 --- !u!1 &685584583
 GameObject:
   m_ObjectHideFlags: 0
