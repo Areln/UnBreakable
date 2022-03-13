@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class WorldObjectChest : WorldObject
+﻿public class WorldObjectChest : WorldObject
 {
     HudManager HudManager;
 

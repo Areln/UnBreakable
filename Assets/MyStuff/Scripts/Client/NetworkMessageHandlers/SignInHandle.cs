@@ -1,7 +1,7 @@
-using Networking;
+using System;
 using UnityEngine;
 
-public class SignInHandle : IHandle // : MonoBehaviour
+public class SignInHandle : IHandle
 {
 	public int GetMessageId()
 	{
@@ -10,9 +10,7 @@ public class SignInHandle : IHandle // : MonoBehaviour
 
 	public void ReadMessage(Packet _packet)
 	{
-		string _msg = _packet.ReadString();
-
-		Debug.Log($"Message from server: {_msg}");
+		throw new NotImplementedException();
 	}
 
 	public void WriteMessage(string username, string password)

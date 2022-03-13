@@ -1,6 +1,3 @@
-
-using Networking;
-
 public interface IHandle
 {
 	int GetMessageId();

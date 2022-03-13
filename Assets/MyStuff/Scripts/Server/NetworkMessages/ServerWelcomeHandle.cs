@@ -1,12 +1,10 @@
-﻿using Networking;
-
-namespace Server.Networking
+﻿namespace Server.Networking
 {
-	public static class ServerWelcomeMessage
+	public static class ServerWelcomeHandle
 	{
 		public static void WelcomeSend(int _toClient, string _msg)
 		{
-			using (Packet _packet = new Packet((int)Packets.signIn))
+			using (Packet _packet = new Packet((int)Packets.welcome))
 			{
 				_packet.Write(_msg);
 

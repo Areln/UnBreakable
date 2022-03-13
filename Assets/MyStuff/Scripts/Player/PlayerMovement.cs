@@ -21,26 +21,29 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //sets destination for navmesh and creates marker
-        if (Input.GetMouseButton(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.DraggingObject)
+        if (GetComponent<PlayerBrain>() == GameManager.Instance.ClientPlayer)
         {
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, LayerMask.GetMask("Ground")))
+            //sets destination for navmesh and creates marker
+            if (Input.GetMouseButton(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.DraggingObject)
             {
+                RaycastHit hit;
 
-                if (destinationMarkerPlaced != null)
-                    Destroy(destinationMarkerPlaced.gameObject);
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, LayerMask.GetMask("Ground")))
+                {
 
-                destinationMarkerPlaced = Instantiate(destinationMarkerPrefab, hit.point, Quaternion.identity);
-                agent.destination = hit.point;
+                    if (destinationMarkerPlaced != null)
+                        Destroy(destinationMarkerPlaced.gameObject);
+
+                    destinationMarkerPlaced = Instantiate(destinationMarkerPrefab, hit.point, Quaternion.identity);
+                    agent.destination = hit.point;
+                }
             }
-        }
 
-        //Destroys destination marker if close
-        if (agent.remainingDistance <= 0.1f)
-        {
-            Destroy(destinationMarkerPlaced);
+            //Destroys destination marker if close
+            if (agent.remainingDistance <= 0.1f)
+            {
+                Destroy(destinationMarkerPlaced);
+            }
         }
     }
 

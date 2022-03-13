@@ -1,7 +1,6 @@
 ﻿// Fades out the Text of the HPParticle and Destroys it 
 
 using UnityEngine;
-using System.Collections;
 
 public class HPParticleScript : MonoBehaviour {
 

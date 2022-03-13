@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,8 +37,6 @@ public class HudManager : MonoBehaviour
             };
         }
     }
-
-    public PlayerBrain playerBrain;
 
     //Canvases
     public Canvas charInvCanvas;
@@ -83,7 +80,7 @@ public class HudManager : MonoBehaviour
     public GameObject ItemSlotPrefab;
     public Transform ItemSlotHolder;
 
-    public void EquippedItem(ItemEquippable itemEquippable) 
+    public void EquippedItem(ItemEquipable itemEquippable) 
     {
         if (typeof(ItemArmor).IsAssignableFrom(itemEquippable.GetType()))
         {
@@ -127,7 +124,7 @@ public class HudManager : MonoBehaviour
         }
     }
 
-    public void UnEquippedItem(ItemEquippable itemEquippable) 
+    public void UnEquippedItem(ItemEquipable itemEquippable) 
     {
         if (typeof(ItemArmor).IsAssignableFrom(itemEquippable.GetType()))
         {
@@ -184,52 +181,49 @@ public class HudManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        //Health And Mana
-        healthText.text = playerBrain.currentHealth.ToString();
-        healthSlider.value = playerBrain.currentHealth;
-        manaText.text = playerBrain.currentMana.ToString();
-        manaSlider.value = playerBrain.currentMana;
-        //Update CD Shades
-        if (playerBrain.playerCombat.ability1 != null)
+        if (GameManager.Instance.ClientPlayer)
         {
-            ability1Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability1.GetCDPercentage()));
-        }
-        else
-        {
-            ability1Shade.color = Color.clear;
-        }
-        if (playerBrain.playerCombat.ability2 != null)
-        {
-            ability2Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability2.GetCDPercentage()));
-        }
-        else
-        {
-            ability2Shade.color = Color.clear;
-        }
-        if (playerBrain.playerCombat.ability3 != null)
-        {
-            ability3Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability3.GetCDPercentage()));
-        }
-        else
-        {
-            ability3Shade.color = Color.clear;
-        }
-        if (playerBrain.playerCombat.ability4 != null)
-        {
-            ability4Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(playerBrain.playerCombat.ability4.GetCDPercentage()));
-        }
-        else
-        {
-            ability4Shade.color = Color.clear;
+            //Health And Mana
+            healthText.text = GameManager.Instance.ClientPlayer.currentHealth.ToString();
+            healthSlider.value = GameManager.Instance.ClientPlayer.currentHealth;
+            manaText.text = GameManager.Instance.ClientPlayer.currentMana.ToString();
+            manaSlider.value = GameManager.Instance.ClientPlayer.currentMana;
+            //Update CD Shades
+            if (GameManager.Instance.ClientPlayer.playerCombat.ability1 != null)
+            {
+                ability1Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability1.GetCDPercentage()));
+            }
+            else
+            {
+                ability1Shade.color = Color.clear;
+            }
+            if (GameManager.Instance.ClientPlayer.playerCombat.ability2 != null)
+            {
+                ability2Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability2.GetCDPercentage()));
+            }
+            else
+            {
+                ability2Shade.color = Color.clear;
+            }
+            if (GameManager.Instance.ClientPlayer.playerCombat.ability3 != null)
+            {
+                ability3Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability3.GetCDPercentage()));
+            }
+            else
+            {
+                ability3Shade.color = Color.clear;
+            }
+            if (GameManager.Instance.ClientPlayer.playerCombat.ability4 != null)
+            {
+                ability4Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability4.GetCDPercentage()));
+            }
+            else
+            {
+                ability4Shade.color = Color.clear;
+            }
         }
     }
 

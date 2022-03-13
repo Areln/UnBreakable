@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ItemWeapon : ItemEquippable
+﻿public class ItemWeapon : ItemEquipable
 {
     //public ItemType ItemType;
     //public string ItemName;

@@ -16,7 +16,7 @@ public class ItemEquipSlot : ItemSlot
             // can we equip?
             if (EquipCheck(GameManager.Instance.DraggingObject.SlottedItem))
             {
-                GameManager.Instance.clientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.DraggingObject.SlottedItem.GetComponent<ItemEquippable>(), GameManager.Instance.DraggingObject);
+                GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.DraggingObject.SlottedItem.GetComponent<ItemEquipable>(), GameManager.Instance.DraggingObject);
 
                 // replacing an equipped item
                 //if (SlottedItem != null)
@@ -36,7 +36,7 @@ public class ItemEquipSlot : ItemSlot
 
     bool EquipCheck(Item item)
     {
-        if (typeof(ItemEquippable).IsAssignableFrom(item.GetType()))
+        if (typeof(ItemEquipable).IsAssignableFrom(item.GetType()))
         {
             // do stat check
 
@@ -81,16 +81,16 @@ public class ItemEquipSlot : ItemSlot
 
         if (_itemSlot == null)
         {
-            _itemSlot = GameManager.Instance.clientPlayer.playerInventory.FindFirstOpenItemSlot();
+            _itemSlot = GameManager.Instance.ClientPlayer.playerInventory.FindFirstOpenItemSlot();
         }
 
         switch (slotEquipType)
         {
             case EquipType.Weapon:
-                GameManager.Instance.clientPlayer.playerInventory.UnEquipWeapon(slotWeaponType, _itemSlot);
+                GameManager.Instance.ClientPlayer.playerInventory.UnEquipWeapon(slotWeaponType, _itemSlot);
                 break;
             case EquipType.Armor:
-                GameManager.Instance.clientPlayer.playerInventory.UnEquipArmor(slotArmorType, _itemSlot);
+                GameManager.Instance.ClientPlayer.playerInventory.UnEquipArmor(slotArmorType, _itemSlot);
                 break;
             default:
                 break;

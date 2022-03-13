@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -24,7 +23,7 @@ public class PlayerInventory : MonoBehaviour
     public GameObject RightLegArmorObject;
     public GameObject LeftLegArmorObject;
 
-    public ItemArmor EquippedKnecklacePiece;
+    public ItemArmor EquippedNecklacePiece;
     public Transform KnecklacePieceTransform;
 
     public ItemArmor EquippedRing1Piece;
@@ -42,7 +41,7 @@ public class PlayerInventory : MonoBehaviour
     //array 
     public List<Item> InventoryItems = new List<Item>();
 
-    public void AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab)
+    public ItemSlot AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab)
     {
         // Instantiates Item's gameobject and sets the parent as the InventoryHolder
         GameObject _tempObject = Instantiate(itemPrefab, InventoryHolder);
@@ -53,7 +52,11 @@ public class PlayerInventory : MonoBehaviour
         _tempItem.OnItemPickup();
 
         // Find the first open inventory slot and set the slotted item. we should have already checked if player's inventory is full
-        FindFirstOpenItemSlot().SetSlottedItem(_tempItem);
+        var slot = FindFirstOpenItemSlot();
+        slot.SetSlottedItem(_tempItem);
+        InventoryItems.Add(_tempItem);
+
+        return slot;
     }
 
     public ItemSlot FindFirstOpenItemSlot()
@@ -68,7 +71,7 @@ public class PlayerInventory : MonoBehaviour
         return null;
     }
 
-    public void EquipItemToCharacter(ItemEquippable item, ItemSlot itemSlot)
+    public void EquipItemToCharacter(ItemEquipable item, ItemSlot itemSlot)
     {
 
         bool successfullEquip = false;
@@ -106,7 +109,7 @@ public class PlayerInventory : MonoBehaviour
             case WeaponType.MainHand:
                 itemWeapon.gameObject.transform.SetParent(MainHandWeaponTransform, false);
                 EquippedMainHandWeapon = itemWeapon;
-                GameManager.Instance.clientPlayer.playerCombat.SetWeaponHitBox(itemWeapon.GetComponent<Weapon>().WeaponHitBox);
+                GameManager.Instance.ClientPlayer.playerCombat.SetWeaponHitBox(itemWeapon.GetComponent<Weapon>().WeaponHitBox);
                 return true;
             case WeaponType.OffHand:
                 itemWeapon.gameObject.transform.SetParent(OffHandWeaponTransform, false);
@@ -251,8 +254,8 @@ public class PlayerInventory : MonoBehaviour
                 break;
 
             case ArmorType.Knecklace:
-                _tempSel = EquippedKnecklacePiece;
-                EquippedKnecklacePiece = null;
+                _tempSel = EquippedNecklacePiece;
+                EquippedNecklacePiece = null;
                 break;
 
             default:
@@ -289,7 +292,7 @@ public class PlayerInventory : MonoBehaviour
             case ArmorType.Ring:
                 return EquippedRing1Piece;
             case ArmorType.Knecklace:
-                return EquippedKnecklacePiece;
+                return EquippedNecklacePiece;
             default:
                 break;
         }

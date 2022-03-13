@@ -1,6 +1,4 @@
-﻿using Networking;
-
-namespace Server.Networking
+﻿namespace Server.Networking
 {
 	internal class ServerSend
 	{
