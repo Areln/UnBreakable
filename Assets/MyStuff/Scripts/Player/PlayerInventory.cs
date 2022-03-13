@@ -179,6 +179,7 @@ public class PlayerInventory : MonoBehaviour
                 // Instantiate both glove armor objects
                 RightGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, RightGlovePieceTransform);
                 LeftGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftGlovePieceTransform);
+                LeftGloveArmorObject.transform.localScale = new Vector3(LeftGloveArmorObject.transform.localScale.x*-1, LeftGloveArmorObject.transform.localScale.y, LeftGloveArmorObject.transform.localScale.z);
                 EquippedGlovePiece = itemArmor;
                 return true;
 
@@ -187,6 +188,7 @@ public class PlayerInventory : MonoBehaviour
                 // Instantiate both leg armor objects
                 RightLegArmorObject = Instantiate(itemArmor.MirrorPrefab, RightLegPieceTransform);
                 LeftLegArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftLegPieceTransform);
+                LeftLegArmorObject.transform.localScale = new Vector3(LeftLegArmorObject.transform.localScale.x * -1, LeftLegArmorObject.transform.localScale.y, LeftLegArmorObject.transform.localScale.z);
                 EquippedLegPiece = itemArmor;
                 return true;
 
