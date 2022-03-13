@@ -325,6 +325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood Staff
       objectReference: {fileID: 0}
+    - target: {fileID: 9140589588958442948, guid: 770effa9692f82345b8db9630bf4b52b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 770effa9692f82345b8db9630bf4b52b, type: 3}
 --- !u!1001 &519897104
@@ -854,6 +859,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 408ea053a8e21fe4fb97eed858a46aad, type: 3}
+--- !u!1001 &1588601737
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3104788353099502410, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_Name
+      value: SteelWarAxe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.58459896
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.16387942
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7944045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.017580599
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -12.682
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -108.891
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782157542515970409, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 14.23
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437, type: 3}
 --- !u!1 &1600747469
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +979,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1465,7 +1554,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0

@@ -234,12 +234,12 @@ MonoBehaviour:
   MonetaryValue: 0
   EquipType: 0
   EquipComponents:
-  - {fileID: 4585032906675686045}
+  - {fileID: 2692734759307752486, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437, type: 3}
   EquipRenderers:
+  - {fileID: 1185820470829271347}
   - {fileID: 2382616752649969848}
   - {fileID: 1803100632937836290}
   - {fileID: 6439617596397718224}
-  - {fileID: 1185820470829271347}
   WeaponType: 0
 --- !u!1 &4184260420629797440
 GameObject:

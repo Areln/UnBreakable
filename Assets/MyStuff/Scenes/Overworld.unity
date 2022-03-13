@@ -248,7 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 329749536}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Entries: []
 --- !u!4 &172818140
 Transform:
   m_ObjectHideFlags: 19
@@ -681,7 +680,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -2.0000002, y: 9.7e-43, z: 9.65e-43, w: 0}
+  m_BoundingSphereOverride: {x: 4.5919e-41, y: 0, z: 0, w: 3.67343e-40}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1150,7 +1149,7 @@ PrefabInstance:
     - target: {fileID: 3223750860847082145, guid: cdce96043aa1c074ca6124062f2ca447,
         type: 3}
       propertyPath: m_Name
-      value: GameManager (1)
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 3223750860847082150, guid: cdce96043aa1c074ca6124062f2ca447,
         type: 3}
@@ -1570,7 +1569,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.422e-42, y: 1.7e-44, z: 0, w: 8.441e-42}
+  m_BoundingSphereOverride: {x: 3.0833682e+32, y: 4.4650506e+30, z: 5.9101607e+22,
+    w: 4.5435787e+30}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2986,6 +2986,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxCooldown
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370350683273760484, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
+        type: 3}
+      propertyPath: WeaponHitBox
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6621349970582242534, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
         type: 3}
