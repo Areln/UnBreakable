@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PlayerBrain : CharacterBrain
 {
@@ -121,7 +117,7 @@ public class PlayerBrain : CharacterBrain
         if (Input.GetKeyDown(KeyCode.B))
         {
             //toggle inv/char
-            playerMovement.SetInMenu(HudManager.Instance.ToggleInventory());
+            HudManager.Instance.ToggleInventory();
         }
 
         //Right click

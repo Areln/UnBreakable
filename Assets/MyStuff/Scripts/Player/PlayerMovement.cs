@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,8 +12,6 @@ public class PlayerMovement : MonoBehaviour
     //currently placed destinationMarker
     internal GameObject destinationMarkerPlaced;
 
-    private bool InUI = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //sets destination for navmesh and creates marker
-        if (Input.GetMouseButton(0) && !GetInMenu())
+        if (Input.GetMouseButton(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.DraggingObject)
         {
             RaycastHit hit;
 
@@ -49,14 +43,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(destinationMarkerPlaced);
         }
     }
-    public void SetInMenu(bool _value)
-    {
-        InUI = _value;
-    }
-    public bool GetInMenu()
-    {
-        return InUI;
-    }
+
     internal void StopPlayerFromMoving()
 	{
         Destroy(destinationMarkerPlaced);

@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IPointerClickHandler
+public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
 {
     public Item SlottedItem;
     public Image ItemSprite;
@@ -49,8 +47,21 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        transform.position = Vector2.zero;
-    }
+        if (GameManager.Instance.DraggingObject)
+        {
+            if (SlottedItem != null)
+            {
+                var tempItem = SlottedItem;
+                SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
+                GameManager.Instance.DraggingObject.SetSlottedItem(tempItem);
+            }
+			else
+            {
+                SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
+                GameManager.Instance.DraggingObject.ClearSlot();
+            }
+        }
+	}
 
     public void OnPointerClick(PointerEventData eventData)
     {

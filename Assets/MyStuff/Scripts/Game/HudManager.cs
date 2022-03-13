@@ -66,6 +66,9 @@ public class HudManager : MonoBehaviour
     public Image ability3Shade;
     public Image ability4Shade;
 
+    //Item Dragging
+    public Transform ItemDragSlot;
+
     //
     public ItemSlot EquippedHeadPieceSlot;
     public ItemSlot EquippedChestPieceSlot;

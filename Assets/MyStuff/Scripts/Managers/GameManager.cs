@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
 
     static Dictionary<string, GameObject> ItemDirectory = new Dictionary<string, GameObject>();
 
+    internal bool UsingUI;
+    internal ItemSlot DraggingObject;
+
     private void Awake()
     {
         foreach (GameObject item in PossibleItems)

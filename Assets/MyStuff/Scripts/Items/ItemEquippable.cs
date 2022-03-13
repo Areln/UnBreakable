@@ -12,8 +12,8 @@ public abstract class ItemEquippable : Item
     public EquipType EquipType;
 
     // list of components to enable/disable when equipped
-    public List<Behaviour> EquipComponents = new List<Behaviour>();
-    public List<MeshRenderer> EquipRenderers = new List<MeshRenderer>();
+    //public List<Behaviour> EquipComponents = new List<Behaviour>();
+    //public List<MeshRenderer> EquipRenderers = new List<MeshRenderer>();
 
     public override void OnItemPickup()
     {
@@ -33,13 +33,14 @@ public abstract class ItemEquippable : Item
 
     internal void ToggleEquipComponents(bool value) 
     {
-        foreach (Behaviour item in EquipComponents)
-        {
-            item.enabled = value;
-        }
-        foreach (MeshRenderer item in EquipRenderers)
-        {
-            item.enabled = value;
-        }
+        gameObject.SetActive(value);
+        //foreach (Behaviour item in EquipComponents)
+        //{
+        //    item.enabled = value;
+        //}
+        //foreach (MeshRenderer item in EquipRenderers)
+        //{
+        //    item.enabled = value;
+        //}
     }
 }
