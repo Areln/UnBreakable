@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 329749536}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Entries: []
 --- !u!4 &172818140
 Transform:
   m_ObjectHideFlags: 19
@@ -2973,8 +2974,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 200642294111961582, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
         type: 3}
+      propertyPath: CastTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 200642294111961582, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
+        type: 3}
       propertyPath: manaCost
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 200642294111961582, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
+        type: 3}
+      propertyPath: maxCooldown
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6621349970582242534, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
         type: 3}

@@ -29,8 +29,15 @@ public class AbilityHammerDin : Ability
             return;
         }
 
+        // Pause moving
+
+        // Player hammerdin cast anim
+        //animator.SetTrigger("HDinCast");
         StartCoroutine(CastSpell(CastTime));
 
+        //instantiate din
+
+        //resume moving
     }
     private IEnumerator CastSpell(float sec)
     {
@@ -44,7 +51,7 @@ public class AbilityHammerDin : Ability
             owner.CurrentlyCastingAbility = null;
             finishedCasting = true;
             animator.SetBool("Casting", false);
-            HammerDinSpin tempSpin = Instantiate(hammerDinPrefab, transform.position, transform.rotation).GetComponentInChildren<HammerDinSpin>();
+            HammerDinSpin tempSpin = Instantiate(hammerDinPrefab, owner.transform.position, Quaternion.identity).GetComponentInChildren<HammerDinSpin>();
             tempSpin.SetupAbility(GetComponentInParent<CharacterBrain>());
             owner.agent.isStopped = false;
         }
