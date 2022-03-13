@@ -45,7 +45,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         IsSlottedValue = false;
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public virtual void OnDrop(PointerEventData eventData)
     {
         if (GameManager.Instance.DraggingObject)
         {
@@ -63,7 +63,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         }
 	}
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (IsSlotted())
         {

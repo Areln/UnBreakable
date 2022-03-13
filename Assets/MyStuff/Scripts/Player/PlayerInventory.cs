@@ -12,10 +12,16 @@ public class PlayerInventory : MonoBehaviour
     public Transform ChestPieceTransform;
 
     public ItemArmor EquippedGlovePiece;
-    public Transform GlovePieceTransform;
+    public Transform RightGlovePieceTransform;
+    public Transform LeftGlovePieceTransform;
+    public GameObject RightGloveArmorObject;
+    public GameObject LeftGloveArmorObject;
 
     public ItemArmor EquippedLegPiece;
-    public Transform LegPieceTransform;
+    public Transform RightLegPieceTransform;
+    public Transform LeftLegPieceTransform;
+    public GameObject RightLegArmorObject;
+    public GameObject LeftLegArmorObject;
 
     public ItemArmor EquippedNecklacePiece;
     public Transform KnecklacePieceTransform;
@@ -53,7 +59,7 @@ public class PlayerInventory : MonoBehaviour
         return slot;
     }
 
-    ItemSlot FindFirstOpenItemSlot()
+    public ItemSlot FindFirstOpenItemSlot()
     {
         foreach (ItemSlot itemSlot in HudManager.Instance.InventoryItemSlots)
         {
@@ -115,7 +121,7 @@ public class PlayerInventory : MonoBehaviour
 
         return false;
     }
-    void UnEquipWeapon(WeaponType weaponType, ItemSlot itemSlot = null)
+    public void UnEquipWeapon(WeaponType weaponType, ItemSlot itemSlot = null)
     {
         ItemWeapon _tempSel = default;
 
@@ -143,7 +149,10 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            _tempSel.gameObject.transform.SetParent(null, false);
+            // TODO: this should drop the item on the ground but for now we are just deleting 
+            //_tempSel.gameObject.transform.SetParent(null, false);
+
+            Destroy(_tempSel.gameObject);
         }
     }
     bool EquipArmor(ItemArmor itemArmor, ItemSlot itemSlot)
@@ -165,33 +174,47 @@ public class PlayerInventory : MonoBehaviour
                 itemArmor.gameObject.transform.SetParent(HeadTransform, false);
                 EquippedHelmetPiece = itemArmor;
                 return true;
+
             case ArmorType.ChestPiece:
                 itemArmor.gameObject.transform.SetParent(ChestPieceTransform, false);
                 EquippedChestPiece = itemArmor;
                 return true;
+
             case ArmorType.GlovePiece:
-                itemArmor.gameObject.transform.SetParent(GlovePieceTransform, false);
+                
+                // Instantiate both glove armor objects
+                RightGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, RightGlovePieceTransform);
+                LeftGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftGlovePieceTransform);
+                LeftGloveArmorObject.transform.localScale = new Vector3(LeftGloveArmorObject.transform.localScale.x*-1, LeftGloveArmorObject.transform.localScale.y, LeftGloveArmorObject.transform.localScale.z);
                 EquippedGlovePiece = itemArmor;
                 return true;
+
             case ArmorType.LegPiece:
-                itemArmor.gameObject.transform.SetParent(LegPieceTransform, false);
+
+                // Instantiate both leg armor objects
+                RightLegArmorObject = Instantiate(itemArmor.MirrorPrefab, RightLegPieceTransform);
+                LeftLegArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftLegPieceTransform);
+                LeftLegArmorObject.transform.localScale = new Vector3(LeftLegArmorObject.transform.localScale.x * -1, LeftLegArmorObject.transform.localScale.y, LeftLegArmorObject.transform.localScale.z);
                 EquippedLegPiece = itemArmor;
                 return true;
+
             case ArmorType.Ring:
                 itemArmor.gameObject.transform.SetParent(Ring1PieceTransform, false);
                 EquippedRing1Piece = itemArmor;
                 return true;
+
             case ArmorType.Knecklace:
                 itemArmor.gameObject.transform.SetParent(Ring2PieceTransform, false);
                 EquippedRing2Piece = itemArmor;
                 return true;
+
             default:
                 break;
         }
 
         return false;
     }
-    void UnEquipArmor(ArmorType armorType, ItemSlot itemSlot = null)
+    public void UnEquipArmor(ArmorType armorType, ItemSlot itemSlot = null)
     {
         ItemArmor _tempSel = EquippedChestPiece;
 
@@ -201,26 +224,40 @@ public class PlayerInventory : MonoBehaviour
                 _tempSel = EquippedHelmetPiece;
                 EquippedHelmetPiece = null;
                 break;
+
             case ArmorType.ChestPiece:
                 _tempSel = EquippedChestPiece;
                 EquippedChestPiece = null;
                 break;
+
             case ArmorType.GlovePiece:
+
+                // Destroy armor objects
+                Destroy(RightGloveArmorObject);
+                Destroy(LeftGloveArmorObject);
                 _tempSel = EquippedGlovePiece;
                 EquippedGlovePiece = null;
                 break;
+
             case ArmorType.LegPiece:
+
+                // Destroy armor objects
+                Destroy(RightLegArmorObject);
+                Destroy(LeftLegArmorObject);
                 _tempSel = EquippedLegPiece;
                 EquippedLegPiece = null;
                 break;
+
             case ArmorType.Ring:
                 _tempSel = EquippedRing1Piece;
                 EquippedRing1Piece = null;
                 break;
+
             case ArmorType.Knecklace:
                 _tempSel = EquippedNecklacePiece;
                 EquippedNecklacePiece = null;
                 break;
+
             default:
                 break;
         }
@@ -235,7 +272,9 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            _tempSel.gameObject.transform.SetParent(null, false);
+            // TODO: this should drop the item on the ground but for now we are just deleting 
+            //_tempSel.gameObject.transform.SetParent(null, false);
+            Destroy(_tempSel.gameObject);
         }
     }
     ItemArmor GetEquippedArmor(ArmorType armorType)

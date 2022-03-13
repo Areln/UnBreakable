@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 5867806123263430212}
   - component: {fileID: 4663319248063188772}
   m_Layer: 10
-  m_Name: SteelLeg
+  m_Name: SteelLegModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

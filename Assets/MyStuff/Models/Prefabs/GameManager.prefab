@@ -59,5 +59,8 @@ MonoBehaviour:
   - {fileID: 6139093279525781614, guid: 14a0708df7e3cbf40acc4f6e688eafb5, type: 3}
   - {fileID: 3167050743238269471, guid: ac83cfb799935274eb27ae0c14654914, type: 3}
   - {fileID: 3104788353099502410, guid: 0cb5b2d4f20e00b4eb5df6bdb0144437, type: 3}
+  - {fileID: 8969677771658808282, guid: 60a699289d35ee94994653942ed5a6da, type: 3}
+  - {fileID: 265135902134893155, guid: cb4611a8781457d4580df2b6b4f0b570, type: 3}
+  - {fileID: 9030630644418414900, guid: b91a4908d9d60fc48938b9b7ec4dd512, type: 3}
   BasePlayerPrefab: {fileID: 6621349970582242535, guid: 93eac9814f734cc43a51a5e7a0bfd7c8,
     type: 3}
