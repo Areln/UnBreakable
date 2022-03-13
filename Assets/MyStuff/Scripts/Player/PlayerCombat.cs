@@ -21,10 +21,18 @@ public class PlayerCombat : MonoBehaviour
         ability2.SetupAbility(GameManager.Instance.clientPlayer);
     }
 
+    public void SetWeaponHitBox(Collider hitbox) 
+    {
+        WeaponHitBox = hitbox;
+    }
 
     // referenced from the animation.
     public void TurnHitBoxOn()
     {
+        if (WeaponHitBox == null)
+        {
+            Debug.Log("No weapon hitbox");
+        }
         WeaponHitBox.enabled = true;
     }
 

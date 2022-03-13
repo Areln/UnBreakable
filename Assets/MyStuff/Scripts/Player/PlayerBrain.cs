@@ -22,9 +22,6 @@ public class PlayerBrain : CharacterBrain
     //
     public int interactableRange = 3;
 
-    public GraphicRaycaster graphicRaycaster;
-    PointerEventData m_PointerEventData;
-    public EventSystem m_EventSystem;
 
     // Start is called before the first frame update
     void Start()

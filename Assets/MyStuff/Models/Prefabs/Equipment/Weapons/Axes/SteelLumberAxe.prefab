@@ -211,6 +211,7 @@ MonoBehaviour:
   StatModifier: 1
   PossibleAbilities:
   - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
+  WeaponHitBox: {fileID: 1822729141701751287}
 --- !u!114 &-7507584231409310743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +241,6 @@ MonoBehaviour:
   - {fileID: 6439617596397718224}
   - {fileID: 1185820470829271347}
   WeaponType: 0
-  WeaponObjectPrefab: {fileID: 0}
 --- !u!1 &4184260420629797440
 GameObject:
   m_ObjectHideFlags: 0

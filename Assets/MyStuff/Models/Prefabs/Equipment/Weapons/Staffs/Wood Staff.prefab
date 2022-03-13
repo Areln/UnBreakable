@@ -230,7 +230,7 @@ BoxCollider:
   m_GameObject: {fileID: 9140589588958442948}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.20765701, y: 1.1118267, z: 0.18122362}
   m_Center: {x: 0.00246162, y: 0.030284218, z: -0.001436397}
@@ -251,6 +251,7 @@ MonoBehaviour:
   PossibleAbilities:
   - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
   - {fileID: 1858707421012363883, guid: 6a3a56803a091dd439b017c116f9847a, type: 3}
+  WeaponHitBox: {fileID: -1691019077483786421}
 --- !u!114 &2365990204190212655
 MonoBehaviour:
   m_ObjectHideFlags: 0

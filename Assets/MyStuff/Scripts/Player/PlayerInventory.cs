@@ -100,6 +100,7 @@ public class PlayerInventory : MonoBehaviour
             case WeaponType.MainHand:
                 itemWeapon.gameObject.transform.SetParent(MainHandWeaponTransform, false);
                 EquippedMainHandWeapon = itemWeapon;
+                GameManager.Instance.clientPlayer.playerCombat.SetWeaponHitBox(itemWeapon.GetComponent<Weapon>().WeaponHitBox);
                 return true;
             case WeaponType.OffHand:
                 itemWeapon.gameObject.transform.SetParent(OffHandWeaponTransform, false);
