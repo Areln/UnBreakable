@@ -16,17 +16,20 @@ public class ItemEquipSlot : ItemSlot
             // can we equip?
             if (EquipCheck(GameManager.Instance.DraggingObject.SlottedItem))
             {
-                if (SlottedItem != null)
-                {
-                    var tempItem = SlottedItem;
-                    SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
-                    GameManager.Instance.DraggingObject.SetSlottedItem(tempItem);
-                }
-                else
-                {
-                    SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
-                    GameManager.Instance.DraggingObject.ClearSlot();
-                }
+                GameManager.Instance.clientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.DraggingObject.SlottedItem.GetComponent<ItemEquippable>(), GameManager.Instance.DraggingObject);
+
+                // replacing an equipped item
+                //if (SlottedItem != null)
+                //{
+                //    var tempItem = SlottedItem;
+                //    SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
+                //    GameManager.Instance.DraggingObject.SetSlottedItem(tempItem);
+                //}
+                //else // not replacing and item
+                //{
+                //    SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
+                //    GameManager.Instance.DraggingObject.ClearSlot();
+                //}
             }
         }
     }
