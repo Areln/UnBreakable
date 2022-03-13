@@ -16,7 +16,10 @@ public class PlayerInventory : MonoBehaviour
     public Transform GlovePieceTransform;
 
     public ItemArmor EquippedLegPiece;
-    public Transform LegPieceTransform;
+    public Transform RightLegPieceTransform;
+    public Transform LeftLegPieceTransform;
+    public GameObject RightLegArmorObject;
+    public GameObject LeftLegArmorObject;
 
     public ItemArmor EquippedKnecklacePiece;
     public Transform KnecklacePieceTransform;
@@ -171,7 +174,10 @@ public class PlayerInventory : MonoBehaviour
                 EquippedGlovePiece = itemArmor;
                 return true;
             case ArmorType.LegPiece:
-                itemArmor.gameObject.transform.SetParent(LegPieceTransform, false);
+
+                // Instantiate both leg armor objects
+                RightLegArmorObject = Instantiate(itemArmor.MirrorPrefab, RightLegPieceTransform);
+                LeftLegArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftLegPieceTransform);
                 EquippedLegPiece = itemArmor;
                 return true;
             case ArmorType.Ring:
@@ -207,6 +213,11 @@ public class PlayerInventory : MonoBehaviour
                 EquippedGlovePiece = null;
                 break;
             case ArmorType.LegPiece:
+
+                // Destroy armor objects
+                Destroy(RightLegArmorObject);
+                Destroy(LeftLegArmorObject);
+
                 _tempSel = EquippedLegPiece;
                 EquippedLegPiece = null;
                 break;

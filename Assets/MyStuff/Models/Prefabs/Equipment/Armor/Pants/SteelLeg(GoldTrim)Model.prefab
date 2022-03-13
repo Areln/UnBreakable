@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4798197280101339319}
   - component: {fileID: 7577175123754172793}
   m_Layer: 0
-  m_Name: SteelLeg(GoldTrim)
+  m_Name: SteelLeg(GoldTrim)Model
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

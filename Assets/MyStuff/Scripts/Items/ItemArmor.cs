@@ -11,6 +11,8 @@ public class ItemArmor : ItemEquippable
     //public int MonetaryValue;
     public ArmorType ArmorType;
 
+    public GameObject MirrorPrefab;
+
     public override void OnEquip()
     {
         base.OnEquip();
