@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		var player = transform.Find("Player");
-		if (player != null)
+		if (player != null && player.gameObject.activeSelf)
 		{
 			ClientPlayer = player.GetComponent<PlayerBrain>();
 			LoadOfflinePlayer(ClientPlayer);
@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour
 		var player = Instantiate(BasePlayerPrefab, playerData.Position, Quaternion.Euler(new Vector3(0, playerData.Rotation, 0)));
 		var playerBrain = player.GetComponent<PlayerBrain>();
 		playerBrain.InitializeData(playerData);
-		playerBrain.playerCombat.SetupAbilities();
 
 		if (playerData.IsClientPlayer)
 		{
@@ -88,6 +87,7 @@ public class GameManager : MonoBehaviour
 			ClientPlayer = playerBrain;
 		}
 		LoadedPlayers.Add(playerData.PlayerId, playerBrain);
+		playerBrain.playerCombat.SetupAbilities();
 	}
 
 	internal void LoadOfflinePlayer(PlayerBrain playerBrain)
@@ -96,9 +96,9 @@ public class GameManager : MonoBehaviour
 		{
 			ClientPlayer.playerInventory.AddPrefabItemObjectToPlayerInventory(item);
 		}
-		playerBrain.playerCombat.SetupAbilities();
 		Camera.main.GetComponent<CameraFollow>().target = playerBrain.transform;
 		ClientPlayer = playerBrain;
 		LoadedPlayers.Add(0, playerBrain);
+		playerBrain.playerCombat.SetupAbilities();
 	}
 }
