@@ -48,15 +48,28 @@ public class GameManager : MonoBehaviour
     internal bool UsingUI;
     internal ItemSlot DraggingObject;
 
-    private void Awake()
-    {
-        foreach (GameObject item in PossibleItems)
+	private void Awake()
+	{
+		foreach (GameObject item in PossibleItems)
+		{
+			ItemDirectory.Add(item.GetComponent<Item>().InternalName, item);
+		}
+	}
+
+	private void Start()
+	{
+        var player = transform.Find("Player");
+        if (player != null)
         {
-            ItemDirectory.Add(item.GetComponent<Item>().InternalName, item);
+            ClientPlayer = player.GetComponent<PlayerBrain>();
+            foreach (GameObject item in Instance.PossibleItems)
+            {
+                ClientPlayer.playerInventory.AddPrefabItemObjectToPlayerInventory(item);
+            }
         }
     }
 
-    public GameObject GetItem(string itemName)
+	public GameObject GetItem(string itemName)
     {
         GameObject returnItem;
         
