@@ -4,6 +4,7 @@ using UnityEngine;
 public class LightningStrike : Ability
 {
 	private LineRenderer lineRenderer;
+	public int LinePositionCount;
 	private Vector3 startPosition;
 	private Vector3 endScale;
 	void Start()
@@ -17,21 +18,34 @@ public class LightningStrike : Ability
 
 		//Enables line renderer
 		lineRenderer.enabled = true;
+		// 
+		Vector3[] positions = new Vector3[LinePositionCount];
+
+		lineRenderer.positionCount = LinePositionCount;
 		//Sets starting position to players position
 		lineRenderer.SetPosition(0, startPosition);
+
+
+
 		//Loop that moves line to "random directions"
-		for (int i = 1; i < 4; i++)
+		for (int i = 1; i < LinePositionCount; i++)
 		{
-			var pos = Vector3.Lerp(startPosition, transform.position, i / 4f);
+			//var pos = Vector3.Lerp(startPosition, transform.position, i / 4f);
+
+			Vector3 pos = transform.position;
 
 			//randomises lines position
-			pos.x += UnityEngine.Random.Range(-0.6f, 0.6f);
-			pos.z += UnityEngine.Random.Range(-0.6f, 0.6f);
+			pos.x += UnityEngine.Random.Range(-1.5f, 1.5f);
+			pos.z += UnityEngine.Random.Range(-1.5f, 1.5f);
+
+			pos.y += startPosition.y / (i + 1);
 
 			lineRenderer.SetPosition(i, pos);
 		}
+		//lineRenderer.positionCount = positions.Length;
+		//lineRenderer.SetPositions(positions);
 		//Lines end postion at the target
-		lineRenderer.SetPosition(4, transform.position);
+		//lineRenderer.SetPosition(LinePositionCount, transform.position);
 		StartCoroutine(waitForSec(.25f));
 	}
 

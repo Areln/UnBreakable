@@ -156,6 +156,7 @@ MonoBehaviour:
   manaCost: 0
   maxCooldown: 0
   currentCooldown: 0
+  LinePositionCount: 50
 --- !u!23 &7756146950835473838
 MeshRenderer:
   m_ObjectHideFlags: 0
