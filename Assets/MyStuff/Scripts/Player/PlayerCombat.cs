@@ -12,8 +12,8 @@ public class PlayerCombat : MonoBehaviour
     public Ability ability3;
     public Ability ability4;
 
-    public void Start()
-    {
+    public void SetupAbilities()
+	{
         ability1.SetupAbility(GameManager.Instance.ClientPlayer);
         ability4.SetupAbility(GameManager.Instance.ClientPlayer);
         ability3.SetupAbility(GameManager.Instance.ClientPlayer);
