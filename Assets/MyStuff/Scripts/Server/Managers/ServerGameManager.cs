@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Server
@@ -52,6 +53,12 @@ namespace Server
             {
                 ItemDirectory.Add(item.GetComponent<Item>().InternalName, item);
             }
+        }
+
+        internal ServerPlayerBrain GetPlayer(int playerId)
+        {
+            ClientPlayers.TryGetValue(playerId, out var player);
+            return player;
         }
 
         public GameObject SearchItems(string itemName)

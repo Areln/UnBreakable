@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
 	internal PlayerBrain ClientPlayer;
 
-	internal Dictionary<int, PlayerBrain> LoadedPlayers { get; set; } = new Dictionary<int, PlayerBrain>();
+	internal Dictionary<int, CharacterBrain> LoadedCharacters { get; set; } = new Dictionary<int, CharacterBrain>();
 
 	public List<GameObject> PossibleItems;
 	public GameObject BasePlayerPrefab;
@@ -75,6 +75,12 @@ public class GameManager : MonoBehaviour
 		return returnItem;
 	}
 
+	internal CharacterBrain GetCharacter(int characterIdToMove)
+	{
+		LoadedCharacters.TryGetValue(characterIdToMove, out var loadedCharacter);
+		return loadedCharacter;
+	}
+
 	internal void LoadConnectingPlayer(PlayerData playerData)
 	{
 		var player = Instantiate(BasePlayerPrefab, playerData.Position, Quaternion.Euler(new Vector3(0, playerData.Rotation, 0)));
@@ -86,7 +92,7 @@ public class GameManager : MonoBehaviour
 			Camera.main.GetComponent<CameraFollow>().target = player.transform;
 			ClientPlayer = playerBrain;
 		}
-		LoadedPlayers.Add(playerData.PlayerId, playerBrain);
+		LoadedCharacters.Add(playerData.PlayerId, playerBrain);
 		playerBrain.playerCombat.SetupAbilities();
 	}
 
@@ -98,7 +104,7 @@ public class GameManager : MonoBehaviour
 		}
 		Camera.main.GetComponent<CameraFollow>().target = playerBrain.transform;
 		ClientPlayer = playerBrain;
-		LoadedPlayers.Add(0, playerBrain);
+		LoadedCharacters.Add(0, playerBrain);
 		playerBrain.playerCombat.SetupAbilities();
 	}
 }

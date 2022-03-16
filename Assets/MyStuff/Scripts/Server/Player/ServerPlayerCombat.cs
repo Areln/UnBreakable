@@ -9,10 +9,10 @@ namespace Server
         internal Collider WeaponHitBox;
 
         //Abilites
-        public Ability ability1;
-        public Ability ability2;
-        public Ability ability3;
-        public Ability ability4;
+        public ServerAbility ability1;
+        public ServerAbility ability2;
+        public ServerAbility ability3;
+        public ServerAbility ability4;
 
         public void Start()
         {

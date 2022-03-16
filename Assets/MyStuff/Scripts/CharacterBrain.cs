@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class CharacterBrain : MonoBehaviour
@@ -11,6 +12,7 @@ public abstract class CharacterBrain : MonoBehaviour
 
     internal NavMeshAgent agent;
     internal Stats Stats;
+    internal Queue<Vector3> PathPoints;
 
     internal Ability CurrentlyCastingAbility { get; set; }
 
@@ -31,4 +33,9 @@ public abstract class CharacterBrain : MonoBehaviour
     {
         agent.destination = gameObject.transform.position;
     }
+
+    public void SetCharacterPath(Vector3[] pathCorners)
+	{
+        PathPoints = new Queue<Vector3>(pathCorners);
+	}
 }

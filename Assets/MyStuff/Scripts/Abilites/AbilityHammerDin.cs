@@ -79,6 +79,12 @@ public class AbilityHammerDin : Ability
 
     public void Update()
     {
+        if (IsCanceled && !finishedCasting)
+        {
+            animator.SetBool("Casting", false);
+            owner.agent.isStopped = false;
+            owner.CurrentlyCastingAbility = null;
+        }
         if (currentCooldown > 0)
         {
             currentCooldown -= Time.deltaTime;

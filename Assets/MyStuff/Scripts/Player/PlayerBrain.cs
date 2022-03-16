@@ -71,6 +71,16 @@ public class PlayerBrain : CharacterBrain
 
         if (GetComponent<PlayerBrain>() == GameManager.Instance.ClientPlayer)
         {
+            if (Input.GetMouseButton(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.DraggingObject)
+            {
+                RaycastHit hit;
+
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, LayerMask.GetMask("Ground")))
+                {
+                    agent.destination = hit.point;
+                    new CharacterMoveHandle().WriteMessage(hit.point);
+                }
+            }
             ////////////////////////////////
             // Inputs
             ////////////////////////////////
@@ -142,18 +152,6 @@ public class PlayerBrain : CharacterBrain
                     }
                 }
             }
-        }
-
-        //Animations
-        if (playerMovement.agent.velocity != Vector3.zero)
-        {
-            isMoving = true;
-            playerCombat.animator.SetBool("IsWalking", isMoving);
-        }
-        else
-        {
-            isMoving = false;
-            playerCombat.animator.SetBool("IsWalking", isMoving);
         }
     }
 

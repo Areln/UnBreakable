@@ -2,8 +2,6 @@
 
 public class PlayerCombat : MonoBehaviour
 {
-
-    public Animator animator;
     public Collider WeaponHitBox;
 
     //Abilites

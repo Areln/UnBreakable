@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 namespace Server
 {
-    public class ServerPlayerBrain : CharacterBrain
+    public class ServerPlayerBrain : ServerCharacterBrain
     {
         internal PlayerCombat playerCombat;
         internal HPScript hpScript;
@@ -14,8 +14,7 @@ namespace Server
         public int manaRegenAmount;
 
         internal bool isMoving = false;
-
-        //
+        
         public int interactableRange = 3;
 
 

@@ -8,6 +8,7 @@ public enum Packets
 	signIn,
 	signUp,
 	playerData,
+	moveCharacter,
 	disconnect,
 }
 
