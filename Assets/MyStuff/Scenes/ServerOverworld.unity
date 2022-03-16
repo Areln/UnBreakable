@@ -641,7 +641,7 @@ MonoBehaviour:
   - {fileID: 9030630644418414900, guid: b91a4908d9d60fc48938b9b7ec4dd512, type: 3}
   BasePlayerPrefab: {fileID: 6621349970582242535, guid: f41ee6e07b635b5408438b5cb3a0f558,
     type: 3}
-  SpawnPoint: {x: 0, y: 0, z: -20}
+  SpawnPoint: {x: 0, y: 0.997, z: -20}
 --- !u!1 &1085187937
 GameObject:
   m_ObjectHideFlags: 0

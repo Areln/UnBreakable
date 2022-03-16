@@ -37,9 +37,9 @@ namespace Server
 
 		public void SetCharacterPath(Vector3 newPosition)
 		{
+			agent.SetDestination(newPosition);
 			agent.CalculatePath(newPosition, agent.path);
 			new ServerCharacterMoveHandle().SendCharacterMovement(this);
-			//agent.SetDestination(newPosition);
 		}
 	}
 }

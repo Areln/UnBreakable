@@ -17,10 +17,22 @@ namespace Server
         public void Start()
         {
             var player = GetComponent<ServerPlayerBrain>();
-            ability1.SetupAbility(player);
-            ability4.SetupAbility(player);
-            ability3.SetupAbility(player);
-            ability2.SetupAbility(player);
+            if (ability1 != null)
+            {
+                ability1.SetupAbility(player);
+            }
+            if (ability2 != null)
+            {
+                ability2.SetupAbility(player);
+            }
+            if (ability3 != null)
+            {
+                ability3.SetupAbility(player);
+            }
+            if (ability4 != null)
+            {
+                ability4.SetupAbility(player);
+            }
         }
 
         public void SetWeaponHitBox(Collider hitbox)
