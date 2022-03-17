@@ -17,7 +17,6 @@ namespace Server.Networking
 			string _username = _packet.ReadString();
 			string _password = _packet.ReadString();
 
-			//TODO: Load the player who logged in and store player in dictionary with the fromClientId as the key.
 			ThreadManager.ExecuteOnMainThread(() =>
 			{
 				var playerLogginIn = ServerGameManager.Instance.LoadPlayer(_fromClientId, _username);
@@ -27,7 +26,7 @@ namespace Server.Networking
 
 		public void SendPlayerData(int _toClientId, ServerPlayerBrain connectingPlayerData)
 		{
-			// Send newy connected player data to all other connected clients.
+			// Send newly connected player data to all other connected clients.
 			using (Packet _packet = new Packet((int)Packets.playerData))
 			{
 				WritePlayerPacket(_packet, connectingPlayerData, false);
@@ -40,7 +39,7 @@ namespace Server.Networking
 			{
 				using (Packet _packet = new Packet((int)Packets.playerData))
 				{
-					WritePlayerPacket(_packet, connectingPlayerData, player.Key == _toClientId);
+					WritePlayerPacket(_packet, player.Value, player.Key == _toClientId);
 					ServerSend.SendTcpData(_toClientId, _packet);
 				}
 			}

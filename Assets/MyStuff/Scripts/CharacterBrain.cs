@@ -39,7 +39,7 @@ public abstract class CharacterBrain : MonoBehaviour
     {
         Debug.Log("move message recieved" + pathCorners.Length);
         updateMove = true;
-           var path = new NavMeshPath();
+        var path = new NavMeshPath();
 		agent.CalculatePath(pathCorners.Last(), path);
         for (var i = 0; i < path.corners.Length; i++)
         {

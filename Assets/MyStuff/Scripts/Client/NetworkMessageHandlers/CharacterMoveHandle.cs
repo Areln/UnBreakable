@@ -20,7 +20,10 @@ public class CharacterMoveHandle : IHandle
 		ThreadManager.ExecuteOnMainThread(() => 
 		{
 			var characterMoving = GameManager.Instance.GetCharacter(characterIdToMove);
-			characterMoving.SetCharacterPath(corners);
+			if (characterMoving != null)
+			{
+				characterMoving.SetCharacterPath(corners);
+			}
 		});
 	}
 
