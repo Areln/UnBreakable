@@ -21,7 +21,6 @@ public class CharacterMoveHandle : IHandle
 		{
 			var characterMoving = GameManager.Instance.GetCharacter(characterIdToMove);
 			characterMoving.SetCharacterPath(corners);
-
 		});
 	}
 

@@ -14,8 +14,6 @@ public class PlayerBrain : CharacterBrain
     internal float manaRegenCurrentTime;
     public int manaRegenAmount;
 
-    internal bool isMoving = false;
-
     //
     public int interactableRange = 3;
 
@@ -77,7 +75,6 @@ public class PlayerBrain : CharacterBrain
 
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, LayerMask.GetMask("Ground")))
                 {
-                    agent.destination = hit.point;
                     new CharacterMoveHandle().WriteMessage(hit.point);
                 }
             }

@@ -23,14 +23,14 @@ namespace Server.Networking
 			});
 		}
 
-		public void SendCharacterMovement(ServerCharacterBrain movingCharacter)
+		public void SendCharacterMovement(ServerCharacterBrain movingCharacter, NavMeshPath path)
 		{
-			using (Packet _packet = new Packet((int)Packets.playerData))
+			using (Packet _packet = new Packet(GetMessageId()))
 			{
 				_packet.Write(movingCharacter.GetInstanceID());
-				Debug.Log("Path corner Number: " + movingCharacter.agent.path.corners.Length); 
-				_packet.Write(movingCharacter.agent.path.corners.Length);
-				foreach (var corner in movingCharacter.agent.path.corners)
+				Debug.Log("Path corner Number: " + path.corners.Length); 
+				_packet.Write(path.corners.Length);
+				foreach (var corner in path.corners)
 				{
 					_packet.Write(corner.x);
 					_packet.Write(corner.y);
