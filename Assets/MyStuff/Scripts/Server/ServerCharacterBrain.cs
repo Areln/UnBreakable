@@ -15,7 +15,7 @@ namespace Server
 		internal NavMeshAgent agent;
 		internal Stats Stats;
 
-		internal Ability CurrentlyCastingAbility { get; set; }
+		internal ServerAbility CurrentlyCastingAbility { get; set; }
 
 		public abstract void CharacterDie();
 
