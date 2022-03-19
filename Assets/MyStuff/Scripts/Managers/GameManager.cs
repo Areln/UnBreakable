@@ -96,6 +96,17 @@ public class GameManager : MonoBehaviour
 		playerBrain.playerCombat.SetupAbilities();
 	}
 
+	internal void LoadCharacter(CharacterData characterData)
+	{
+		Debug.Log($"Loading character prefab {characterData.CharacterPrefabName}");
+		var character = Instantiate(Resources.Load($"Enemies/{characterData.CharacterPrefabName}") as GameObject, characterData.Position, Quaternion.Euler(new Vector3(0, characterData.Rotation, 0)));
+		var basicAi = character.GetComponent<BasicAI>();
+		basicAi.InitializeData(characterData);
+
+		LoadedCharacters.Add(characterData.CharacterId, basicAi);
+		basicAi.SetupAbilities();
+	}
+
 	internal void LoadOfflinePlayer(PlayerBrain playerBrain)
 	{
 		foreach (GameObject item in Instance.PossibleItems)

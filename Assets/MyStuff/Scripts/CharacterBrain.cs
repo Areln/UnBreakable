@@ -30,6 +30,11 @@ public abstract class CharacterBrain : MonoBehaviour
         }
     }
 
+    internal void InitializeData(CharacterData characterData)
+    {
+        characterName = characterData.CharacterName;
+    }
+
     public void StopCharacterFromMoving()
     {
         agent.destination = gameObject.transform.position;
@@ -37,7 +42,6 @@ public abstract class CharacterBrain : MonoBehaviour
 
     public void SetCharacterPath(Vector3[] pathCorners)
     {
-        Debug.Log("move message recieved" + pathCorners.Length);
         updateMove = true;
         var path = new NavMeshPath();
 		agent.CalculatePath(pathCorners.Last(), path);

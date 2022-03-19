@@ -20,6 +20,7 @@ namespace Server.Networking
 			ThreadManager.ExecuteOnMainThread(() =>
 			{
 				var playerLogginIn = ServerGameManager.Instance.LoadPlayer(_fromClientId, _username);
+				Server.Instance.Clients[_fromClientId].isAuthenticated = true;
 				SendPlayerData(_fromClientId, playerLogginIn);
 			});
 		}
@@ -40,6 +41,15 @@ namespace Server.Networking
 				using (Packet _packet = new Packet((int)Packets.playerData))
 				{
 					WritePlayerPacket(_packet, player.Value, player.Key == _toClientId);
+					ServerSend.SendTcpData(_toClientId, _packet);
+				}
+			}
+			// Send all Characters to newly connected client
+			foreach (var character in ServerGameManager.Instance.Characters.Values)
+			{
+				using (Packet _packet = new Packet((int)Packets.characterData))
+				{
+					new ServerCharacterDataHandle().WriteCharacterData(character);
 					ServerSend.SendTcpData(_toClientId, _packet);
 				}
 			}

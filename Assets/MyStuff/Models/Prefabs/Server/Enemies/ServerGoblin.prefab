@@ -1242,6 +1242,7 @@ MonoBehaviour:
   currentHealth: 0
   maxMana: 0
   currentMana: 0
+  PrefabName: Goblin
   currentAIState: 1
   MainTarget: {fileID: 0}
   TargetsInRange: []

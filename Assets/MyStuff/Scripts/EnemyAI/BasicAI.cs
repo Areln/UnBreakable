@@ -42,13 +42,13 @@ public class BasicAI : CharacterBrain
 		animator = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
 		currentHealth = maxHealth;
-		SetUpAbilities();
+		SetupAbilities();
 		//sets patrol
 		isIdle = true;
 		currentIdleTime = maxIdleTime;
 	}
 
-	private void SetUpAbilities()
+	internal void SetupAbilities()
 	{
 		if (ability1 != null)
 		{
@@ -68,33 +68,6 @@ public class BasicAI : CharacterBrain
 		}
 	}
 
-	public void SetPatrolTargets(List<Transform> _points)
-	{
-		PatrolTargets = _points;
-	}
-
-	void NextPatrolTarget()
-	{
-		//currentPatrolTargetIndex++;
-		//if (currentPatrolTargetIndex == PatrolTargets.Count)
-		//{
-		//    currentPatrolTargetIndex = 0;
-		//}
-		MainTarget = GetRandomPoint().gameObject;
-	}
-
-	Transform GetRandomPoint()
-	{
-		Transform _point = PatrolTargets[Random.Range(0, PatrolTargets.Count)];
-
-		//if (MainTarget == _point)
-		//{
-		//    _point = GetRandomPoint();
-		//}
-
-		return _point;
-	}
-
 	// Update is called once per frame
 	void Update()
 	{
@@ -107,64 +80,8 @@ public class BasicAI : CharacterBrain
 		{
 			animator.SetBool("IsWalking", false);
 		}
-
-		// AI States
-		switch (currentAIState)
-		{
-			case AIState.StandStill:
-				AutoChangeState();
-				break;
-
-			case AIState.Patrol:
-				if (MainTarget == null)
-				{
-					NextPatrolTarget();
-				}
-				// Debug.Log(Vector3.Distance(MainTarget.transform.position, gameObject.transform.position));
-				if (Vector3.Distance(MainTarget.transform.position, gameObject.transform.position) <= 5)
-				{
-					//Debug.Log("idling");
-					isIdle = true;
-				}
-				else
-				{
-					// Debug.Log("next target");
-					isIdle = false;
-
-					ChaseTarget();
-				}
-				if (isIdle)
-				{
-					currentIdleTime -= Time.deltaTime;
-					if (currentIdleTime <= 0)
-					{
-						currentIdleTime = maxIdleTime;
-						NextPatrolTarget();
-					}
-				}
-
-				break;
-			case AIState.Attack:
-				GetAttackTarget();
-
-				// moves toward target
-				ChaseTarget();
-
-				// checks cooldown of abilities then range of target and activates if in range
-				CheckAttackRange();
-
-				break;
-			default:
-				break;
-		}
-
 	}
-
-	void GetAttackTarget()
-	{
-		MainTarget = TargetsInRange[0];
-	}
-
+	
 	public override void CharacterDie()
 	{
 		//drop loot
@@ -181,78 +98,18 @@ public class BasicAI : CharacterBrain
 		Destroy(gameObject);
 	}
 
-	public void AddInRage(GameObject target)
-	{
-		TargetsInRange.Add(target);
-	}
-	void AutoChangeState()
-	{
-		if (TargetsInRange.Count >= 1)
-		{
-			currentAIState = AIState.Patrol;
-		}
-	}
-	void ChaseTarget()
-	{
-		if (MainTarget != null)
-		{
-			agent.destination = MainTarget.transform.position;
-		}
-	}
-
 	// referenced from the animation.
 	public void TurnHitBoxOn()
 	{
-		WeaponHitBox.enabled = true;
+		//WeaponHitBox.enabled = true;
 	}
 
 	// referenced from the animation.
 	public void HitCheck()
 	{
 		//DoneCasting();
-		agent.isStopped = false;
+		//agent.isStopped = false;
 		//disable hitbox
-		WeaponHitBox.enabled = false;
-	}
-
-	void CheckAttackRange()
-	{
-		if (ability1 != null && ability1.currentCooldown <= 0)
-		{
-			//check range
-			if (Vector3.Distance(transform.position, MainTarget.transform.position) <= 1.5)
-			{
-				Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
-				ability1.Activate(targetPostition);
-			}
-		}
-
-		//if (ability2.currentCooldown <= 0)
-		//{
-		//    //check range
-		//    if (agent.remainingDistance <= 1)
-		//    {
-
-		//    }
-		//}
-
-		//if (ability3.currentCooldown <= 0)
-		//{
-		//    //check range
-		//    if (agent.remainingDistance <= 1)
-		//    {
-
-		//    }
-		//}
-
-		//if (ability4.currentCooldown <= 0)
-		//{
-		//    //check range
-		//    if (agent.remainingDistance <= 1)
-		//    {
-
-		//    }
-		//}
-
+		//WeaponHitBox.enabled = false;
 	}
 }

@@ -14,7 +14,6 @@ namespace Server.Networking
 		public void ReadMessage(int _fromClientId, Packet _packet)
 		{
 			var positionToMoveTowards = new Vector3(_packet.ReadFloat(), _packet.ReadFloat(), _packet.ReadFloat());
-			Debug.Log("Recieved characer position");
 
 			ThreadManager.ExecuteOnMainThread(() =>
 			{
@@ -28,7 +27,6 @@ namespace Server.Networking
 			using (Packet _packet = new Packet(GetMessageId()))
 			{
 				_packet.Write(movingCharacter.GetInstanceID());
-				Debug.Log("Path corner Number: " + path.corners.Length); 
 				_packet.Write(path.corners.Length);
 				foreach (var corner in path.corners)
 				{
@@ -37,7 +35,7 @@ namespace Server.Networking
 					_packet.Write(corner.z);
 				}
 
-				ServerSend.SendTcpDataToAll(_packet);
+				ServerSend.SendTcpDataToAllAuthenticated(_packet);
 			}			
 		}
 	}

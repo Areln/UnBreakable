@@ -7,6 +7,7 @@ namespace Server.Networking
 	class ServerClient
 	{
 		public static int DataBufferSize = 4096;
+		public bool isAuthenticated;
 		public int Id;
 		public Tcp TcpData;
 		public Udp UdpData;

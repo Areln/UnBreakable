@@ -28,7 +28,7 @@ public class MobRegion : MonoBehaviour
             
             npcList.Add(_basicAi);
 
-            _basicAi.SetPatrolTargets(points);
+            //_basicAi.SetPatrolTargets(points);
             _basicAi.Region = this;
 
             currentMobRespawnTimer = maxMobRespawnTimer;

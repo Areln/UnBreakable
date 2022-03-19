@@ -7,7 +7,8 @@ public enum Packets
 	welcome = 0,
 	signIn,
 	signUp,
-	playerData,
+	playerData, 
+	characterData,
 	moveCharacter,
 	disconnect,
 }

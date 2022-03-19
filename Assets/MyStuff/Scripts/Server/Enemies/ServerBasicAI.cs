@@ -4,9 +4,9 @@ using UnityEngine.AI;
 
 namespace Server
 {
-	public class ServerBasicAI : ServerCharacterBrain
+	public class ServerBasicAi : ServerCharacterBrain
 	{
-
+		public string PrefabName;
 		public enum AIState { StandStill, Patrol, Attack }
 
 		public AIState currentAIState;
@@ -198,7 +198,7 @@ namespace Server
 		{
 			if (MainTarget != null)
 			{
-				agent.destination = MainTarget.transform.position;
+				agent.SetDestination(MainTarget.transform.position);
 				SetCharacterPath(MainTarget.transform.position);
 			}
 		}
