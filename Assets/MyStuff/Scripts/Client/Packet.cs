@@ -354,6 +354,12 @@ public class Packet : IDisposable
 		try
 		{
 			int _length = ReadInt(); // Get the length of the string
+
+			if (_length == 0)
+			{
+				return string.Empty;
+			}
+
 			string _value = Encoding.ASCII.GetString(readableBuffer, readPos, _length); // Convert the bytes to a string
 			if (_moveReadPos && _value.Length > 0)
 			{

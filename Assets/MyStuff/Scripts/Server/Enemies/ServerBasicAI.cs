@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 namespace Server
 {
-	public class ServerBasicAi : ServerCharacterBrain
+	public class ServerBasicAI : ServerCharacterBrain
 	{
 		public string PrefabName;
 		public enum AIState { StandStill, Patrol, Attack }
@@ -36,13 +36,17 @@ namespace Server
 		public ServerAbility ability3;
 		public ServerAbility ability4;
 
-		// Start is called before the first frame update
-		public void Start()
+		private void Awake()
 		{
 			Stats = GetComponent<Stats>();
 			hpScript = GetComponent<HPScript>();
 			animator = GetComponent<Animator>();
 			agent = GetComponent<NavMeshAgent>();
+		}
+
+		// Start is called before the first frame update
+		public void Start()
+		{
 			currentHealth = maxHealth;
 			SetUpAbilities();
 			//sets patrol

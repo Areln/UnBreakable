@@ -5,11 +5,11 @@ namespace Server
     public class AIRangeDetection : MonoBehaviour
     {
 
-        internal ServerBasicAi aiBrain;
+        internal ServerBasicAI aiBrain;
 
         public void Start()
         {
-            aiBrain = GetComponentInParent<ServerBasicAi>();
+            aiBrain = GetComponentInParent<ServerBasicAI>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -17,9 +17,9 @@ namespace Server
             if (other.tag == "Player")
             {
                 aiBrain.AddInRage(other.gameObject);
-                if (aiBrain.currentAIState != ServerBasicAi.AIState.Attack)
+                if (aiBrain.currentAIState != ServerBasicAI.AIState.Attack)
                 {
-                    aiBrain.currentAIState = ServerBasicAi.AIState.Attack;
+                    aiBrain.currentAIState = ServerBasicAI.AIState.Attack;
                 }
             }
         }

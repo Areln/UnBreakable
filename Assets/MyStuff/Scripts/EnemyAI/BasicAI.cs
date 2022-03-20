@@ -34,13 +34,17 @@ public class BasicAI : CharacterBrain
 	public Ability ability3;
 	public Ability ability4;
 
-	// Start is called before the first frame update
-	public void Start()
+	private void Awake()
 	{
 		Stats = GetComponent<Stats>();
 		hpScript = GetComponent<HPScript>();
 		animator = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
+	}
+
+	// Start is called before the first frame update
+	public void Start()
+	{
 		currentHealth = maxHealth;
 		SetupAbilities();
 		//sets patrol

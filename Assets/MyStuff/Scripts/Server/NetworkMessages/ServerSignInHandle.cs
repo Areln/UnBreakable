@@ -32,7 +32,7 @@ namespace Server.Networking
 			{
 				WritePlayerPacket(_packet, connectingPlayerData, false);
 
-				ServerSend.SendTcpDataToAll(_toClientId, _packet);
+				ServerSend.SendTcpDataToAllAuthenticated(_toClientId, _packet);
 			}
 
 			// Send all players to the newly connected client
@@ -41,16 +41,17 @@ namespace Server.Networking
 				using (Packet _packet = new Packet((int)Packets.playerData))
 				{
 					WritePlayerPacket(_packet, player.Value, player.Key == _toClientId);
-					ServerSend.SendTcpData(_toClientId, _packet);
+					ServerSend.SendTcpDataAuthenticated(_toClientId, _packet);
 				}
 			}
 			// Send all Characters to newly connected client
 			foreach (var character in ServerGameManager.Instance.Characters.Values)
 			{
+				Debug.Log($"Already spawned {character.characterName}");
 				using (Packet _packet = new Packet((int)Packets.characterData))
 				{
 					new ServerCharacterDataHandle().WriteCharacterData(character);
-					ServerSend.SendTcpData(_toClientId, _packet);
+					ServerSend.SendTcpDataAuthenticated(_toClientId, _packet);
 				}
 			}
 			

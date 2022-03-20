@@ -17,7 +17,7 @@ namespace Server
 			throw new System.NotImplementedException();
 		}
 
-		public void WriteCharacterData(ServerBasicAi character)
+		public void WriteCharacterData(ServerBasicAI character)
 		{
 			using (var _packet = new Packet(GetMessageId()))
 			{
@@ -27,7 +27,7 @@ namespace Server
 			}
 		}
 
-		private void WriteCharacterPacket(Packet _packet, ServerBasicAi characterData)
+		private void WriteCharacterPacket(Packet _packet, ServerBasicAI characterData)
 		{
 			if (string.IsNullOrWhiteSpace(characterData.characterName))
 			{

@@ -6,7 +6,7 @@ namespace Server
     public class ServerMobRegion : MonoBehaviour
     {
         public List<Transform> points = new List<Transform>();
-        public List<ServerBasicAi> npcList = new List<ServerBasicAi>();
+        public List<ServerBasicAI> npcList = new List<ServerBasicAI>();
 
         public float MaxNPCCount = 4;
         public float maxMobRespawnTimer = 1;
@@ -26,7 +26,7 @@ namespace Server
             if (currentMobRespawnTimer < 0 && npcList.Count < MaxNPCCount)
             {
                 GameObject _newEnemy = SpawnEnemy();
-                ServerBasicAi _basicAi = _newEnemy.GetComponent<ServerBasicAi>();
+                ServerBasicAI _basicAi = _newEnemy.GetComponent<ServerBasicAI>();
 
                 npcList.Add(_basicAi);
 
@@ -41,7 +41,7 @@ namespace Server
             }
         }
 
-        public void RemoveEnemy(ServerBasicAi _npc)
+        public void RemoveEnemy(ServerBasicAI _npc)
         {
             if (npcList.Count == MaxNPCCount)
             {
@@ -56,7 +56,7 @@ namespace Server
         GameObject SpawnEnemy()
         {
             Transform _point = GetRandomPoint();
-            var character = Instantiate(EnemyPrefab, _point.transform.position, _point.transform.rotation).GetComponent<ServerBasicAi>();
+            var character = Instantiate(EnemyPrefab, _point.transform.position, _point.transform.rotation).GetComponent<ServerBasicAI>();
             ServerGameManager.Instance.Characters.Add(character.GetInstanceID(), character);
             // Send spawn message to clients
             new ServerCharacterDataHandle().WriteCharacterData(character);

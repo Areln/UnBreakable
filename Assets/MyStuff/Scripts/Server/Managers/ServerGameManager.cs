@@ -40,7 +40,7 @@ namespace Server
 
 		internal Dictionary<int, ServerPlayerBrain> ClientPlayers = new Dictionary<int, ServerPlayerBrain>();
 
-        internal Dictionary<int, ServerBasicAi> Characters { get; set; } = new Dictionary<int, ServerBasicAi>();
+        internal Dictionary<int, ServerBasicAI> Characters { get; set; } = new Dictionary<int, ServerBasicAI>();
 
         public List<GameObject> PossibleItems = new List<GameObject>();
 
