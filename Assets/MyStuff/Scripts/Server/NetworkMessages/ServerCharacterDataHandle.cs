@@ -26,6 +26,15 @@ namespace Server
 				ServerSend.SendTcpDataToAllAuthenticated(_packet);
 			}
 		}
+		public void WriteCharacterData(int _toClientId, ServerBasicAI character)
+		{
+			using (var _packet = new Packet(GetMessageId()))
+			{
+				WriteCharacterPacket(_packet, character);
+
+				ServerSend.SendTcpDataAuthenticated(_toClientId,_packet);
+			}
+		}
 
 		private void WriteCharacterPacket(Packet _packet, ServerBasicAI characterData)
 		{
