@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerBrain : CharacterBrain
@@ -29,20 +28,6 @@ public class PlayerBrain : CharacterBrain
         playerMovement = GetComponent<PlayerMovement>();
         playerInventory = GetComponent<PlayerInventory>();
         animator = GetComponent<Animator>();
-
-        // Debug adds items to inventory
-        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpiecegoldtrim"));
-        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpieceredtrim"));
-        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("purplewizardrobes"));
-        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("leatherchestpiece"));
-        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("advstlchest"));
-        //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("prpwizhat"));
-
-        //foreach (GameObject item in GameManager.Instance.PossibleItems)
-        //{
-        //    playerInventory.AddPrefabItemObjectToPlayerInventory(item);
-        //}
-
     }
 
     // Update is called once per frame

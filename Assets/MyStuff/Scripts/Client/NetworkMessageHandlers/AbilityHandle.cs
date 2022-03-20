@@ -16,7 +16,6 @@ public class AbilityHandle : IHandle
 		var targetPosition = new Vector3(_packet.ReadFloat(), _packet.ReadFloat(), _packet.ReadFloat());
 		ThreadManager.ExecuteOnMainThread(() =>
 		{
-			Debug.Log($"Character {ownerId} is casting abiliy {abilityIndex}");
 			var character = GameManager.Instance.GetCharacter(ownerId);
 			character.CastAbility(abilityIndex, startPosition, targetPosition);
 		});
