@@ -62,7 +62,7 @@ namespace Server
 			Destroy(gameObject);
 		}
 
-		public override void Activate(Vector3 targetPosition)
+		public override bool Activate(Vector3 targetPosition)
 		{
 			throw new System.NotImplementedException();
 		}

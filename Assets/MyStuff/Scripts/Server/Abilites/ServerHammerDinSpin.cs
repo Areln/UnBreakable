@@ -41,7 +41,7 @@ namespace Server
             transform.Rotate(new Vector3(0, 1, 0) * yRot);
         }
 
-        public override void Activate(Vector3 targetPosition)
+        public override bool Activate(Vector3 targetPosition)
         {
             throw new System.NotImplementedException();
         }

@@ -905,7 +905,7 @@ MonoBehaviour:
   - {fileID: 1858707421012363883, guid: cc760648ba49e23458271339db893c11, type: 3}
   - {fileID: 1858707421012363883, guid: 38cbf1c11c75d8341987fef6246eb4d2, type: 3}
   manaRegenTime: 1
-  manaRegenAmount: 1
+  manaRegenAmount: 5
   interactableRange: 3
 --- !u!114 &3567629000374291926
 MonoBehaviour:

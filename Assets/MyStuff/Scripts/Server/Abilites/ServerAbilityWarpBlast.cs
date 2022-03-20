@@ -22,12 +22,12 @@ namespace Server
 			}
 		}
 
-		public override void Activate(Vector3 targetPosition)
+		public override bool Activate(Vector3 targetPosition)
 		{
 			//checks if ability is on cooldown or if the player is casting an ability already.
 			if (currentCooldown > 0 || owner.CurrentlyCastingAbility != null)
 			{
-				return;
+				return false;
 			}
 			//uses mana
 			if (owner.currentMana >= manaCost)
@@ -51,6 +51,12 @@ namespace Server
 				//hitbox
 				HitCheck();
 			}
+			else
+			{
+				return false;
+			}
+
+			return true;
 		}
 
 		private IEnumerator waitForSec(float sec)

@@ -9,12 +9,12 @@ namespace Server
         public float CastTime;
         private bool finishedCasting;
 
-        public override void Activate(Vector3 targetPosition)
+        public override bool Activate(Vector3 targetPosition)
         {
             //checks if ability is on cooldown or if the player is casting an ability already.
             if (currentCooldown > 0 || owner.CurrentlyCastingAbility != null)
             {
-                return;
+                return false;
             }
 
             //uses mana
@@ -25,7 +25,7 @@ namespace Server
             }
             else
             {
-                return;
+                return false;
             }
 
             // Pause moving
@@ -37,6 +37,7 @@ namespace Server
             //instantiate din
 
             //resume moving
+            return true;
         }
         private IEnumerator CastSpell(float sec)
         {

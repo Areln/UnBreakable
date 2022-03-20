@@ -55,8 +55,10 @@ namespace Server
 			{
 				ability.SetupAbility(this);
 			}
-			ability.Activate(targetPosition);
-			new ServerAbilityHandle().SendAbilityCastToAll(GetInstanceID(), abilityCastId, transform.position, targetPosition);
+			if (ability.Activate(targetPosition))
+			{
+				new ServerAbilityHandle().SendAbilityCastToAll(GetInstanceID(), abilityCastId, transform.position, targetPosition);
+			}
 		}
 
 		internal virtual void LoadAbilities()

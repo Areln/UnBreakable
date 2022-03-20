@@ -13,7 +13,7 @@ namespace Server
 
         internal bool IsCanceled { get; set; }
 
-        public abstract void Activate(Vector3 targetPosition);
+        public abstract bool Activate(Vector3 targetPosition);
 
         public abstract void SetupAbility(ServerCharacterBrain _owner);
 

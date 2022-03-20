@@ -27,7 +27,7 @@ namespace Server
 			}
 		}
 
-		public override void Activate(Vector3 targetPosition)
+		public override bool Activate(Vector3 targetPosition)
 		{
 			if (currentCooldown <= 0 && manaCost <= owner.currentMana)
 			{
@@ -38,6 +38,12 @@ namespace Server
 				lightingBallObject.GetComponent<ServerLightningBall>().InitializeSpell(targetPosition, owner);
 				StartCoroutine(CastSpell(CastTime));
 			}
+			else
+			{
+				return false;
+			}
+
+			return true;
 		}
 
 		public override void RemoveAbility()
