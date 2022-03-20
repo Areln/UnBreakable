@@ -6,6 +6,7 @@ namespace Server
     {
         internal ServerCharacterBrain owner;
         public string abilityName;
+        public string PrefabName;
         public int manaCost;
         public float maxCooldown;
         public float currentCooldown;
@@ -27,6 +28,16 @@ namespace Server
             else
             {
                 return 0;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var characterBrainTakingDamage = other.GetComponent<ServerCharacterBrain>();
+            if (characterBrainTakingDamage != null && characterBrainTakingDamage != owner)
+            {
+                var damage = CalculateDamageDealt(owner);
+                characterBrainTakingDamage.TakeDamage(damage);
             }
         }
     }

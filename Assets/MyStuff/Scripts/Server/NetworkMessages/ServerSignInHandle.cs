@@ -47,8 +47,6 @@ namespace Server.Networking
             // Send all Characters to newly connected client
             foreach (var character in ServerGameManager.Instance.Characters.Values)
             {
-                Debug.Log($"Already spawned {character.characterName}");
-
                 new ServerCharacterDataHandle().WriteCharacterData(_toClientId, character);
             }
 
@@ -67,6 +65,13 @@ namespace Server.Networking
 
             // Rotation 
             _packet.Write(playerData.transform.rotation.eulerAngles.y);
+
+            //Abilities
+            _packet.Write(playerData.abilities.Length);
+            for (int i = 0; i < playerData.abilities.Length; i++)
+            {
+                _packet.Write(playerData.abilities[i].GetComponent<ServerAbility>().PrefabName);
+            }
 
             // Equipment Data
             _packet.Write(playerData.playerInventory.EquippedHelmetPiece?.InternalName ?? DefaultEmptySlot);

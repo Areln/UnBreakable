@@ -24,7 +24,7 @@ namespace Server
 			var script = Instantiate(LightingPrefab, transform.position, Quaternion.identity).GetComponent<ServerLightningStrike>();
 			script.SetupAbility(owner);
 
-			Instantiate(LightningParticlesPrefab, transform.position, Quaternion.identity);
+			//Instantiate(LightningParticlesPrefab, transform.position, Quaternion.identity);
 
 			Destroy(gameObject);
 		}

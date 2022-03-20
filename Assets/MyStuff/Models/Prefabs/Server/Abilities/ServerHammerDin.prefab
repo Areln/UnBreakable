@@ -600,9 +600,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6127600416501547265}
+  - component: {fileID: -8927106412341676928}
   - component: {fileID: 8165476435423890822}
   m_Layer: 0
-  m_Name: HammerDin
+  m_Name: ServerHammerDin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,6 +624,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8927106412341676928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045890043327149109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19367a0ee56d328418b9cf82ce793297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 10
+  StatModifier: 3
+  abilityName: 
+  PrefabName: HammerDin
+  manaCost: 0
+  maxCooldown: 0
+  currentCooldown: 0
+  lifeTime: 20
+  speed: 3
+  radiusGrowth: 1.2
+  growthRate: 10
+  rotSpeed: 1000
 --- !u!114 &8165476435423890822
 MonoBehaviour:
   m_ObjectHideFlags: 0

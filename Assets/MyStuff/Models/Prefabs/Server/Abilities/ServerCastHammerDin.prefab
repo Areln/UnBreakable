@@ -46,6 +46,7 @@ MonoBehaviour:
   Damage: 0
   StatModifier: 3
   abilityName: Hammer Din
+  PrefabName: CastHammerDin
   manaCost: 10
   maxCooldown: 0
   currentCooldown: 0

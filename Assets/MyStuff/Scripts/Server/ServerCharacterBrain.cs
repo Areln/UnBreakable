@@ -1,4 +1,5 @@
 ﻿using Server.Networking;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,9 @@ namespace Server
 
 		internal NavMeshAgent agent;
 		internal Stats Stats;
+
+		public Transform AbilityHolder;
+		public GameObject[] abilities;
 
 		internal ServerAbility CurrentlyCastingAbility { get; set; }
 
@@ -42,5 +46,29 @@ namespace Server
 			agent.CalculatePath(newPosition, path);
 			new ServerCharacterMoveHandle().SendCharacterMovement(this, path);
 		}
+
+		public virtual void CastAbility(int abilityCastId, Vector3 targetPosition)
+		{
+			// TODO: update target position based to be within max range of ability.
+			var ability = abilities[abilityCastId].GetComponent<ServerAbility>();
+			if (ability.owner == null)
+			{
+				ability.SetupAbility(this);
+			}
+			ability.Activate(targetPosition);
+			new ServerAbilityHandle().SendAbilityCastToAll(GetInstanceID(), abilityCastId, transform.position, targetPosition);
+		}
+
+		internal virtual void LoadAbilities()
+		{
+			for (int i = 0; i < abilities.Length; i++)
+			{
+				var abilityGo = Instantiate(abilities[i], AbilityHolder);
+				abilities[i] = abilityGo;
+				abilityGo.SetActive(true);
+				abilityGo.GetComponent<ServerAbility>().SetupAbility(this);
+			}
+		}
+
 	}
 }

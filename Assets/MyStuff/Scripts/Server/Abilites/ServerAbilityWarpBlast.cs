@@ -39,10 +39,14 @@ namespace Server
 				//teleport player
 				owner.gameObject.transform.position = targetPosition;
 				owner.agent.Warp(targetPosition);
-				owner.agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
+				var playerMovement = owner.agent.GetComponent<ServerPlayerMovement>();
+				if (playerMovement != null)
+				{
+					playerMovement.StopPlayerFromMoving();
+				}
 
 				//instantiates particle object
-				Instantiate(particlePrefab, transform.position, transform.rotation);
+				//Instantiate(particlePrefab, transform.position, transform.rotation);
 
 				//hitbox
 				HitCheck();

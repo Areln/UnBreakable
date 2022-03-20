@@ -42,7 +42,6 @@ namespace Server
 			{
 				characterData.characterName = characterData.PrefabName;
 			}
-			Debug.Log(characterData.characterName);
 			_packet.Write(characterData.characterName);
 			_packet.Write(characterData.GetInstanceID());
 			_packet.Write(characterData.PrefabName);

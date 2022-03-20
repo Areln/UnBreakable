@@ -8,7 +8,6 @@ public class AbilityLightningBlast : Ability
 	public float CastTime;
 
 	private GameObject lightingBallObject;
-	private Animator animator;
 	private Vector3 targetPosition;
 	private GameObject castParticles;
 	private bool finishedCasting;
@@ -16,18 +15,13 @@ public class AbilityLightningBlast : Ability
 	public void Awake()
 	{
 		SetupAbility(GetComponentInParent<CharacterBrain>());
-		animator = gameObject.GetComponent<Animator>();
-		if (animator == null)
-		{
-			animator = gameObject.GetComponentInParent<Animator>();
-		}
 	}
 
 	public void Update()
 	{
-		if(IsCanceled && !finishedCasting)
+		if (IsCanceled && !finishedCasting)
 		{
-			animator.SetBool("Casting", false);
+			owner.animator.SetBool("Casting", false);
 			owner.agent.isStopped = false;
 			owner.CurrentlyCastingAbility = null;
 			Destroy(lightingBallObject);
@@ -39,17 +33,21 @@ public class AbilityLightningBlast : Ability
 		}
 	}
 
-	public override void Activate(Vector3 targetPosition)
+	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
-		if (currentCooldown <= 0 && manaCost <= owner.currentMana)
-		{
-			owner.CurrentlyCastingAbility = this;
-			var newPos = targetPosition + -transform.up * 1;
-			this.targetPosition = newPos;
-			lightingBallObject = Instantiate(BlastPrefab, owner.transform.position, Quaternion.identity);
-			lightingBallObject.GetComponent<LightningBall>().InitializeSpell(targetPosition, owner);
-			StartCoroutine(CastSpell(CastTime));
-		}
+		// TODO: smoothly transition to location and rotation as we cast.
+		owner.agent.Warp(startPosition); 
+		Vector3 targetDirection = startPosition - transform.position;
+		//float singleStep = 3.5f * Time.deltaTime;
+		//Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+		transform.rotation = Quaternion.LookRotation(targetDirection);
+
+		owner.CurrentlyCastingAbility = this;
+		var newPos = targetPosition + -transform.up * 1;
+		this.targetPosition = newPos;
+		lightingBallObject = Instantiate(BlastPrefab, owner.transform.position, Quaternion.identity);
+		lightingBallObject.GetComponent<LightningBall>().InitializeSpell(targetPosition, owner);
+		StartCoroutine(CastSpell(CastTime));
 	}
 
 	public override void RemoveAbility()
@@ -66,14 +64,14 @@ public class AbilityLightningBlast : Ability
 		owner.gameObject.transform.LookAt(targetPosition);
 		var newPosition = owner.transform.position + owner.transform.forward * 1f;
 		castParticles = Instantiate(CastParticles, newPosition, owner.transform.rotation);
-		animator.SetBool("Casting", true);
+		owner.animator.SetBool("Casting", true);
 		owner.agent.isStopped = true;
 		yield return new WaitForSeconds(sec);
 		if (!IsCanceled)
 		{
 			owner.CurrentlyCastingAbility = null;
 			finishedCasting = true;
-			animator.SetBool("Casting", false);
+			owner.animator.SetBool("Casting", false);
 			lightingBallObject.SetActive(true);
 			owner.agent.isStopped = false;
 		}

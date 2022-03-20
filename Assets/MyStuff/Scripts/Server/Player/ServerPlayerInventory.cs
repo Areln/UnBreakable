@@ -83,7 +83,7 @@ namespace Server
                 case WeaponType.MainHand:
                     itemWeapon.gameObject.transform.SetParent(MainHandWeaponTransform, false);
                     EquippedMainHandWeapon = itemWeapon;
-                    GetComponent<ServerPlayerBrain>().playerCombat.SetWeaponHitBox(itemWeapon.GetComponent<Weapon>().WeaponHitBox);
+                    //GetComponent<ServerPlayerBrain>().SetWeaponHitBox(itemWeapon.GetComponent<Weapon>().WeaponHitBox);
                     return true;
                 case WeaponType.OffHand:
                     itemWeapon.gameObject.transform.SetParent(OffHandWeaponTransform, false);

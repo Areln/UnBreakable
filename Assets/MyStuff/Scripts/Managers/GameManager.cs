@@ -56,16 +56,6 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void Start()
-	{
-		var player = transform.Find("Player");
-		if (player != null && player.gameObject.activeSelf)
-		{
-			ClientPlayer = player.GetComponent<PlayerBrain>();
-			LoadOfflinePlayer(ClientPlayer);
-		}
-	}
-
 	public GameObject GetItem(string itemName)
 	{
 		GameObject returnItem;
@@ -93,29 +83,15 @@ public class GameManager : MonoBehaviour
 			ClientPlayer = playerBrain;
 		}
 		LoadedCharacters.Add(playerData.PlayerId, playerBrain);
-		playerBrain.playerCombat.SetupAbilities();
 	}
 
 	internal void LoadCharacter(CharacterData characterData)
 	{
-		Debug.Log($"Loading character prefab {characterData.CharacterPrefabName}");
 		var character = Instantiate(Resources.Load($"Enemies/{characterData.CharacterPrefabName}") as GameObject, characterData.Position, Quaternion.Euler(new Vector3(0, characterData.Rotation, 0)));
 		var basicAi = character.GetComponent<BasicAI>();
 		basicAi.InitializeData(characterData);
 
 		LoadedCharacters.Add(characterData.CharacterId, basicAi);
 		basicAi.SetupAbilities();
-	}
-
-	internal void LoadOfflinePlayer(PlayerBrain playerBrain)
-	{
-		foreach (GameObject item in Instance.PossibleItems)
-		{
-			ClientPlayer.playerInventory.AddPrefabItemObjectToPlayerInventory(item);
-		}
-		Camera.main.GetComponent<CameraFollow>().target = playerBrain.transform;
-		ClientPlayer = playerBrain;
-		LoadedCharacters.Add(0, playerBrain);
-		playerBrain.playerCombat.SetupAbilities();
 	}
 }

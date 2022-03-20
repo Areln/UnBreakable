@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1858707421012363880}
-  - component: {fileID: 4654951769590762474}
+  - component: {fileID: 5875326446967350589}
   - component: {fileID: 6632362520110933075}
   - component: {fileID: 3834966594443898762}
   m_Layer: 0
-  m_Name: WarpBlast
+  m_Name: ServerCastLightningBlast
   m_TagString: DamageDealer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4654951769590762474
+--- !u!114 &5875326446967350589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,18 +42,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858707421012363883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66446cc862bf5fe44ae7a1f780c3f4b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b862700801f9074ba891a72ceda1223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 90
-  StatModifier: 3
-  abilityName: Warp Blast
+  Damage: 0
+  StatModifier: 0
+  abilityName: 
+  PrefabName: CastLightningBlast
   manaCost: 25
-  maxCooldown: 1
+  maxCooldown: 5
   currentCooldown: 0
-  particlePrefab: {fileID: 3840034707725966874, guid: 5ee459a51805f434791d1cb4e632b9b0,
+  BlastPrefab: {fileID: 8262041921401545342, guid: 20dc80f55a6633545be5cc59570ea615,
     type: 3}
-  maxCastTime: 0
+  CastParticles: {fileID: 0}
+  CastTime: 2.5
 --- !u!54 &6632362520110933075
 Rigidbody:
   m_ObjectHideFlags: 0

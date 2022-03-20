@@ -33,7 +33,7 @@ public class LightningBall : Ability
 		owner = _owner;
 	}
 
-	public override void Activate(Vector3 targetPosition)
+	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
 		throw new System.NotImplementedException();
 	}

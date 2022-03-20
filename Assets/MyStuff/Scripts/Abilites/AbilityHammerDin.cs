@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class AbilityHammerDin : Ability
 {
-    internal Animator animator;
     public GameObject hammerDinPrefab;
     public float CastTime;
     private bool finishedCasting;
 
-    public override void Activate(Vector3 targetPosition)
+    public override void Activate(Vector3 startPosition, Vector3 targetPosition)
     {
         //checks if ability is on cooldown or if the player is casting an ability already.
         if (currentCooldown > 0 || owner.CurrentlyCastingAbility != null)
@@ -41,7 +40,7 @@ public class AbilityHammerDin : Ability
     {
         IsCanceled = false;
         finishedCasting = false;
-        animator.SetBool("Casting", true);
+        owner.animator.SetBool("Casting", true);
         owner.agent.isStopped = true;
         owner.CurrentlyCastingAbility = this;
         yield return new WaitForSeconds(sec);
@@ -49,7 +48,7 @@ public class AbilityHammerDin : Ability
         {
             owner.CurrentlyCastingAbility = null;
             finishedCasting = true;
-            animator.SetBool("Casting", false);
+            owner.animator.SetBool("Casting", false);
             HammerDinSpin tempSpin = Instantiate(hammerDinPrefab, owner.transform.position, Quaternion.identity).GetComponentInChildren<HammerDinSpin>();
             tempSpin.SetupAbility(GetComponentInParent<CharacterBrain>());
             owner.agent.isStopped = false;
@@ -69,19 +68,11 @@ public class AbilityHammerDin : Ability
         owner = _owner;
     }
 
-    public void Awake()
-    {
-        if (animator == null)
-        {
-            animator = gameObject.GetComponentInParent<Animator>();
-        }
-    }
-
     public void Update()
     {
         if (IsCanceled && !finishedCasting)
         {
-            animator.SetBool("Casting", false);
+            owner.animator.SetBool("Casting", false);
             owner.agent.isStopped = false;
             owner.CurrentlyCastingAbility = null;
         }

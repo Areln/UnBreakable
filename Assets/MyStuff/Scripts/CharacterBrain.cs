@@ -10,10 +10,14 @@ public abstract class CharacterBrain : MonoBehaviour
     public int currentHealth;
     public int maxMana;
     public int currentMana;
+    internal Animator animator;
 
     internal NavMeshAgent agent;
     internal Stats Stats;
     internal bool updateMove;
+
+    public Transform AbilityHolder;
+    public Ability[] abilities;
 
     internal Ability CurrentlyCastingAbility { get; set; }
 
@@ -30,7 +34,7 @@ public abstract class CharacterBrain : MonoBehaviour
         }
     }
 
-    internal void InitializeData(CharacterData characterData)
+	internal void InitializeData(CharacterData characterData)
     {
         characterName = characterData.CharacterName;
     }
@@ -53,5 +57,10 @@ public abstract class CharacterBrain : MonoBehaviour
             point.z = pathCorners[i].z;
         }
         agent.SetPath(path);
-	}
+    }
+
+    internal virtual void CastAbility(int abilityIndex, Vector3 startPosition, Vector3 targetPosition)
+    {
+        abilities[abilityIndex].Activate(startPosition, targetPosition);
+    }
 }

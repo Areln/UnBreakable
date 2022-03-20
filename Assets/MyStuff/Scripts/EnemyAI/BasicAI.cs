@@ -23,16 +23,9 @@ public class BasicAI : CharacterBrain
 	public float currentIdleTime;
 	public Collider WeaponHitBox;
 
-	internal Animator animator;
-
 	internal HPScript hpScript;
 
 	public GameObject lootChestPrefab;
-
-	public Ability ability1;
-	public Ability ability2;
-	public Ability ability3;
-	public Ability ability4;
 
 	private void Awake()
 	{
@@ -54,21 +47,12 @@ public class BasicAI : CharacterBrain
 
 	internal void SetupAbilities()
 	{
-		if (ability1 != null)
+		foreach (var ability in abilities)
 		{
-			ability1.SetupAbility(this);
-		}
-		if (ability2 != null)
-		{
-			ability2.SetupAbility(this);
-		}
-		if (ability3 != null)
-		{
-			ability3.SetupAbility(this);
-		}
-		if (ability4 != null)
-		{
-			ability4.SetupAbility(this);
+			if (ability != null)
+			{
+				ability.SetupAbility(this);
+			}
 		}
 	}
 

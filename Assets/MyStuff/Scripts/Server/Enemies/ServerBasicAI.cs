@@ -31,11 +31,6 @@ namespace Server
 
 		public GameObject lootChestPrefab;
 
-		public ServerAbility ability1;
-		public ServerAbility ability2;
-		public ServerAbility ability3;
-		public ServerAbility ability4;
-
 		private void Awake()
 		{
 			Stats = GetComponent<Stats>();
@@ -56,21 +51,12 @@ namespace Server
 
 		private void SetUpAbilities()
 		{
-			if (ability1 != null)
+			foreach (var ability in abilities)
 			{
-				ability1.SetupAbility(this);
-			}
-			if (ability2 != null)
-			{
-				ability2.SetupAbility(this);
-			}
-			if (ability3 != null)
-			{
-				ability3.SetupAbility(this);
-			}
-			if (ability4 != null)
-			{
-				ability4.SetupAbility(this);
+				if (ability != null)
+				{
+					ability.GetComponent<ServerAbility>().SetupAbility(this);
+				}
 			}
 		}
 
@@ -224,43 +210,15 @@ namespace Server
 
 		void CheckAttackRange()
 		{
-			if (ability1 != null && ability1.currentCooldown <= 0)
+			if (abilities[0] != null && abilities[0].GetComponent<ServerAbility>().currentCooldown <= 0)
 			{
 				//check range
 				if (Vector3.Distance(transform.position, MainTarget.transform.position) <= 1.5)
 				{
 					Vector3 targetPostition = new Vector3(agent.destination.x, this.transform.position.y, agent.destination.z);
-					ability1.Activate(targetPostition);
+					CastAbility(0, targetPostition);
 				}
 			}
-
-			//if (ability2.currentCooldown <= 0)
-			//{
-			//    //check range
-			//    if (agent.remainingDistance <= 1)
-			//    {
-
-			//    }
-			//}
-
-			//if (ability3.currentCooldown <= 0)
-			//{
-			//    //check range
-			//    if (agent.remainingDistance <= 1)
-			//    {
-
-			//    }
-			//}
-
-			//if (ability4.currentCooldown <= 0)
-			//{
-			//    //check range
-			//    if (agent.remainingDistance <= 1)
-			//    {
-
-			//    }
-			//}
-
 		}
 	}
 }

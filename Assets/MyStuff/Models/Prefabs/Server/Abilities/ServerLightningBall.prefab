@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5436535830124418684}
   - component: {fileID: 8480882928021523282}
-  - component: {fileID: 175718376555755943}
+  - component: {fileID: -3977235150063726110}
   - component: {fileID: 7756146950835473838}
   - component: {fileID: 7163371903390839984}
   - component: {fileID: 546516966238831582}
   - component: {fileID: 2208393730596533702}
   m_Layer: 0
-  m_Name: LightningBall
+  m_Name: ServerLightningBall
   m_TagString: DamageDealer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8262041921401545342}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &175718376555755943
+--- !u!114 &-3977235150063726110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,20 +53,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8262041921401545342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3811611e842c8144b86978ef20d82a62, type: 3}
+  m_Script: {fileID: 11500000, guid: 5981d6e487fa8134592e48ad43124477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 20
   StatModifier: 3
   abilityName: Lightning Ball
+  PrefabName: LightningBall
   manaCost: 0
   maxCooldown: 0
   currentCooldown: 0
   MoveSpeed: 25
-  LightingPrefab: {fileID: 8262041921401545342, guid: 4977aeb9f5b73c64d92ab8cbc7a2804c,
+  LightingPrefab: {fileID: 8262041921401545342, guid: 107ce3b44c6193449bdc127188928aac,
     type: 3}
-  LightningParticlesPrefab: {fileID: 3052674236250025542, guid: 080d752c34ed9c44ca043090fd17a269,
-    type: 3}
+  LightningParticlesPrefab: {fileID: 0}
 --- !u!23 &7756146950835473838
 MeshRenderer:
   m_ObjectHideFlags: 0

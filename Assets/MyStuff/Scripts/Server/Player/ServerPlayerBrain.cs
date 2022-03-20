@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Server
 {
     public class ServerPlayerBrain : ServerCharacterBrain
     {
-        internal PlayerCombat playerCombat;
         internal HPScript hpScript;
         internal ServerPlayerInventory playerInventory;
 
@@ -26,12 +26,11 @@ namespace Server
             agent = GetComponent<NavMeshAgent>();
             Stats = GetComponent<Stats>();
             hpScript = GetComponent<HPScript>();
-            playerCombat = GetComponent<PlayerCombat>();
             playerInventory = GetComponent<ServerPlayerInventory>();
         }
 
-        // Update is called once per frame
-        void Update()
+		// Update is called once per frame
+		void Update()
         {
             //Mana Regen
             if (currentMana < maxMana)
@@ -67,6 +66,7 @@ namespace Server
         internal void InitializeData(string username)
         {
             characterName = username;
+            LoadAbilities();
             foreach (GameObject item in ServerGameManager.Instance.PossibleItems)
             {
                 playerInventory.AddPrefabItemObjectToPlayerInventory(item);
@@ -77,5 +77,5 @@ namespace Server
         {
             Debug.Log("Die");
         }
-    }
+	}
 }

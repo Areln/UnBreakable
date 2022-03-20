@@ -192,37 +192,16 @@ public class HudManager : MonoBehaviour
             manaText.text = GameManager.Instance.ClientPlayer.currentMana.ToString();
             manaSlider.value = GameManager.Instance.ClientPlayer.currentMana;
             //Update CD Shades
-            if (GameManager.Instance.ClientPlayer.playerCombat.ability1 != null)
-            {
-                ability1Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability1.GetCDPercentage()));
-            }
-            else
-            {
-                ability1Shade.color = Color.clear;
-            }
-            if (GameManager.Instance.ClientPlayer.playerCombat.ability2 != null)
-            {
-                ability2Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability2.GetCDPercentage()));
-            }
-            else
-            {
-                ability2Shade.color = Color.clear;
-            }
-            if (GameManager.Instance.ClientPlayer.playerCombat.ability3 != null)
-            {
-                ability3Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability3.GetCDPercentage()));
-            }
-            else
-            {
-                ability3Shade.color = Color.clear;
-            }
-            if (GameManager.Instance.ClientPlayer.playerCombat.ability4 != null)
-            {
-                ability4Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(GameManager.Instance.ClientPlayer.playerCombat.ability4.GetCDPercentage()));
-            }
-            else
-            {
-                ability4Shade.color = Color.clear;
+            foreach(var ability in GameManager.Instance.ClientPlayer.abilities)
+			{
+                if (ability != null)
+                {
+                    ability1Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(ability.GetCDPercentage()));
+                }
+                else
+                {
+                    ability1Shade.color = Color.clear;
+                }
             }
         }
     }

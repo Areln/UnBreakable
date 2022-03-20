@@ -4,7 +4,6 @@ using UnityEngine.AI;
 
 public class PlayerBrain : CharacterBrain
 {
-    internal PlayerCombat playerCombat;
     internal PlayerLook playerLook;
     internal PlayerMovement playerMovement;
     internal HPScript hpScript;
@@ -26,10 +25,10 @@ public class PlayerBrain : CharacterBrain
         agent = GetComponent<NavMeshAgent>();
         Stats = GetComponent<Stats>();
         hpScript = GetComponent<HPScript>();
-        playerCombat = GetComponent<PlayerCombat>();
         playerLook = GetComponent<PlayerLook>();
         playerMovement = GetComponent<PlayerMovement>();
         playerInventory = GetComponent<PlayerInventory>();
+        animator = GetComponent<Animator>();
 
         // Debug adds items to inventory
         //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.SearchItems("steelchestpiecegoldtrim"));
@@ -86,7 +85,7 @@ public class PlayerBrain : CharacterBrain
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
                 {
                     Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                    playerCombat.ability1.Activate(targetPostition);
+                    new AbilityHandle().SendAbilityCast(0, targetPostition);
                 }
             }
             if (Input.GetKeyDown(KeyCode.W))
@@ -94,7 +93,7 @@ public class PlayerBrain : CharacterBrain
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
                 {
                     Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                    playerCombat.ability2.Activate(targetPostition);
+                    new AbilityHandle().SendAbilityCast(1, targetPostition);
                 }
             }
             if (Input.GetKeyDown(KeyCode.E))
@@ -102,7 +101,7 @@ public class PlayerBrain : CharacterBrain
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
                 {
                     Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                    playerCombat.ability3.Activate(targetPostition);
+                    new AbilityHandle().SendAbilityCast(2, targetPostition);
                 }
             }
             if (Input.GetKeyDown(KeyCode.R))
@@ -110,7 +109,7 @@ public class PlayerBrain : CharacterBrain
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, 100, LayerMask.GetMask("Ground")))
                 {
                     Vector3 targetPostition = new Vector3(hit.point.x, this.transform.position.y, hit.point.z);
-                    playerCombat.ability4.Activate(targetPostition);
+                    new AbilityHandle().SendAbilityCast(3, targetPostition);
                 }
             }
             if (Input.GetKeyDown(KeyCode.S))
@@ -155,6 +154,14 @@ public class PlayerBrain : CharacterBrain
 	internal void InitializeData(PlayerData playerData)
     {
         characterName = playerData.CharacterName;
+
+        abilities = new Ability[playerData.Abilities.Length];
+        for (int i = 0; i < playerData.Abilities.Length; i++)
+		{
+            var ability = Instantiate(Resources.Load("Abilities/" + playerData.Abilities[i]) as GameObject, AbilityHolder.transform).GetComponent<Ability>();
+            ability.SetupAbility(this);
+            abilities[i] = ability;
+		}
 
         ItemSlot tempSlot;
 

@@ -10,30 +10,16 @@ namespace Server
 		public float CastTime;
 
 		private GameObject lightingBallObject;
-		private Animator animator;
 		private Vector3 targetPosition;
-		private GameObject castParticles;
 		private bool finishedCasting;
-
-		public void Awake()
-		{
-			SetupAbility(GetComponentInParent<ServerCharacterBrain>());
-			animator = gameObject.GetComponent<Animator>();
-			if (animator == null)
-			{
-				animator = gameObject.GetComponentInParent<Animator>();
-			}
-		}
 
 		public void Update()
 		{
 			if (IsCanceled && !finishedCasting)
 			{
-				animator.SetBool("Casting", false);
 				owner.agent.isStopped = false;
 				owner.CurrentlyCastingAbility = null;
 				Destroy(lightingBallObject);
-				Destroy(castParticles);
 			}
 			if (currentCooldown > 0)
 			{
@@ -66,16 +52,12 @@ namespace Server
 			finishedCasting = false;
 			currentCooldown = maxCooldown;
 			owner.gameObject.transform.LookAt(targetPosition);
-			var newPosition = owner.transform.position + owner.transform.forward * 1f;
-			castParticles = Instantiate(CastParticles, newPosition, owner.transform.rotation);
-			animator.SetBool("Casting", true);
 			owner.agent.isStopped = true;
 			yield return new WaitForSeconds(sec);
 			if (!IsCanceled)
 			{
 				owner.CurrentlyCastingAbility = null;
 				finishedCasting = true;
-				animator.SetBool("Casting", false);
 				lightingBallObject.SetActive(true);
 				owner.agent.isStopped = false;
 			}

@@ -60,7 +60,7 @@ public class LightningStrike : Ability
 		Destroy(gameObject);
 	}
 
-	public override void Activate(Vector3 targetPosition)
+	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
 		throw new System.NotImplementedException();
 	}

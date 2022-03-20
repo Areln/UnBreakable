@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2934538167062644291}
-  - component: {fileID: 2934538167062644288}
+  - component: {fileID: 6930210651099555677}
   m_Layer: 0
-  m_Name: SwingStrengthWeapon
+  m_Name: ServerSwingStrengthWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2934538167062644288
+--- !u!114 &6930210651099555677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,12 +40,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2934538167062644289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d88af4d2f2914343b65a3231a0300c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 450db7e4382503f47953911b373eaede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
   StatModifier: 1
   abilityName: Swing
+  PrefabName: SwingStrengthWeapon
   manaCost: 0
   maxCooldown: 0.5
   currentCooldown: 0

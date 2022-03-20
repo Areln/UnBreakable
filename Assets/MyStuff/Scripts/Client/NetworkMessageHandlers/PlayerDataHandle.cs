@@ -31,6 +31,14 @@ public class PlayerDataHandle : IHandle
 		// Rotation 
 		var rotation = _packet.ReadFloat();
 
+		//Abilities
+		var abilityCount = _packet.ReadInt();
+		var abilities = new string[abilityCount];
+		for (int i = 0; i < abilityCount; i++)
+		{
+			abilities[i] =_packet.ReadString();
+		}
+
 		// Equipment Data
 		var helm = _packet.ReadString();
 		var chest = _packet.ReadString();
@@ -60,6 +68,7 @@ public class PlayerDataHandle : IHandle
 			PlayerId = playerId,
 			Position = new Vector3(positionX, positionY, positionZ),
 			Rotation = rotation,
+			Abilities = abilities,
 			Items = items,
 			EquippedHelmetPiece = helm,
 			EquippedChestPiece = chest,
@@ -85,6 +94,8 @@ public class PlayerData
 	public Vector3 Position { get; set; }
 
 	public float Rotation { get; set; }
+
+	public string[] Abilities { get; set; }
 
 	public List<string> Items { get; set; }
 

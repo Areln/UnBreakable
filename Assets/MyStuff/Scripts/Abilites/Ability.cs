@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class Ability : DamageDealer
+public abstract class Ability : MonoBehaviour
 {
     internal CharacterBrain owner;
     public string abilityName;
@@ -10,7 +10,7 @@ public abstract class Ability : DamageDealer
 
     internal bool IsCanceled { get; set; }
 
-    public abstract void Activate(Vector3 targetPosition);
+    public abstract void Activate(Vector3 startPosition, Vector3 targetPosition);
 
     public abstract void SetupAbility(CharacterBrain _owner);
 

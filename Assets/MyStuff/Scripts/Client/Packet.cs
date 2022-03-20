@@ -10,6 +10,7 @@ public enum Packets
 	playerData, 
 	characterData,
 	moveCharacter,
+	castAbility,
 	disconnect,
 }
 

@@ -20,7 +20,7 @@ public class AbilityWarpBlast : Ability
 		}
 	}
 
-	public override void Activate(Vector3 targetPosition)
+	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
 		//checks if ability is on cooldown or if the player is casting an ability already.
 		if (currentCooldown > 0 || owner.CurrentlyCastingAbility != null)
