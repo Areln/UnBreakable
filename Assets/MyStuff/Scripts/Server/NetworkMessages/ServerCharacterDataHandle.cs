@@ -29,10 +29,11 @@ namespace Server
 
 		private void WriteCharacterPacket(Packet _packet, ServerBasicAi characterData)
 		{
-			if (string.IsNullOrEmpty(characterData.characterName))
+			if (string.IsNullOrWhiteSpace(characterData.characterName))
 			{
 				characterData.characterName = characterData.PrefabName;
 			}
+			Debug.Log(characterData.characterName);
 			_packet.Write(characterData.characterName);
 			_packet.Write(characterData.GetInstanceID());
 			_packet.Write(characterData.PrefabName);
