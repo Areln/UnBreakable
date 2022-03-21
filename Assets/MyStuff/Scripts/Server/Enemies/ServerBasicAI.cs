@@ -25,8 +25,6 @@ namespace Server
 		public float currentIdleTime;
 		public Collider WeaponHitBox;
 
-		internal Animator animator;
-
 		internal HPScript hpScript;
 
 		public GameObject lootChestPrefab;
@@ -43,21 +41,10 @@ namespace Server
 		public void Start()
 		{
 			currentHealth = maxHealth;
-			SetUpAbilities();
+			LoadAbilities();
 			//sets patrol
 			isIdle = true;
 			currentIdleTime = maxIdleTime;
-		}
-
-		private void SetUpAbilities()
-		{
-			foreach (var ability in abilities)
-			{
-				if (ability != null)
-				{
-					ability.GetComponent<ServerAbility>().SetupAbility(this);
-				}
-			}
 		}
 
 		public void SetPatrolTargets(List<Transform> _points)

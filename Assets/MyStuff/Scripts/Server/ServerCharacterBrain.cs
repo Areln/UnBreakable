@@ -15,6 +15,7 @@ namespace Server
 
 		internal NavMeshAgent agent;
 		internal Stats Stats;
+		internal Animator animator;
 
 		public Transform AbilityHolder;
 		public GameObject[] abilities;
@@ -22,6 +23,11 @@ namespace Server
 		internal ServerAbility CurrentlyCastingAbility { get; set; }
 
 		public abstract void CharacterDie();
+
+		private void Start()
+		{
+			animator = GetComponent<Animator>();
+		}
 
 		public void TakeDamage(int _damage)
 		{
