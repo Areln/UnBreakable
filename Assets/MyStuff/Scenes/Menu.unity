@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ip: 127.0.0.1
-  isConnected: 0
+  Port: 25565
 --- !u!4 &288056896
 Transform:
   m_ObjectHideFlags: 0
