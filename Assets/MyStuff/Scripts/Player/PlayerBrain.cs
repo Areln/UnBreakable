@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using QFSW.QC;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerBrain : CharacterBrain
@@ -28,17 +29,6 @@ public class PlayerBrain : CharacterBrain
         playerMovement = GetComponent<PlayerMovement>();
         playerInventory = GetComponent<PlayerInventory>();
         animator = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        if (GameManager.Instance.ClientPlayer == this)
-        {
-            foreach (GameObject item in GameManager.Instance.PossibleItems)
-            {
-                new CharacterSpawnItem().WriteMessage(item.GetComponent<Item>().InternalName);
-            }
-        }
     }
 
     // Update is called once per frame
@@ -147,17 +137,17 @@ public class PlayerBrain : CharacterBrain
         }
     }
 
-	internal void InitializeData(PlayerData playerData)
+    internal void InitializeData(PlayerData playerData)
     {
         characterName = playerData.CharacterName;
 
         abilities = new Ability[playerData.Abilities.Length];
         for (int i = 0; i < playerData.Abilities.Length; i++)
-		{
+        {
             var ability = Instantiate(Resources.Load("Abilities/" + playerData.Abilities[i]) as GameObject, AbilityHolder.transform).GetComponent<Ability>();
             ability.SetupAbility(this);
             abilities[i] = ability;
-		}
+        }
 
         ItemSlot tempSlot;
 
@@ -208,13 +198,13 @@ public class PlayerBrain : CharacterBrain
         }
 
         foreach (var item in playerData.Items)
-		{
+        {
             new CharacterSpawnItem().WriteMessage(item);
             //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(item));
-		}
+        }
     }
 
-	public override void CharacterDie()
+    public override void CharacterDie()
     {
         Debug.Log("Die");
     }
