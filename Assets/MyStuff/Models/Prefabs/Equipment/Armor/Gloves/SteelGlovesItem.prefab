@@ -53,5 +53,5 @@ MonoBehaviour:
   MonetaryValue: 0
   EquipType: 1
   ArmorType: 2
-  MirrorPrefab: {fileID: 4390602432089999568, guid: 0df4da224c957bc4183c23550dc92083,
+  MirrorPrefab: {fileID: 4390602432089999568, guid: 3fbb5684dc894f4429578ced78b9f45e,
     type: 3}

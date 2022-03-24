@@ -30,6 +30,17 @@ public class PlayerBrain : CharacterBrain
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        if (GameManager.Instance.ClientPlayer == this)
+        {
+            foreach (GameObject item in GameManager.Instance.PossibleItems)
+            {
+                new CharacterSpawnItem().WriteMessage(item.GetComponent<Item>().InternalName);
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -198,7 +209,8 @@ public class PlayerBrain : CharacterBrain
 
         foreach (var item in playerData.Items)
 		{
-            playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(item));
+            new CharacterSpawnItem().WriteMessage(item);
+            //playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(item));
 		}
     }
 

@@ -37,6 +37,30 @@ namespace Server
         //array 
         public List<Item> InventoryItems = new List<Item>();
 
+        string[] serverInventory;
+
+        void Awake()
+        {
+            serverInventory = new string[25];
+        }
+
+        public void AddToServerInventory(int index, string internalItemName) 
+        {
+            serverInventory[index] = internalItemName;
+        }
+
+        public int FindFirstOpenItemSlot()
+        {
+            for (int i = 0; i < serverInventory.Length; i++)
+            {
+                if (string.IsNullOrWhiteSpace(serverInventory[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public void AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab)
         {
             // Instantiates Item's gameobject and sets the parent as the InventoryHolder
@@ -238,3 +262,5 @@ namespace Server
         }
     }
 }
+
+

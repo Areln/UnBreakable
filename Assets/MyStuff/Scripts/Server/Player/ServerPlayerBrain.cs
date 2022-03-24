@@ -67,10 +67,11 @@ namespace Server
         {
             characterName = username;
             LoadAbilities();
-            foreach (GameObject item in ServerGameManager.Instance.PossibleItems)
-            {
-                playerInventory.AddPrefabItemObjectToPlayerInventory(item);
-            }
+
+            //foreach (GameObject item in ServerGameManager.Instance.PossibleItems)
+            //{
+            //    playerInventory.AddPrefabItemObjectToPlayerInventory(item);
+            //}
         }
 
         public override void CharacterDie()

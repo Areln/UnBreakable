@@ -382,7 +382,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
-  m_RichText: 1
+  m_RichText: 0
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 1
   checkPaddingRequired: 0
-  m_isRichText: 1
+  m_isRichText: 0
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1404,8 +1404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e1d84ca443a1949a0555db338be026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoginUsername: {fileID: 880831484}
-  LoginPassword: {fileID: 384682000}
+  LoginUsername: {fileID: 59092335}
+  LoginPassword: {fileID: 1689299722}
   LoginScreen: {fileID: 1050856911}
 --- !u!1 &1170207899
 GameObject:

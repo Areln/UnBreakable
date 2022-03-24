@@ -1,11 +1,12 @@
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SignInManager : MonoBehaviour
 {
-    public TextMeshProUGUI LoginUsername;
-    public TextMeshProUGUI LoginPassword;
+    public TMP_InputField LoginUsername;
+    public TMP_InputField LoginPassword;
     public GameObject LoginScreen;
     internal static SignInManager Instance;
 

@@ -11,7 +11,8 @@ public enum Packets
 	characterData,
 	moveCharacter,
 	castAbility,
-	itemAction,
+	CharacterSpawnItem,
+	CharacterPickUpItem,
 	equipItem,
 	disconnect,
 }

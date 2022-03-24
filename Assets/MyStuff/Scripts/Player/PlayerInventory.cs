@@ -41,6 +41,20 @@ public class PlayerInventory : MonoBehaviour
     //array 
     public List<Item> InventoryItems = new List<Item>();
 
+
+    // 
+    #region
+    public void AskServerToPickUpItem()
+    {
+
+    }
+    public void AskServerToSpawnItem()
+    {
+        //new CharacterPickUpItem().
+    }
+    #endregion
+
+
     public ItemSlot AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab)
     {
         // Instantiates Item's gameobject and sets the parent as the InventoryHolder
@@ -58,7 +72,28 @@ public class PlayerInventory : MonoBehaviour
 
         return slot;
     }
+    public ItemSlot AddPrefabItemObjectToPlayerInventory(int slotIndex, GameObject itemPrefab)
+    {
+        // Instantiates Item's gameobject and sets the parent as the InventoryHolder
+        GameObject _tempObject = Instantiate(itemPrefab, InventoryHolder);
 
+        // Grab reference to the item script
+        Item _tempItem = _tempObject.GetComponent<Item>();
+
+        _tempItem.OnItemPickup();
+
+        // Find the first open inventory slot and set the slotted item. we should have already checked if player's inventory is full
+        var slot = GetSlotFromIndex(slotIndex);
+        slot.SetSlottedItem(_tempItem);
+        InventoryItems.Add(_tempItem);
+
+        return slot;
+    }
+
+    public ItemSlot GetSlotFromIndex(int index) 
+    {
+        return HudManager.Instance.InventoryItemSlots[index];
+    }
     public ItemSlot FindFirstOpenItemSlot()
     {
         foreach (ItemSlot itemSlot in HudManager.Instance.InventoryItemSlots)
