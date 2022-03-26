@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6763462363178106477}
   - component: {fileID: 6220803938763061461}
   - component: {fileID: 2566932275176638021}
-  - component: {fileID: 3145021087671111093}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320557092962323955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.53, z: 0}
+  m_LocalPosition: {x: 0, y: 1.025, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4240155622287716256}
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &3145021087671111093
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320557092962323955}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3509551712299938715
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +90,6 @@ GameObject:
   - component: {fileID: 6471080995765986554}
   - component: {fileID: 8231321770409864958}
   - component: {fileID: 6623735491878329766}
-  - component: {fileID: 6460355468484428037}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -120,8 +105,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509551712299938715}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 1, z: 0.05}
+  m_LocalPosition: {x: 0, y: 0.1191, z: 0}
+  m_LocalScale: {x: 0.05, y: 1.7335774, z: 0.050000068}
   m_Children: []
   m_Father: {fileID: 4240155622287716256}
   m_RootOrder: 0
@@ -173,19 +158,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6460355468484428037
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3509551712299938715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9140589588958442948
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +167,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4240155622287716256}
-  - component: {fileID: -1691019077483786421}
   - component: {fileID: 7910120200107799402}
   - component: {fileID: 2365990204190212655}
   m_Layer: 0
@@ -214,26 +185,13 @@ Transform:
   m_GameObject: {fileID: 9140589588958442948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.760935, y: 5.760935, z: 5.760935}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6471080995765986554}
   - {fileID: 6763462363178106477}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &-1691019077483786421
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9140589588958442948}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.20765701, y: 1.1118267, z: 0.18122362}
-  m_Center: {x: 0.00246162, y: 0.030284218, z: -0.001436397}
 --- !u!114 &7910120200107799402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,12 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f08e9d81808b1478536ef72c54231c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
-  StatModifier: 1
   PossibleAbilities:
   - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
   - {fileID: 1858707421012363883, guid: 6a3a56803a091dd439b017c116f9847a, type: 3}
-  WeaponHitBox: {fileID: -1691019077483786421}
+  WeaponHitBox: {fileID: 0}
 --- !u!114 &2365990204190212655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,9 +229,4 @@ MonoBehaviour:
   CurrentUseCount: 0
   MonetaryValue: 0
   EquipType: 0
-  EquipComponents:
-  - {fileID: 7910120200107799402}
-  EquipRenderers:
-  - {fileID: 6623735491878329766}
-  - {fileID: 2566932275176638021}
   WeaponType: 0
