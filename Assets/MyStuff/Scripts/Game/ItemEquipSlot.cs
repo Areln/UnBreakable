@@ -66,7 +66,16 @@ public class ItemEquipSlot : ItemSlot
             // Un-equip item
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                UnEquipSlottedItem();
+                //UnEquipSlottedItem();
+                if (slotEquipType == EquipType.Armor)
+                {
+                    new CharacterUnEquipItem().WriteMessage(true, (int)slotArmorType);
+                }
+                else
+                {
+                    new CharacterUnEquipItem().WriteMessage(false, (int)slotWeaponType);
+                }
+
             }
 
             if (eventData.button == PointerEventData.InputButton.Right)

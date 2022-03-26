@@ -176,7 +176,7 @@ public class HudManager : MonoBehaviour
         {
             GameObject _tempObject = Instantiate(ItemSlotPrefab, ItemSlotHolder);
             ItemSlot _slot = _tempObject.GetComponent<ItemSlot>();
-            _slot.Setup();
+            _slot.Setup(i);
             InventoryItemSlots.Add(_slot);
         }
     }

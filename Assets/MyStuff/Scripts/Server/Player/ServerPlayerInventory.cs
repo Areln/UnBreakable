@@ -5,7 +5,7 @@ namespace Server
 {
     public class ServerPlayerInventory : MonoBehaviour
     {
-        public Transform InventoryHolder;
+        public Transform EquipmentHolder;
 
         public ItemArmor EquippedHelmetPiece;
         public Transform HeadTransform;
@@ -38,18 +38,109 @@ namespace Server
         public List<Item> InventoryItems = new List<Item>();
 
         string[] serverInventory;
+        Dictionary<ArmorType, ItemEquipable> serverArmorEquipSlots = new Dictionary<ArmorType, ItemEquipable>();
+        Dictionary<WeaponType, ItemEquipable> serverWeaponEquipSlots = new Dictionary<WeaponType, ItemEquipable>();
 
         void Awake()
         {
             serverInventory = new string[25];
         }
 
+        // Server Functions
+        #region 
         public void AddToServerInventory(int index, string internalItemName) 
         {
             serverInventory[index] = internalItemName;
         }
+        public string ServerGetInventoryItemFromIndex(int index) 
+        {
+            return serverInventory[index];
+        }
+        public void ServerEquipItem(ItemEquipable item, int? slotIndex = null)
+        {
+            ServerUnEquipItem(item, slotIndex);
 
-        public int FindFirstOpenItemSlot()
+            if (typeof(ItemArmor).IsAssignableFrom(item.GetType()))
+            {
+                serverArmorEquipSlots.Add(item.GetComponent<ItemArmor>().ArmorType, Instantiate(item, EquipmentHolder).GetComponent<ItemEquipable>());
+            }
+            else if (typeof(ItemWeapon).IsAssignableFrom(item.GetType()))
+            {
+                serverWeaponEquipSlots.Add(item.GetComponent<ItemWeapon>().WeaponType, Instantiate(item, EquipmentHolder).GetComponent<ItemEquipable>());
+            }
+        }
+        public void ServerEquipItem(ArmorType armorType, string internalName) 
+        {
+            ServerUnEquipItem(armorType);
+            serverArmorEquipSlots.Add(armorType, Instantiate(GameManager.Instance.GetItem(internalName), EquipmentHolder).GetComponent<ItemEquipable>());
+        }
+        public void ServerEquipItem(WeaponType weaponType, string internalName)
+        {
+            ServerUnEquipItem(weaponType);
+            serverWeaponEquipSlots.Add(weaponType, Instantiate(GameManager.Instance.GetItem(internalName), EquipmentHolder).GetComponent<ItemEquipable>());
+        }
+        public void ServerUnEquipItem(ItemEquipable item, int? slotIndex = null) 
+        {
+            if (typeof(ItemArmor).IsAssignableFrom(item.GetType()))
+            {
+                ServerUnEquipItem(item.GetComponent<ItemArmor>().ArmorType, slotIndex);
+            }
+            else if (typeof(ItemWeapon).IsAssignableFrom(item.GetType()))
+            {
+                ServerUnEquipItem(item.GetComponent<ItemWeapon>().WeaponType, slotIndex);
+            }
+        }
+        public void ServerUnEquipItem(ArmorType armorType, int? slotIndex = null)
+        {
+            if (serverArmorEquipSlots.TryGetValue(armorType, out ItemEquipable _itemEquipable))
+            {
+                serverArmorEquipSlots.Remove(armorType);
+
+                if (slotIndex == null)
+                {
+                    slotIndex = FindFirstOpenItemSlot();       
+                }
+
+                if (slotIndex == null)
+                {
+                    // TODO: send message that we cant unequip due to inventory space
+                }
+                else
+                {
+                    serverInventory[slotIndex.Value] = _itemEquipable.InternalName;
+                }
+
+                Destroy(_itemEquipable.gameObject);
+            }
+        }
+        public void ServerUnEquipItem(WeaponType weaponType, int? slotIndex = null)
+        {
+            if (serverWeaponEquipSlots.TryGetValue(weaponType, out ItemEquipable _itemEquipable))
+            {
+                serverWeaponEquipSlots.Remove(weaponType);
+
+                if (slotIndex == null)
+                {
+                    slotIndex = FindFirstOpenItemSlot();
+                }
+
+                if (slotIndex == null)
+                {
+                    // TODO: send message that we cant unequip due to inventory space
+                }
+                else
+                {
+                    serverInventory[slotIndex.Value] = _itemEquipable.InternalName;
+                }
+
+                Destroy(_itemEquipable.gameObject);
+            }
+        }
+        #endregion
+
+        // Client functions
+        #region
+        public int? FindFirstOpenItemSlot()
         {
             for (int i = 0; i < serverInventory.Length; i++)
             {
@@ -58,13 +149,13 @@ namespace Server
                     return i;
                 }
             }
-            return -1;
+            return null;
         }
 
         public void AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab)
         {
             // Instantiates Item's gameobject and sets the parent as the InventoryHolder
-            GameObject _tempObject = Instantiate(itemPrefab, InventoryHolder);
+            GameObject _tempObject = Instantiate(itemPrefab, EquipmentHolder);
 
             // Grab reference to the item script
             Item _tempItem = _tempObject.GetComponent<Item>();
@@ -138,7 +229,7 @@ namespace Server
             }
 
             _tempSel.OnUnEquip();
-            _tempSel.gameObject.transform.SetParent(InventoryHolder, false);
+            _tempSel.gameObject.transform.SetParent(EquipmentHolder, false);
         }
         bool EquipArmor(ItemArmor itemArmor)
         {
@@ -218,7 +309,7 @@ namespace Server
             _tempSel.OnUnEquip();
             if (itemSlot)
             {
-                _tempSel.gameObject.transform.SetParent(InventoryHolder, false);
+                _tempSel.gameObject.transform.SetParent(EquipmentHolder, false);
                 itemSlot.SetSlottedItem(_tempSel);
             }
             else
@@ -260,6 +351,7 @@ namespace Server
             }
             return null;
         }
+        #endregion
     }
 }
 

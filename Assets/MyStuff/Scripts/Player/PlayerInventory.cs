@@ -90,7 +90,7 @@ public class PlayerInventory : MonoBehaviour
         return slot;
     }
 
-    public ItemSlot GetSlotFromIndex(int index) 
+    public ItemSlot GetSlotFromIndex(int index)
     {
         return HudManager.Instance.InventoryItemSlots[index];
     }
@@ -105,10 +105,26 @@ public class PlayerInventory : MonoBehaviour
         }
         return null;
     }
+    public void EquipItemToCharacter(int index)
+    {
+        EquipItemToCharacter(GetSlotFromIndex(index).SlottedItem.GetComponent<ItemEquipable>(), GetSlotFromIndex(index));
+    }
+    public void EquipItemToCharacter(string internalItemName)
+    {
+        ItemEquipable item = Instantiate(GameManager.Instance.GetItem(internalItemName), InventoryHolder).GetComponent<ItemEquipable>();
+
+        if (typeof(ItemArmor).IsAssignableFrom(item.GetType()))
+        {
+            EquipArmor(item.GetComponent<ItemArmor>());
+        }
+        else if (typeof(ItemWeapon).IsAssignableFrom(item.GetType()))
+        {
+            EquipWeapon(item.GetComponent<ItemWeapon>());
+        }
+    }
 
     public void EquipItemToCharacter(ItemEquipable item, ItemSlot itemSlot)
     {
-
         bool successfullEquip = false;
 
         if (typeof(ItemArmor).IsAssignableFrom(item.GetType()))
@@ -126,7 +142,7 @@ public class PlayerInventory : MonoBehaviour
             HudManager.Instance.EquippedItem(item);
         }
     }
-    bool EquipWeapon(ItemWeapon itemWeapon, ItemSlot itemSlot)
+    bool EquipWeapon(ItemWeapon itemWeapon, ItemSlot itemSlot = null)
     {
         ItemWeapon _tempWeapon = GetEquippedWeapon(itemWeapon.WeaponType);
 
@@ -134,7 +150,7 @@ public class PlayerInventory : MonoBehaviour
         {
             UnEquipWeapon(itemWeapon.WeaponType, itemSlot);
         }
-        else
+        else if(itemSlot != null)
         {
             itemSlot.ClearSlot();
         }
@@ -189,15 +205,15 @@ public class PlayerInventory : MonoBehaviour
             Destroy(_tempSel.gameObject);
         }
     }
-    bool EquipArmor(ItemArmor itemArmor, ItemSlot itemSlot)
+    bool EquipArmor(ItemArmor itemArmor, ItemSlot itemSlot = null)
     {
         ItemArmor _tempArmor = GetEquippedArmor(itemArmor.ArmorType);
-        
+
         if (_tempArmor)
         {
             UnEquipArmor(itemArmor.ArmorType, itemSlot);
         }
-        else
+        else if(itemSlot)
         {
             itemSlot.ClearSlot();
         }
@@ -215,11 +231,11 @@ public class PlayerInventory : MonoBehaviour
                 return true;
 
             case ArmorType.GlovePiece:
-                
+
                 // Instantiate both glove armor objects
                 RightGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, RightGlovePieceTransform);
                 LeftGloveArmorObject = Instantiate(itemArmor.MirrorPrefab, LeftGlovePieceTransform);
-                LeftGloveArmorObject.transform.localScale = new Vector3(LeftGloveArmorObject.transform.localScale.x*-1, LeftGloveArmorObject.transform.localScale.y, LeftGloveArmorObject.transform.localScale.z);
+                LeftGloveArmorObject.transform.localScale = new Vector3(LeftGloveArmorObject.transform.localScale.x * -1, LeftGloveArmorObject.transform.localScale.y, LeftGloveArmorObject.transform.localScale.z);
                 EquippedGlovePiece = itemArmor;
                 return true;
 

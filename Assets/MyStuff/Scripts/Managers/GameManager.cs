@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
                     if (m_Instance == null)
                     {
                         // Need to create a new GameObject to attach the singleton to.
-                        var singletonObject = new GameObject();
+                        GameObject singletonObject = new GameObject();
                         m_Instance = singletonObject.AddComponent<GameManager>();
                         singletonObject.name = typeof(GameManager).ToString() + " (Singleton)";
 
@@ -67,23 +67,21 @@ public class GameManager : MonoBehaviour
     }
     public GameObject GetItem(string itemName)
     {
-        GameObject returnItem;
-
-        ItemDirectory.TryGetValue(itemName, out returnItem);
+        ItemDirectory.TryGetValue(itemName, out GameObject returnItem);
 
         return returnItem;
     }
 
     internal CharacterBrain GetCharacter(int characterIdToMove)
     {
-        LoadedCharacters.TryGetValue(characterIdToMove, out var loadedCharacter);
+        LoadedCharacters.TryGetValue(characterIdToMove, out CharacterBrain loadedCharacter);
         return loadedCharacter;
     }
 
     internal void LoadConnectingPlayer(PlayerData playerData)
     {
-        var player = Instantiate(BasePlayerPrefab, playerData.Position, Quaternion.Euler(new Vector3(0, playerData.Rotation, 0)));
-        var playerBrain = player.GetComponent<PlayerBrain>();
+        GameObject player = Instantiate(BasePlayerPrefab, playerData.Position, Quaternion.Euler(new Vector3(0, playerData.Rotation, 0)));
+        PlayerBrain playerBrain = player.GetComponent<PlayerBrain>();
         playerBrain.InitializeData(playerData);
 
         if (playerData.IsClientPlayer)
@@ -96,8 +94,8 @@ public class GameManager : MonoBehaviour
 
     internal void LoadCharacter(CharacterData characterData)
     {
-        var character = Instantiate(Resources.Load($"Enemies/{characterData.CharacterPrefabName}") as GameObject, characterData.Position, Quaternion.Euler(new Vector3(0, characterData.Rotation, 0)));
-        var basicAi = character.GetComponent<BasicAI>();
+        GameObject character = Instantiate(Resources.Load($"Enemies/{characterData.CharacterPrefabName}") as GameObject, characterData.Position, Quaternion.Euler(new Vector3(0, characterData.Rotation, 0)));
+        BasicAI basicAi = character.GetComponent<BasicAI>();
         basicAi.InitializeData(characterData);
 
         LoadedCharacters.Add(characterData.CharacterId, basicAi);

@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerCharacterPickUpItem : IServerHandle
+namespace Server.Networking
 {
-    public int GetMessageId()
+    public class ServerCharacterPickUpItem : IServerHandle
     {
-        return (int)Packets.CharacterPickUpItem;
-    }
+        public int GetMessageId()
+        {
+            return (int)Packets.CharacterPickUpItem;
+        }
 
-    public void ReadMessage(int _fromClientId, Packet _packet)
-    {
-        throw new System.NotImplementedException();
+        public void ReadMessage(int _fromClientId, Packet _packet)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
 {
+    public int SlotIndex;
     public Item SlottedItem;
     public Image ItemSprite;
     public Image ItemBackground;
@@ -15,8 +16,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
     {
         return IsSlottedValue;
     }
-    public void Setup()
+    public void Setup(int index)
     {
+        SlotIndex = index;
         ClearSlot();
     }
 
@@ -82,7 +84,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
                 if (typeof(ItemEquipable).IsAssignableFrom(SlottedItem.GetType()))
                 {
                     // Check stats if we can equip then handle inventory then equip item
-                    GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquipable>(), this);
+                   //GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquipable>(), this);
+                    new CharacterEquipItem().WriteMessage(SlotIndex);
                 }
                 else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
                 {

@@ -22,12 +22,12 @@ namespace Server.Networking
 
             if (AdminNames.Any(x => x.Equals(character.characterName, System.StringComparison.OrdinalIgnoreCase)))
                 {
-                    int slotIndex = character.GetComponent<ServerPlayerInventory>().FindFirstOpenItemSlot();
+                    int? slotIndex = character.GetComponent<ServerPlayerInventory>().FindFirstOpenItemSlot();
 
-                    if (slotIndex != -1)
+                    if (slotIndex != null)
                     {
-                        character.GetComponent<ServerPlayerInventory>().AddToServerInventory(slotIndex, itemInternalName);
-                        WriteMessage(_fromClientId, character, slotIndex, itemInternalName);
+                        character.GetComponent<ServerPlayerInventory>().AddToServerInventory(slotIndex.Value, itemInternalName);
+                        WriteMessage(_fromClientId, character, slotIndex.Value, itemInternalName);
                     }
                 }
             });
