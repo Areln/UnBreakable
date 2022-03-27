@@ -742,6 +742,7 @@ GameObject:
   - component: {fileID: 4681130729842470748}
   - component: {fileID: 7975211196803903572}
   - component: {fileID: 619826414842547935}
+  - component: {fileID: 3253521184329561668}
   m_Layer: 0
   m_Name: ServerBloodGuard
   m_TagString: target
@@ -783,6 +784,7 @@ MonoBehaviour:
   currentHealth: 0
   maxMana: 0
   currentMana: 0
+  lootObjectName: bones
   AbilityHolder: {fileID: 229582180582242304}
   abilities:
   - {fileID: 2934538167062644289, guid: d4e907ef854017a489116f259c0cd2f4, type: 3}
@@ -796,7 +798,7 @@ MonoBehaviour:
   maxIdleTime: 3
   currentIdleTime: 0
   WeaponHitBox: {fileID: 0}
-  lootChestPrefab: {fileID: 7099251450696765119, guid: 60f1e130a6276414198a8d762cd3f4d8,
+  lootChestPrefab: {fileID: 8048190158033873050, guid: 97f1d6566dd800d40b6152194ba2184e,
     type: 3}
 --- !u!114 &6571871693066834084
 MonoBehaviour:
@@ -900,6 +902,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3374022, y: 1.963068, z: 0.8230262}
   m_Center: {x: 0.048048675, y: 0.08639526, z: 0.08848691}
+--- !u!114 &3253521184329561668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233948281337516994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1955ebe028ae8418e0bbb73373192c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PossibleDrops:
+  - Item: {fileID: 308860507659862116}
+    MinStackAmount: 1
+    MaxStackAmount: 1
+    DropChance: 1
+  - Item: {fileID: 4443440974881784384}
+    MinStackAmount: 1
+    MaxStackAmount: 1
+    DropChance: 1
+  - Item: {fileID: 0}
+    MinStackAmount: 0
+    MaxStackAmount: 0
+    DropChance: 0
 --- !u!1 &6233948281948728131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1443,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58939b76a7f69c347a1ea721d054d9af, type: 3}
+--- !u!114 &4443440974881784384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8237577669658120625, guid: 58939b76a7f69c347a1ea721d054d9af,
+    type: 3}
+  m_PrefabInstance: {fileID: 5763348825986503665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6097100881739566362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1974485159031463659, guid: 58939b76a7f69c347a1ea721d054d9af,
@@ -1480,6 +1519,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 408ea053a8e21fe4fb97eed858a46aad, type: 3}
+--- !u!114 &308860507659862116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6781648735464471108, guid: 408ea053a8e21fe4fb97eed858a46aad,
+    type: 3}
+  m_PrefabInstance: {fileID: 6508839897676167712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4df4a12030a284b9f3ff1bc87e8c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6511185789714697017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2370119961719065, guid: 408ea053a8e21fe4fb97eed858a46aad,

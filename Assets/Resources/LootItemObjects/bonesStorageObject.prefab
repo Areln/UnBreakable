@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 6438577454405339118}
   - component: {fileID: 925688666217046081}
   m_Layer: 0
-  m_Name: LootDrop
+  m_Name: bonesStorageObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1210,10 +1210,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7099251450696765119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3193c9a81bc246446a1032a4904154fc, type: 3}
+  m_Script: {fileID: 11500000, guid: b5ef34d40fc1e174384a5c96b1f1328e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Chest
+  objectName: Bones
+  MaxSlots: 0
 --- !u!1 &8805095199877747893
 GameObject:
   m_ObjectHideFlags: 0

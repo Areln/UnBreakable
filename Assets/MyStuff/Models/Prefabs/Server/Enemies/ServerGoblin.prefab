@@ -1060,6 +1060,7 @@ GameObject:
   - component: {fileID: 4681130729842470748}
   - component: {fileID: 7975211196803903572}
   - component: {fileID: 65983332414696969}
+  - component: {fileID: 3357211922392224068}
   m_Layer: 0
   m_Name: ServerGoblin
   m_TagString: target
@@ -1101,6 +1102,7 @@ MonoBehaviour:
   currentHealth: 0
   maxMana: 0
   currentMana: 0
+  lootObjectName: bones
   AbilityHolder: {fileID: 229582180582242304}
   abilities:
   - {fileID: 2934538167062644289, guid: d4e907ef854017a489116f259c0cd2f4, type: 3}
@@ -1218,6 +1220,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5843792, y: 1.8550556, z: 0.87164265}
   m_Center: {x: 0.03570925, y: 0.10955706, z: 0.0641789}
+--- !u!114 &3357211922392224068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233948281337516994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1955ebe028ae8418e0bbb73373192c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PossibleDrops:
+  - Item: {fileID: 3079971277905162434, guid: 8c6651efbf12eac47a0e9084196ec701, type: 3}
+    MinStackAmount: 1
+    MaxStackAmount: 1
+    DropChance: 1
+  - Item: {fileID: 8502749488716525044, guid: ac83cfb799935274eb27ae0c14654914, type: 3}
+    MinStackAmount: 1
+    MaxStackAmount: 1
+    DropChance: 0.1
 --- !u!1 &6233948281948728131
 GameObject:
   m_ObjectHideFlags: 0

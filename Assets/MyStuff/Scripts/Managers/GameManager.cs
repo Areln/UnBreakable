@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     internal void CreateStorageObject(int objectId, Vector3 vector3, float rotation, string objectName)
     {
-        StorageObject lootObject = Instantiate(Resources.Load($"LootItemObjects/{objectName}") as StorageObject, vector3, Quaternion.Euler(0, rotation, 0));
+        StorageObject lootObject = Instantiate(Resources.Load<StorageObject>($"LootItemObjects/{objectName}StorageObject"), vector3, Quaternion.Euler(0, rotation, 0));
         AddNewItemStorageToList(objectId, lootObject);
     }
 

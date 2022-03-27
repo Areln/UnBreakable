@@ -152,7 +152,7 @@ namespace Server
 			//drop loot
 			Vector3 dropPos = gameObject.transform.position;
 			dropPos.y = 0.5f;
-			GameObject lootChest = Instantiate(lootChestPrefab, dropPos, gameObject.transform.rotation);
+			ServerStorageObject lootChest = Instantiate(lootChestPrefab, dropPos, gameObject.transform.rotation).GetComponent<ServerStorageObject>();
 			//add to servergamemanager
 			//send message to createstorage
 			if (Region)
@@ -161,6 +161,7 @@ namespace Server
 			}
 
 			new ServerCharacterDieHandle().WriteMessage(GetInstanceID());
+			lootChest.DropStorageChest(aIInventory);
 
 			//destroys character model
 			Destroy(gameObject);
