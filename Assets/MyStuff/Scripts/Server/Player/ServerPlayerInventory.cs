@@ -20,7 +20,7 @@ namespace Server
         public Transform LegPieceTransform;
 
         public ItemArmor EquippedNecklacePiece;
-        public Transform KnecklacePieceTransform;
+        public Transform NecklacePieceTransform;
 
         public ItemArmor EquippedRing1Piece;
         public Transform Ring1PieceTransform;
@@ -38,8 +38,8 @@ namespace Server
         public List<Item> InventoryItems = new List<Item>();
 
         string[] serverInventory;
-        Dictionary<ArmorType, ItemEquipable> serverArmorEquipSlots = new Dictionary<ArmorType, ItemEquipable>();
-        Dictionary<WeaponType, ItemEquipable> serverWeaponEquipSlots = new Dictionary<WeaponType, ItemEquipable>();
+        internal Dictionary<ArmorType, ItemEquipable> serverArmorEquipSlots = new Dictionary<ArmorType, ItemEquipable>();
+        internal Dictionary<WeaponType, ItemEquipable> serverWeaponEquipSlots = new Dictionary<WeaponType, ItemEquipable>();
 
         void Awake()
         {
@@ -264,12 +264,16 @@ namespace Server
                     itemArmor.gameObject.transform.SetParent(LegPieceTransform, false);
                     EquippedLegPiece = itemArmor;
                     return true;
-                case ArmorType.Ring:
+                case ArmorType.RingR:
                     itemArmor.gameObject.transform.SetParent(Ring1PieceTransform, false);
                     EquippedRing1Piece = itemArmor;
                     return true;
-                case ArmorType.Knecklace:
+                case ArmorType.RingL:
                     itemArmor.gameObject.transform.SetParent(Ring2PieceTransform, false);
+                    EquippedRing1Piece = itemArmor;
+                    return true;
+                case ArmorType.Necklace:
+                    itemArmor.gameObject.transform.SetParent(NecklacePieceTransform, false);
                     EquippedRing2Piece = itemArmor;
                     return true;
                 default:
@@ -300,11 +304,15 @@ namespace Server
                     _tempSel = EquippedLegPiece;
                     EquippedLegPiece = null;
                     break;
-                case ArmorType.Ring:
+                case ArmorType.RingR:
                     _tempSel = EquippedRing1Piece;
                     EquippedRing1Piece = null;
                     break;
-                case ArmorType.Knecklace:
+                case ArmorType.RingL:
+                    _tempSel = EquippedRing2Piece;
+                    EquippedRing1Piece = null;
+                    break;
+                case ArmorType.Necklace:
                     _tempSel = EquippedNecklacePiece;
                     EquippedNecklacePiece = null;
                     break;
@@ -335,9 +343,11 @@ namespace Server
                     return EquippedGlovePiece;
                 case ArmorType.LegPiece:
                     return EquippedLegPiece;
-                case ArmorType.Ring:
+                case ArmorType.RingR:
                     return EquippedRing1Piece;
-                case ArmorType.Knecklace:
+                case ArmorType.RingL:
+                    return EquippedRing2Piece;
+                case ArmorType.Necklace:
                     return EquippedNecklacePiece;
                 default:
                     break;

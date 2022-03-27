@@ -18,6 +18,8 @@ public enum Packets
 	CharacterDropItems,
 	CreateStorageObject,
 	equipItem,
+	healthUpdate,
+	characterDie,
 	disconnect,
 }
 

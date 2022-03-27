@@ -23,15 +23,10 @@ public abstract class CharacterBrain : MonoBehaviour
 
     public abstract void CharacterDie();
 
-    public void TakeDamage(int _damage)
+    public void ChangeHealth(int healthChange)
     {
-        currentHealth -= _damage;
-        GetComponent<HPScript>().ChangeHP(-_damage, gameObject.transform.position);
-
-        if (currentHealth <= 0)
-        {
-            CharacterDie();
-        }
+        currentHealth += healthChange;
+        GetComponent<HPScript>().ChangeHP(healthChange, gameObject.transform.position);
     }
 
 	internal void InitializeData(CharacterData characterData)

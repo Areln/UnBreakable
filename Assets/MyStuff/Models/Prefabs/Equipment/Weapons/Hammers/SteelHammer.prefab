@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8637958937470559138}
   - component: {fileID: 7847909706010094803}
-  - component: {fileID: -2446348938857009737}
   - component: {fileID: -7430051609087214751}
   m_Layer: 0
   m_Name: SteelHammer
@@ -52,21 +51,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.7796535, y: 0.44527805, z: 6.8620424}
   m_Center: {x: 0.11774585, y: 0.3070565, z: 0.1428401}
---- !u!114 &-2446348938857009737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2311894314349637726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f08e9d81808b1478536ef72c54231c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PossibleAbilities:
-  - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
-  WeaponHitBox: {fileID: 7847909706010094803}
 --- !u!114 &-7430051609087214751
 MonoBehaviour:
   m_ObjectHideFlags: 0

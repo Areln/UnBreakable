@@ -9,9 +9,6 @@ public class BasicAI : CharacterBrain
 
 	public AIState currentAIState;
 
-	public MobRegion Region { get { return _region; } set { _region = value; } }
-	private MobRegion _region;
-
 	public GameObject MainTarget;
 
 	public List<GameObject> TargetsInRange = new List<GameObject>();
@@ -79,11 +76,6 @@ public class BasicAI : CharacterBrain
 		StorageObject woChest = lootChest.GetComponent<StorageObject>();
 		//woChest.SetContents(AIInventory);
 
-		if (Region)
-		{
-			Region.RemoveEnemy(this);
-		}
-
 		//destroys character model
 		Destroy(gameObject);
 	}
@@ -91,15 +83,10 @@ public class BasicAI : CharacterBrain
 	// referenced from the animation.
 	public void TurnHitBoxOn()
 	{
-		//WeaponHitBox.enabled = true;
 	}
 
 	// referenced from the animation.
 	public void HitCheck()
 	{
-		//DoneCasting();
-		//agent.isStopped = false;
-		//disable hitbox
-		//WeaponHitBox.enabled = false;
 	}
 }

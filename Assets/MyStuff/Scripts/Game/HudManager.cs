@@ -82,7 +82,7 @@ public class HudManager : MonoBehaviour
     public ItemSlot EquippedRing2PieceSlot;
     public ItemSlot EquippedMainHandWeaponSlot;
     public ItemSlot EquippedOffHandWeaponSlot;
-    public ItemSlot EquippedKnecklacePieceSlot;
+    public ItemSlot EquippedNecklacePieceSlot;
     public List<ItemSlot> InventoryItemSlots = new List<ItemSlot>();
     public GameObject ItemSlotPrefab;
     public Transform ItemSlotHolder;
@@ -105,11 +105,14 @@ public class HudManager : MonoBehaviour
                 case ArmorType.LegPiece:
                     EquippedLegsPieceSlot.SetSlottedItem(itemEquippable);
                     break;
-                case ArmorType.Ring:
+                case ArmorType.RingR:
                     EquippedRing1PieceSlot.SetSlottedItem(itemEquippable);
                     break;
-                case ArmorType.Knecklace:
-                    EquippedKnecklacePieceSlot.SetSlottedItem(itemEquippable);
+                case ArmorType.RingL:
+                    EquippedRing2PieceSlot.SetSlottedItem(itemEquippable);
+                    break;
+                case ArmorType.Necklace:
+                    EquippedNecklacePieceSlot.SetSlottedItem(itemEquippable);
                     break;
                 default:
                     break;
@@ -149,12 +152,14 @@ public class HudManager : MonoBehaviour
                 case ArmorType.LegPiece:
                     EquippedLegsPieceSlot.ClearSlot();
                     break;
-                case ArmorType.Ring:
+                case ArmorType.RingR:
                     EquippedRing1PieceSlot.ClearSlot();
+                    break;
+                case ArmorType.RingL:
                     EquippedRing2PieceSlot.ClearSlot();
                     break;
-                case ArmorType.Knecklace:
-                    EquippedKnecklacePieceSlot.ClearSlot();
+                case ArmorType.Necklace:
+                    EquippedNecklacePieceSlot.ClearSlot();
                     break;
                 default:
                     break;

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2208393730596533702}
   m_Layer: 0
   m_Name: ServerLightningBall
-  m_TagString: DamageDealer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5981d6e487fa8134592e48ad43124477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
+  HealthChange: -10
   StatModifier: 3
   abilityName: Lightning Ball
   PrefabName: LightningBall
@@ -114,7 +114,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8262041921401545342}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.56

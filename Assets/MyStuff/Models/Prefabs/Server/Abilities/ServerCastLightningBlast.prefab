@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3834966594443898762}
   m_Layer: 0
   m_Name: ServerCastLightningBlast
-  m_TagString: DamageDealer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b862700801f9074ba891a72ceda1223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  HealthChange: 0
   StatModifier: 0
-  abilityName: 
+  abilityName: LightningBlast
   PrefabName: CastLightningBlast
   manaCost: 25
   maxCooldown: 5

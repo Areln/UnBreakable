@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450db7e4382503f47953911b373eaede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  HealthChange: -50
   StatModifier: 1
   abilityName: Swing
   PrefabName: SwingStrengthWeapon
