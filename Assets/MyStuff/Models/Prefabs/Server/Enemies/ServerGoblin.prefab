@@ -1114,7 +1114,8 @@ MonoBehaviour:
   maxIdleTime: 0
   currentIdleTime: 0
   WeaponHitBox: {fileID: 0}
-  lootChestPrefab: {fileID: 0}
+  lootChestPrefab: {fileID: 7099251450696765119, guid: 60f1e130a6276414198a8d762cd3f4d8,
+    type: 3}
 --- !u!114 &6571871693066834084
 MonoBehaviour:
   m_ObjectHideFlags: 0
