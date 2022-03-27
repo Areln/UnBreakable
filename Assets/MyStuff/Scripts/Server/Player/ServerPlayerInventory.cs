@@ -48,6 +48,12 @@ namespace Server
 
         // Server Functions
         #region 
+        
+        public void DropAllItemsFromInventory() 
+        {
+            
+        }
+
         public void AddToServerInventory(int index, string internalItemName) 
         {
             serverInventory[index] = internalItemName;

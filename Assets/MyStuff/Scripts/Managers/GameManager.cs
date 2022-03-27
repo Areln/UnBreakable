@@ -37,9 +37,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    internal void CreateStorageObject(int objectId, Vector3 vector3, float rotation, string objectName)
+    {
+        StorageObject lootObject = Instantiate(Resources.Load($"LootItemObjects/{objectName}") as StorageObject, vector3, Quaternion.Euler(0, rotation, 0));
+        AddNewItemStorageToList(objectId, lootObject);
+    }
+
     internal PlayerBrain ClientPlayer;
 
     internal Dictionary<int, CharacterBrain> LoadedCharacters { get; set; } = new Dictionary<int, CharacterBrain>();
+
+    internal Dictionary<int, StorageObject> itemStorages = new Dictionary<int, StorageObject>();
 
     public List<GameObject> PossibleItems;
     public GameObject BasePlayerPrefab;
@@ -100,5 +108,9 @@ public class GameManager : MonoBehaviour
 
         LoadedCharacters.Add(characterData.CharacterId, basicAi);
         basicAi.SetupAbilities();
+    }
+    public void AddNewItemStorageToList(int objectId, StorageObject worldObjectChest)
+    {
+        itemStorages.Add(objectId, worldObjectChest);
     }
 }

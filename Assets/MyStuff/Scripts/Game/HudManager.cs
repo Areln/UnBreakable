@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,12 @@ public class HudManager : MonoBehaviour
                 return m_Instance;
             };
         }
+    }
+
+    internal void OpenStorage(StorageObject storageObject)
+    {
+        // TODO: load contents network message and display results
+
     }
 
     //Canvases

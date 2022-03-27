@@ -42,6 +42,8 @@ namespace Server
 
         internal Dictionary<int, ServerBasicAI> Characters { get; set; } = new Dictionary<int, ServerBasicAI>();
 
+        internal Dictionary<int, ServerStorageObject> itemStorages = new Dictionary<int, ServerStorageObject>();
+
         public List<GameObject> PossibleItems = new List<GameObject>();
 
         public GameObject BasePlayerPrefab;
@@ -55,6 +57,11 @@ namespace Server
             {
                 ItemDirectory.Add(item.GetComponent<Item>().InternalName, item);
             }
+        }
+
+        public void AddNewItemStorageToList(ServerStorageObject worldObjectChest) 
+        {
+            itemStorages.Add(worldObjectChest.GetInstanceID(), worldObjectChest);
         }
 
         internal ServerPlayerBrain GetPlayer(int playerId)

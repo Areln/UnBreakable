@@ -12,6 +12,7 @@ namespace Server
 		public int currentHealth;
 		public int maxMana;
 		public int currentMana;
+		public string lootObjectName;
 
 		internal NavMeshAgent agent;
 		internal Stats Stats;

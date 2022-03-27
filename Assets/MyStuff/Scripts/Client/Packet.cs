@@ -15,6 +15,8 @@ public enum Packets
 	CharacterEquipItem,
 	CharacterUnEquipItem,
 	CharacterPickUpItem,
+	CharacterDropItems,
+	CreateStorageObject,
 	equipItem,
 	disconnect,
 }

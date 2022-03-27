@@ -13,6 +13,7 @@ namespace Server
 
 		public ServerMobRegion Region { get { return _region; } set { _region = value; } }
 		private ServerMobRegion _region;
+		internal ServerAIInventory aIInventory;
 
 		public GameObject MainTarget;
 
@@ -35,6 +36,7 @@ namespace Server
 			hpScript = GetComponent<HPScript>();
 			animator = GetComponent<Animator>();
 			agent = GetComponent<NavMeshAgent>();
+			aIInventory = GetComponent<ServerAIInventory>();
 		}
 
 		// Start is called before the first frame update
@@ -150,7 +152,8 @@ namespace Server
 			Vector3 dropPos = gameObject.transform.position;
 			dropPos.y = 0.5f;
 			GameObject lootChest = Instantiate(lootChestPrefab, dropPos, gameObject.transform.rotation);
-
+			//add to servergamemanager
+			//send message to createstorage
 			if (Region)
 			{
 				Region.RemoveEnemy(this);

@@ -76,6 +76,8 @@ public class BasicAI : CharacterBrain
 		Vector3 dropPos = gameObject.transform.position;
 		dropPos.y = 0.5f;
 		GameObject lootChest = Instantiate(lootChestPrefab, dropPos, gameObject.transform.rotation);
+		StorageObject woChest = lootChest.GetComponent<StorageObject>();
+		//woChest.SetContents(AIInventory);
 
 		if (Region)
 		{
