@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Server.Networking;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -155,6 +156,8 @@ namespace Server
 			{
 				Region.RemoveEnemy(this);
 			}
+
+			new ServerCharacterDieHandle().WriteMessage(GetInstanceID());
 
 			//destroys character model
 			Destroy(gameObject);

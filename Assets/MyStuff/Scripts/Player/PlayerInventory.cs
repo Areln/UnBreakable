@@ -24,7 +24,7 @@ public class PlayerInventory : MonoBehaviour
     public GameObject LeftLegArmorObject;
 
     public ItemArmor EquippedNecklacePiece;
-    public Transform KnecklacePieceTransform;
+    public Transform NecklacePieceTransform;
 
     public ItemArmor EquippedRing1Piece;
     public Transform Ring1PieceTransform;
@@ -248,13 +248,18 @@ public class PlayerInventory : MonoBehaviour
                 EquippedLegPiece = itemArmor;
                 return true;
 
-            case ArmorType.Ring:
+            case ArmorType.RingR:
                 itemArmor.gameObject.transform.SetParent(Ring1PieceTransform, false);
                 EquippedRing1Piece = itemArmor;
                 return true;
 
-            case ArmorType.Knecklace:
+            case ArmorType.RingL:
                 itemArmor.gameObject.transform.SetParent(Ring2PieceTransform, false);
+                EquippedRing1Piece = itemArmor;
+                return true;
+
+            case ArmorType.Necklace:
+                itemArmor.gameObject.transform.SetParent(NecklacePieceTransform, false);
                 EquippedRing2Piece = itemArmor;
                 return true;
 
@@ -298,12 +303,17 @@ public class PlayerInventory : MonoBehaviour
                 EquippedLegPiece = null;
                 break;
 
-            case ArmorType.Ring:
+            case ArmorType.RingR:
                 _tempSel = EquippedRing1Piece;
                 EquippedRing1Piece = null;
                 break;
 
-            case ArmorType.Knecklace:
+            case ArmorType.RingL:
+                _tempSel = EquippedRing2Piece;
+                EquippedRing1Piece = null;
+                break;
+
+            case ArmorType.Necklace:
                 _tempSel = EquippedNecklacePiece;
                 EquippedNecklacePiece = null;
                 break;
@@ -339,9 +349,11 @@ public class PlayerInventory : MonoBehaviour
                 return EquippedGlovePiece;
             case ArmorType.LegPiece:
                 return EquippedLegPiece;
-            case ArmorType.Ring:
+            case ArmorType.RingR:
                 return EquippedRing1Piece;
-            case ArmorType.Knecklace:
+            case ArmorType.RingL:
+                return EquippedRing2Piece;
+            case ArmorType.Necklace:
                 return EquippedNecklacePiece;
             default:
                 break;

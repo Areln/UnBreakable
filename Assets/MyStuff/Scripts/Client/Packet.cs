@@ -16,6 +16,8 @@ public enum Packets
 	CharacterUnEquipItem,
 	CharacterPickUpItem,
 	equipItem,
+	healthUpdate,
+	characterDie,
 	disconnect,
 }
 

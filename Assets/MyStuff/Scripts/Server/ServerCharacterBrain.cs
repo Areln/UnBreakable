@@ -29,10 +29,12 @@ namespace Server
 			animator = GetComponent<Animator>();
 		}
 
-		public void TakeDamage(int _damage)
+		public void ChangeHealth(int healthChange)
 		{
-			currentHealth -= _damage;
-			GetComponent<HPScript>().ChangeHP(-_damage, gameObject.transform.position);
+			currentHealth += healthChange;
+			GetComponent<HPScript>().ChangeHP(healthChange, gameObject.transform.position);
+
+			new ServerHealthUpdateHandle().WriteMessage(GetInstanceID(), healthChange);
 
 			if (currentHealth <= 0)
 			{

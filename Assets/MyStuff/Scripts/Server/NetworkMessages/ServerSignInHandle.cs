@@ -74,15 +74,15 @@ namespace Server.Networking
             }
 
             // Equipment Data
-            _packet.Write(playerData.playerInventory.EquippedHelmetPiece?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedChestPiece?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedGlovePiece?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedLegPiece?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedNecklacePiece?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedRing1Piece?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedRing2Piece?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedMainHandWeapon?.InternalName ?? DefaultEmptySlot);
-            _packet.Write(playerData.playerInventory.EquippedOffHandWeapon?.InternalName ?? DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverArmorEquipSlots.TryGetValue(ArmorType.HeadPiece, out var armorItem) ? armorItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverArmorEquipSlots.TryGetValue(ArmorType.ChestPiece, out armorItem) ? armorItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverArmorEquipSlots.TryGetValue(ArmorType.GlovePiece, out armorItem) ? armorItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverArmorEquipSlots.TryGetValue(ArmorType.LegPiece, out armorItem) ? armorItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverArmorEquipSlots.TryGetValue(ArmorType.Necklace, out armorItem) ? armorItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverArmorEquipSlots.TryGetValue(ArmorType.RingR, out armorItem) ? armorItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverArmorEquipSlots.TryGetValue(ArmorType.RingL, out armorItem) ? armorItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverWeaponEquipSlots.TryGetValue(WeaponType.MainHand, out var weaponItem) ? weaponItem.InternalName : DefaultEmptySlot);
+            _packet.Write(playerData.playerInventory.serverWeaponEquipSlots.TryGetValue(WeaponType.OffHand, out weaponItem) ? weaponItem.InternalName : DefaultEmptySlot);
 
             if (isClientPlayer)
             {

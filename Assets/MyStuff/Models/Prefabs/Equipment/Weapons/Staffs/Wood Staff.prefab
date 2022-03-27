@@ -167,8 +167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4240155622287716256}
-  - component: {fileID: 7910120200107799402}
   - component: {fileID: 2365990204190212655}
+  - component: {fileID: 1950833372536714650}
   m_Layer: 0
   m_Name: Wood Staff
   m_TagString: DamageDealer
@@ -192,22 +192,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7910120200107799402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9140589588958442948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f08e9d81808b1478536ef72c54231c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PossibleAbilities:
-  - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
-  - {fileID: 1858707421012363883, guid: 6a3a56803a091dd439b017c116f9847a, type: 3}
-  WeaponHitBox: {fileID: 0}
 --- !u!114 &2365990204190212655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,3 +214,16 @@ MonoBehaviour:
   MonetaryValue: 0
   EquipType: 0
   WeaponType: 0
+--- !u!65 &1950833372536714650
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140589588958442948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.83, z: 0.5}
+  m_Center: {x: 0, y: 0.75, z: 0}

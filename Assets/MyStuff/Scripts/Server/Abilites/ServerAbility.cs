@@ -2,7 +2,7 @@
 
 namespace Server
 {
-    public abstract class ServerAbility : DamageDealer
+    public abstract class ServerAbility : HealthChanger
     {
         internal ServerCharacterBrain owner;
         public string abilityName;
@@ -37,7 +37,7 @@ namespace Server
             if (characterBrainTakingDamage != null && characterBrainTakingDamage != owner)
             {
                 var damage = CalculateDamageDealt(owner);
-                characterBrainTakingDamage.TakeDamage(damage);
+                characterBrainTakingDamage.ChangeHealth(damage);
             }
         }
     }

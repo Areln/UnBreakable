@@ -6,7 +6,7 @@ public enum EquipType { Weapon, Armor}
 
 public enum WeaponType { MainHand, OffHand}
 
-public enum ArmorType { HeadPiece, ChestPiece, GlovePiece, LegPiece, Ring, Knecklace}
+public enum ArmorType { HeadPiece, ChestPiece, GlovePiece, LegPiece, RingR, RingL, Necklace}
 
 public abstract class Item : MonoBehaviour
 {

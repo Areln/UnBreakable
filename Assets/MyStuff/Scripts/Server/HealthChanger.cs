@@ -2,34 +2,36 @@
 
 namespace Server
 {
-    public abstract class DamageDealer : MonoBehaviour
+    public abstract class HealthChanger : MonoBehaviour
     {
-        public int Damage;
+        public int HealthChange;
 
         public StatTypes StatModifier;
 
         // TODO: Create better formula for adding damage to abilities based on stats;
         internal int CalculateDamageDealt(ServerCharacterBrain brain)
         {
-            int damage = Damage;
+            int healthChangeMultiplier = HealthChange >= 0 ? 1 : -1;
+
+            int healthChange = HealthChange;
             switch (StatModifier)
             {
                 case StatTypes.Strength:
-                    damage += brain.Stats.Strength;
+                    healthChange += brain.Stats.Strength * healthChangeMultiplier;
                     break;
                 case StatTypes.Dexterity:
-                    damage += brain.Stats.Dexterity;
+                    healthChange += brain.Stats.Dexterity * healthChangeMultiplier;
                     break;
                 case StatTypes.Intelligence:
-                    damage += brain.Stats.Intelligence;
+                    healthChange += brain.Stats.Intelligence * healthChangeMultiplier;
                     break;
                 case StatTypes.Vitality:
-                    damage += brain.Stats.Vitality;
+                    healthChange += brain.Stats.Vitality * healthChangeMultiplier;
                     break;
                 default:
                     break;
             }
-            return damage;
+            return healthChange;
         }
     }
 }

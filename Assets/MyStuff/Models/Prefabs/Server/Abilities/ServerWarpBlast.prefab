@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3834966594443898762}
   m_Layer: 0
   m_Name: ServerWarpBlast
-  m_TagString: DamageDealer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555573096f8c2164889cebc5b3c7f076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 90
+  HealthChange: -90
   StatModifier: 3
   abilityName: Warp Blast
   PrefabName: WarpBlast

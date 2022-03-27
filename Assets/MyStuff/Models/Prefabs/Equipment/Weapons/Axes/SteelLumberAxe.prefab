@@ -170,7 +170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4963209249315729362}
-  - component: {fileID: 4585032906675686045}
   - component: {fileID: -7507584231409310743}
   m_Layer: 0
   m_Name: SteelLumberAxe
@@ -195,20 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4585032906675686045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3596582057088069105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f08e9d81808b1478536ef72c54231c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PossibleAbilities: []
-  WeaponHitBox: {fileID: 1822729141701751287}
 --- !u!114 &-7507584231409310743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,5 +464,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 1.5, z: 3.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.5000002, y: 0.88745606, z: 5.951561}
+  m_Center: {x: 0, y: 0.306272, z: 1.22578}

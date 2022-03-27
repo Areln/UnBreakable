@@ -290,7 +290,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8066638529411629179}
   - component: {fileID: 4441166099780821136}
-  - component: {fileID: 4101686877575961777}
   - component: {fileID: 8502749488716525044}
   - component: {fileID: 541713703496057705}
   m_Layer: 0
@@ -329,27 +328,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3167050743238269471}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.20765701, y: 1.1118267, z: 0.18122362}
-  m_Center: {x: 0.00246162, y: 0.030284218, z: -0.001436397}
---- !u!114 &4101686877575961777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3167050743238269471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f08e9d81808b1478536ef72c54231c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PossibleAbilities:
-  - {fileID: 2934538167062644289, guid: 5b002057db3745a43bb723dd82589a26, type: 3}
-  - {fileID: 1858707421012363883, guid: 6a3a56803a091dd439b017c116f9847a, type: 3}
-  WeaponHitBox: {fileID: 4441166099780821136}
+  m_Size: {x: 0.12, y: 0.3207576, z: 0.12}
+  m_Center: {x: 0.002461624, y: 0.16, z: -0.001436394}
 --- !u!114 &8502749488716525044
 MonoBehaviour:
   m_ObjectHideFlags: 0

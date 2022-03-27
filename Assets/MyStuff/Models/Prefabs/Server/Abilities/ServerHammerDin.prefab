@@ -636,7 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19367a0ee56d328418b9cf82ce793297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  HealthChange: -20
   StatModifier: 3
   abilityName: 
   PrefabName: HammerDin
@@ -660,8 +660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1826ca9b90a197540b160fdce9ffd8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
-  StatModifier: 3
   abilityName: 
   manaCost: 0
   maxCooldown: 0
