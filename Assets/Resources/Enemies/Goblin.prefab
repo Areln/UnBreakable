@@ -1484,7 +1484,7 @@ GameObject:
   - component: {fileID: 2691935527958827305}
   - component: {fileID: 2763248492080092250}
   - component: {fileID: 6232943938325395346}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangeDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

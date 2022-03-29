@@ -2091,6 +2091,7 @@ GameObject:
   - component: {fileID: 5590686505320478841}
   - component: {fileID: 7191413033542379377}
   - component: {fileID: 1840425266}
+  - component: {fileID: 3680705672519973824}
   m_Layer: 0
   m_Name: Player
   m_TagString: target
@@ -2264,7 +2265,7 @@ MonoBehaviour:
   RightLegArmorObject: {fileID: 0}
   LeftLegArmorObject: {fileID: 0}
   EquippedNecklacePiece: {fileID: 0}
-  KnecklacePieceTransform: {fileID: 0}
+  NecklacePieceTransform: {fileID: 0}
   EquippedRing1Piece: {fileID: 0}
   Ring1PieceTransform: {fileID: 0}
   EquippedRing2Piece: {fileID: 0}
@@ -2274,6 +2275,22 @@ MonoBehaviour:
   EquippedOffHandWeapon: {fileID: 0}
   OffHandWeaponTransform: {fileID: 6361897922562766107}
   InventoryItems: []
+--- !u!54 &3680705672519973824
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621349970582242535}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6757616398228717756
 GameObject:
   m_ObjectHideFlags: 0

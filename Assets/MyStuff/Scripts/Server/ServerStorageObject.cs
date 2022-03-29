@@ -1,4 +1,5 @@
 ﻿using Server.Networking;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,8 @@ namespace Server
 
         }
     }
+
+    [Serializable]
     public class ServerStorageItem
     {
         string ItemName;
