@@ -9,9 +9,9 @@ namespace Server
     {
         public List<DropItemRecord> PossibleDrops = new List<DropItemRecord>();
 
-        public List<ServerStorageItem> GenerateDrops() 
+        public List<StorageData> GenerateDrops() 
         {
-            List<ServerStorageItem> returnList = new List<ServerStorageItem>();
+            List<StorageData> returnList = new List<StorageData>();
 
             foreach (DropItemRecord record in PossibleDrops)
             {
@@ -19,7 +19,7 @@ namespace Server
                 
                 if (tmp <= record.DropChance)
                 {
-                    returnList.Add(new ServerStorageItem(record.Item.InternalName, UnityEngine.Random.Range(record.MinStackAmount, record.MaxStackAmount+1)));
+                    returnList.Add(new StorageData(record.Item.InternalName, UnityEngine.Random.Range(record.MinStackAmount, record.MaxStackAmount+1)));
                 }
             }
 

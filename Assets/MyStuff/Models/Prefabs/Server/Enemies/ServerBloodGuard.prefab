@@ -923,10 +923,10 @@ MonoBehaviour:
     MinStackAmount: 1
     MaxStackAmount: 1
     DropChance: 1
-  - Item: {fileID: 0}
-    MinStackAmount: 0
-    MaxStackAmount: 0
-    DropChance: 0
+  - Item: {fileID: 8502749488716525044, guid: d957e24c020370a4e87dbe14dcf1ea11, type: 3}
+    MinStackAmount: 1
+    MaxStackAmount: 1
+    DropChance: 0.5
 --- !u!1 &6233948281948728131
 GameObject:
   m_ObjectHideFlags: 0

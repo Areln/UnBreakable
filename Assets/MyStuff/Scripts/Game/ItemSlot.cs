@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -22,19 +23,22 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         ClearSlot();
     }
 
-    public void SetSlottedItem(Item item)
+    internal void SetSlottedItem(Item item, int itemCount = 1)
     {
         SlottedItem = item;
+        SlottedItem.CurrentUseCount = itemCount;
         ItemSprite.sprite = item.ItemSprite;
         ItemSprite.color = new Color(1, 1, 1, 1);
-        if (item.CurrentUseCount != 1 && item.CurrentUseCount > 0)
+
+        if (SlottedItem.CurrentUseCount != 1 && SlottedItem.CurrentUseCount > 0)
         {
-            CountTextObject.text = $"x{item.CurrentUseCount}";
+            CountTextObject.text = $"x{SlottedItem.CurrentUseCount}";
         }
         else
         {
             CountTextObject.text = "";
         }
+
         IsSlottedValue = true;
     }
 

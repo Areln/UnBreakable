@@ -7,9 +7,9 @@ namespace Server
 {
     public class ServerStorageObject : MonoBehaviour
     {
-        public List<ServerStorageItem> ChestContents = new List<ServerStorageItem>();
+        public List<StorageData> ChestContents = new List<StorageData>();
 
-        public void SetContents(List<ServerStorageItem> itemsList)
+        public void SetContents(List<StorageData> itemsList)
         {
             ChestContents = itemsList;
         }
@@ -28,27 +28,27 @@ namespace Server
 
         }
     }
+}
 
-    [Serializable]
-    public class ServerStorageItem
+[Serializable]
+public class StorageData
+{
+    string ItemName;
+    int Amount;
+
+    public StorageData(string itemName, int amount)
     {
-        string ItemName;
-        int Amount;
+        ItemName = itemName;
+        Amount = amount;
+    }
 
-        public ServerStorageItem(string itemName, int amount)
-        {
-            ItemName = itemName;
-            Amount = amount;
-        }
+    public string GetItemName()
+    {
+        return ItemName;
+    }
 
-        public string GetItemName() 
-        {
-            return ItemName;
-        }
-
-        public int GetAmount() 
-        {
-            return Amount;
-        }
+    public int GetAmount()
+    {
+        return Amount;
     }
 }

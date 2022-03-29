@@ -39,12 +39,6 @@ public class HudManager : MonoBehaviour
         }
     }
 
-    internal void OpenStorage(StorageObject storageObject)
-    {
-        // TODO: load contents network message and display results
-
-    }
-
     //Canvases
     public Canvas charInvCanvas;
     public Canvas abilityBarCanvas;
@@ -83,11 +77,40 @@ public class HudManager : MonoBehaviour
     public ItemSlot EquippedMainHandWeaponSlot;
     public ItemSlot EquippedOffHandWeaponSlot;
     public ItemSlot EquippedNecklacePieceSlot;
-    public List<ItemSlot> InventoryItemSlots = new List<ItemSlot>();
     public GameObject ItemSlotPrefab;
     public Transform ItemSlotHolder;
+    public List<ItemSlot> InventoryItemSlots = new List<ItemSlot>();
+    
+    //container
+    public Canvas ContainerDisplayCanvas;
+    public Transform ContainerItemSlotsHolder;
+    public List<ItemSlot> ContainerItemSlots = new List<ItemSlot>();
 
-    public void EquippedItem(ItemEquipable itemEquippable) 
+    internal void PopulateStorageContainer(List<StorageData> contents)
+    {
+        ClearContainerItemSlots();
+
+        for (int i = 0; i < contents.Count; i++)
+        {
+            ItemSlot newSlot = Instantiate(ItemSlotPrefab, ContainerItemSlotsHolder).GetComponent<ItemSlot>();
+            newSlot.Setup(i);
+            newSlot.SetSlottedItem(GameManager.Instance.GetItem(contents[i].GetItemName()).GetComponent<Item>(), contents[i].GetAmount());
+            ContainerItemSlots.Add(newSlot);
+        }
+    }
+
+    private void ClearContainerItemSlots()
+    {
+        for (int i = 0; i <  ContainerItemSlots.Count; i++)
+        {
+            ItemSlot temp = ContainerItemSlots[i];
+            ContainerItemSlots.Remove(temp);
+            Destroy(temp.gameObject);
+            i--;
+        }
+    }
+
+    public void EquippedItem(ItemEquipable itemEquippable)
     {
         if (typeof(ItemArmor).IsAssignableFrom(itemEquippable.GetType()))
         {
@@ -134,7 +157,7 @@ public class HudManager : MonoBehaviour
         }
     }
 
-    public void UnEquippedItem(ItemEquipable itemEquippable) 
+    public void UnEquippedItem(ItemEquipable itemEquippable)
     {
         if (typeof(ItemArmor).IsAssignableFrom(itemEquippable.GetType()))
         {
@@ -191,6 +214,9 @@ public class HudManager : MonoBehaviour
             _slot.Setup(i);
             InventoryItemSlots.Add(_slot);
         }
+
+        //disable chest ui by default
+        DisableContainerDisplay();
     }
 
     // Update is called once per frame
@@ -204,8 +230,8 @@ public class HudManager : MonoBehaviour
             manaText.text = GameManager.Instance.ClientPlayer.currentMana.ToString();
             manaSlider.value = GameManager.Instance.ClientPlayer.currentMana;
             //Update CD Shades
-            foreach(var ability in GameManager.Instance.ClientPlayer.abilities)
-			{
+            foreach (var ability in GameManager.Instance.ClientPlayer.abilities)
+            {
                 if (ability != null)
                 {
                     ability1Shade.color = new Color32(0, 69, 185, (byte)ShadeCalculator(ability.GetCDPercentage()));
@@ -238,9 +264,18 @@ public class HudManager : MonoBehaviour
         charInvCanvas.enabled = _value;
     }
 
-    public void RedrawInventory() 
+    public void EnableContainerDisplay()
     {
-        
+        ContainerDisplayCanvas.enabled = true;
+    }
+
+    public void DisableContainerDisplay()
+    {
+        if (ContainerDisplayCanvas.enabled)
+        {
+            ContainerDisplayCanvas.enabled = false;
+            ClearContainerItemSlots();
+        }
     }
 
     //calcs alpha value for ability cooldown UI

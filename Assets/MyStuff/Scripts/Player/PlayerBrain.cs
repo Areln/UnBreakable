@@ -111,6 +111,7 @@ public class PlayerBrain : CharacterBrain
 			{
 				//toggle inv/char
 				HudManager.Instance.ToggleInventory();
+				HudManager.Instance.DisableContainerDisplay();
 			}
 
 			//Right click

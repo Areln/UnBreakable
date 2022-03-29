@@ -29,6 +29,8 @@ public class CharacterMoveHandle : IHandle
 
 	public void WriteMessage(Vector3 targetPosition)
 	{
+
+
 		using (Packet _packet = new Packet(GetMessageId()))
 		{
 			_packet.Write(targetPosition.x);
