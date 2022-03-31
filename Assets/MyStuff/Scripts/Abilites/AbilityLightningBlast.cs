@@ -21,6 +21,7 @@ public class AbilityLightningBlast : Ability
 	{
 		if (IsCanceled && !finishedCasting)
 		{
+			finishedCasting = true;
 			owner.animator.SetBool("Casting", false);
 			owner.agent.isStopped = false;
 			owner.CurrentlyCastingAbility = null;
@@ -57,10 +58,10 @@ public class AbilityLightningBlast : Ability
 
 	private IEnumerator CastSpell(float sec)
 	{
-		owner.currentMana -= manaCost;
+		owner.currentMana -= manaCost; // TODO: server side this.
 		IsCanceled = false;
 		finishedCasting = false;
-		currentCooldown = maxCooldown;
+		currentCooldown = maxCooldown; // TODO: server side this.
 		owner.gameObject.transform.LookAt(targetPosition);
 		var newPosition = owner.transform.position + owner.transform.forward * 1f;
 		castParticles = Instantiate(CastParticles, newPosition, owner.transform.rotation);

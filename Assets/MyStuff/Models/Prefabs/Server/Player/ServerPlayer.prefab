@@ -1857,6 +1857,7 @@ GameObject:
   - component: {fileID: 5590686505320478841}
   - component: {fileID: 7191413033542379377}
   - component: {fileID: 853572710235284752}
+  - component: {fileID: 8911227981143101325}
   - component: {fileID: 7292714797766213783}
   m_Layer: 0
   m_Name: ServerPlayer
@@ -2014,6 +2015,18 @@ MonoBehaviour:
   EquippedOffHandWeapon: {fileID: 0}
   OffHandWeaponTransform: {fileID: 7665880782088830684}
   InventoryItems: []
+--- !u!114 &8911227981143101325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621349970582242535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f483a91cc6701cf4d91e80889d641ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &7292714797766213783
 Rigidbody:
   m_ObjectHideFlags: 0
