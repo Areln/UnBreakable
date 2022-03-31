@@ -106,6 +106,7 @@ public class PlayerBrain : CharacterBrain
 					CurrentlyCastingAbility = null;
 				}
 				playerMovement.StopPlayerFromMoving();
+				StopCharacterFromMoving();
 			}
 			if (Input.GetKeyDown(KeyCode.B))
 			{

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,6 +7,7 @@ using UnityEngine.AI;
 public abstract class CharacterBrain : MonoBehaviour
 {
     public string characterName;
+    public float Speed;
     public int maxHealth;
     public int currentHealth;
     public int maxMana;
@@ -20,6 +22,10 @@ public abstract class CharacterBrain : MonoBehaviour
     public Ability[] abilities;
 
     internal Ability CurrentlyCastingAbility { get; set; }
+
+    internal Vector3? targetPosition;
+    internal float? targetRotation;
+    internal Queue<MoveData> positions = new Queue<MoveData>();
 
     public abstract void CharacterDie();
 
@@ -36,22 +42,64 @@ public abstract class CharacterBrain : MonoBehaviour
 
     public void StopCharacterFromMoving()
     {
-        agent.destination = gameObject.transform.position;
+        animator.SetBool("IsWalking", false);
+        positions.Clear();
+        targetPosition = null;
+    }
+    void Start()
+    {
+        animator = GetComponent<Animator>();
     }
 
-    public void SetCharacterPath(Vector3[] pathCorners)
+    public void FixedUpdate()
+	{
+        if (targetPosition.HasValue)
+        {
+            if (Vector3.Distance(transform.position, targetPosition.Value) > .01f)
+            {
+                //move towards target
+                var newPosition = Vector3.MoveTowards(transform.position, targetPosition.Value, Speed * Time.fixedDeltaTime);
+                transform.position = newPosition;
+            }
+            else if (positions.Count > 0)
+            {
+                UpdateTargetPosition();
+            }
+			else
+			{
+                targetPosition = null;
+                animator.SetBool("IsWalking", false);
+            }
+        }
+        else if(positions.Count > 0)
+        {
+            UpdateTargetPosition();
+        }
+
+        if(targetRotation.HasValue && transform.rotation.eulerAngles.y != targetRotation.Value)
+		{
+            var currentRotation = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(new Vector3(currentRotation.x, targetRotation.Value, currentRotation.z));
+		}
+		else
+		{
+            targetRotation = null;
+        }
+    }
+
+	private void UpdateTargetPosition()
+    {
+        var moveData = positions.Dequeue();
+        targetPosition = moveData.Position;
+        targetRotation = moveData.Rotation;
+        animator.SetBool("IsWalking", true);
+    }
+
+	public void SetCharacterPath(MoveData[] moveData)
     {
         updateMove = true;
-        var path = new NavMeshPath();
-		agent.CalculatePath(pathCorners.Last(), path);
-        for (var i = 0; i < path.corners.Length; i++)
-        {
-            var point = path.corners[i];
-            point.x = pathCorners[i].x;
-            point.y = pathCorners[i].y;
-            point.z = pathCorners[i].z;
-        }
-        agent.SetPath(path);
+        positions = new Queue<MoveData>(moveData);
+        UpdateTargetPosition();
     }
 
     internal virtual void CastAbility(int abilityIndex, Vector3 startPosition, Vector3 targetPosition)

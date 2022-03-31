@@ -28,11 +28,18 @@ namespace Server.Networking
 			{
 				_packet.Write(movingCharacter.GetInstanceID());
 				_packet.Write(path.corners.Length);
+				Vector3? lastCorner = null;
 				foreach (var corner in path.corners)
 				{
-					_packet.Write(corner.x);
-					_packet.Write(corner.y);
-					_packet.Write(corner.z);
+					var nextCorner = new Vector3(corner.x, movingCharacter.transform.position.y, corner.z);
+					_packet.Write(nextCorner.x);
+					_packet.Write(nextCorner.y);
+					_packet.Write(nextCorner.z);
+					var currentPos = (lastCorner.HasValue ? lastCorner.Value : movingCharacter.transform.position);
+					var angleRad = Mathf.Atan2(nextCorner.x - currentPos.x, nextCorner.z - currentPos.z); 
+					float angle = (180 / Mathf.PI) * angleRad;
+					_packet.Write(angle);
+					lastCorner = nextCorner;
 				}
 
 				ServerSend.SendTcpDataToAllAuthenticated(_packet);

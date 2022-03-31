@@ -37,7 +37,8 @@ public class AbilityWarpBlast : Ability
 			//teleport player
 			owner.gameObject.transform.position = targetPosition;
 			owner.agent.Warp(targetPosition);
-			owner.agent.GetComponent<PlayerMovement>().StopPlayerFromMoving();
+			owner.GetComponent<PlayerMovement>().StopPlayerFromMoving();
+			owner.StopCharacterFromMoving();
 
 			//instantiates particle object
 			Instantiate(particlePrefab, transform.position, transform.rotation);

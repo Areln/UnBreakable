@@ -4,10 +4,7 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-	//player's move agent
-	NavMeshAgent agent;
 	internal PlayerBrain brain;
-	internal Animator animator;
 
 	//DestinationMarker
 	public GameObject destinationMarkerPrefab;
@@ -15,15 +12,10 @@ public class PlayerMovement : MonoBehaviour
 	//currently placed destinationMarker
 	internal GameObject destinationMarkerPlaced;
 
-	private Vector3? nextPoint;
-
 	// Start is called before the first frame update
 	void Start()
 	{
 		brain = GetComponent<PlayerBrain>();
-		animator = GetComponent<Animator>();
-		agent = GetComponent<NavMeshAgent>();
-
 	}
 
 	// Update is called once per frame
@@ -35,21 +27,17 @@ public class PlayerMovement : MonoBehaviour
 			Destroy(destinationMarkerPlaced);
 			destinationMarkerPlaced = null;
 		}
-		if (agent.remainingDistance <= .05f)
+		if (destinationMarkerPlaced == null && brain.targetPosition.HasValue && Vector3.Distance(transform.position, brain.targetPosition.Value) > .05f)
 		{
-			StopPlayerFromMoving();
-		}
-		else if (destinationMarkerPlaced == null && agent.remainingDistance > .05f)
-		{
-			animator.SetBool("IsWalking", true);
-			destinationMarkerPlaced = Instantiate(destinationMarkerPrefab, agent.destination, Quaternion.identity);
+			var position = brain.positions.Count > 0 ? brain.positions.Last().Position : brain.targetPosition.Value;
+			var markerPosition = new Vector3(position.x, 0, position.z);
+			destinationMarkerPlaced = Instantiate(destinationMarkerPrefab, markerPosition, Quaternion.identity);
 		}
 	}
 
 
 	internal void StopPlayerFromMoving()
 	{
-		animator.SetBool("IsWalking", false);
 		Destroy(destinationMarkerPlaced);
 	}
 }
