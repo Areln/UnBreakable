@@ -2810,6 +2810,8 @@ MonoBehaviour:
     type: 3}
   ItemSlotHolder: {fileID: 444324204562132321}
   InventoryItemSlots: []
+  StorageObjectSlotPrefab: {fileID: 8609066637300807616, guid: 08b72b7fa5bb62b4498cc4a74d1ee91f,
+    type: 3}
   ContainerDisplayCanvas: {fileID: 3670813498549748205}
   ContainerItemSlotsHolder: {fileID: 6838743026149378259}
   ContainerItemSlots: []

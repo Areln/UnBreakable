@@ -80,21 +80,25 @@ public class HudManager : MonoBehaviour
     public GameObject ItemSlotPrefab;
     public Transform ItemSlotHolder;
     public List<ItemSlot> InventoryItemSlots = new List<ItemSlot>();
-    
+
     //container
+    public GameObject StorageObjectSlotPrefab;
     public Canvas ContainerDisplayCanvas;
     public Transform ContainerItemSlotsHolder;
     public List<ItemSlot> ContainerItemSlots = new List<ItemSlot>();
 
-    internal void PopulateStorageContainer(List<StorageData> contents)
+    internal void PopulateStorageContainer(Dictionary<int, StorageData> contents, int storageObjectId)
     {
         ClearContainerItemSlots();
 
         for (int i = 0; i < contents.Count; i++)
         {
-            ItemSlot newSlot = Instantiate(ItemSlotPrefab, ContainerItemSlotsHolder).GetComponent<ItemSlot>();
-            newSlot.Setup(i);
-            newSlot.SetSlottedItem(GameManager.Instance.GetItem(contents[i].GetItemName()).GetComponent<Item>(), contents[i].GetAmount());
+            StorageObjectSlot newSlot = Instantiate(StorageObjectSlotPrefab, ContainerItemSlotsHolder).GetComponent<StorageObjectSlot>();
+            newSlot.Setup(storageObjectId, i);
+            if (!string.IsNullOrWhiteSpace(contents[i].GetItemName()))
+            {
+                newSlot.SetSlottedItem(GameManager.Instance.GetItem(contents[i].GetItemName()).GetComponent<Item>(), contents[i].GetAmount());
+            }
             ContainerItemSlots.Add(newSlot);
         }
     }

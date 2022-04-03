@@ -17,20 +17,23 @@ namespace Server.Networking
 
             ThreadManager.ExecuteOnMainThread(() =>
             {
-                List<StorageData> contents = ServerGameManager.Instance.itemStorages[storageObjectId].ChestContents;
-                WriteMessage(_fromClientId, contents);
+                Dictionary<int, StorageData> contents = ServerGameManager.Instance.itemStorages[storageObjectId].ChestContents;
+                WriteMessage(_fromClientId, storageObjectId, contents);
             });
         }
-        public void WriteMessage(int _fromClientId, List<StorageData> contents)
+        public void WriteMessage(int _fromClientId, int storageObjectId, Dictionary<int, StorageData> contents)
         {
             using (Packet _packet = new Packet(GetMessageId()))
             {
+                _packet.Write(storageObjectId);
                 _packet.Write(contents.Count);
 
-                foreach (StorageData item in contents)
+                foreach (var item in contents)
                 {
-                    _packet.Write(item.GetItemName());
-                    _packet.Write(item.GetAmount());
+                    //_packet.Write(item.GetItemName());
+                    //_packet.Write(item.GetAmount());
+                    _packet.Write(item.Key);
+                    _packet.Write(item.Value);
                 }
 
                 ServerSend.SendTcpDataAuthenticated(_fromClientId, _packet);

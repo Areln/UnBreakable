@@ -1113,7 +1113,7 @@ MonoBehaviour:
   PatrolTargets: []
   currentPatrolTargetIndex: 0
   isIdle: 0
-  maxIdleTime: 0
+  maxIdleTime: 3
   currentIdleTime: 0
   WeaponHitBox: {fileID: 0}
   lootChestPrefab: {fileID: 7099251450696765119, guid: 60f1e130a6276414198a8d762cd3f4d8,

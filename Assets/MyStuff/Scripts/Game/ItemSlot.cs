@@ -13,11 +13,11 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
     public TextMeshProUGUI CountTextObject;
     bool IsSlottedValue = false;
 
-    public bool IsSlotted()
+    public virtual bool IsSlotted()
     {
         return IsSlottedValue;
     }
-    public void Setup(int index)
+    public virtual void Setup(int index)
     {
         SlotIndex = index;
         ClearSlot();

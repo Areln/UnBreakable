@@ -18,6 +18,7 @@ public enum Packets
 	CharacterDropItems,
 	CreateStorageObject,
 	CharacterRequestStorageObjectContents,
+	CharacterRequestTakeItemFromStorageObject,
 	equipItem,
 	healthUpdate,
 	characterDie,
@@ -184,6 +185,13 @@ public class Packet : IDisposable
 		if (isReverseEndian)
 			Array.Reverse(bytes);
 		buffer.AddRange(bytes); // Add the string itself
+	}
+
+	// Write storagedata
+	public void Write(StorageData _value)
+	{
+		Write(_value.GetItemName());
+		Write(_value.GetAmount());
 	}
 	#endregion
 
@@ -383,6 +391,12 @@ public class Packet : IDisposable
 		{
 			throw new Exception("Could not read value of type 'string'!");
 		}
+	}
+
+	// read storagedata
+	public StorageData ReadStorageData(bool _moveReadPos = true)
+	{
+		return new StorageData(this.ReadString(_moveReadPos), this.ReadInt(_moveReadPos));
 	}
 	#endregion
 

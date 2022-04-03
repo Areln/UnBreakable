@@ -11,19 +11,21 @@ public class CharacterRequestStorageObjectContents : IHandle
 
     public void ReadMessage(Packet _packet)
     {
+        int storageObjectId = _packet.ReadInt();
         int length = _packet.ReadInt();
         
-        List<StorageData> contents = new List<StorageData>();
+        Dictionary<int, StorageData> contents = new Dictionary<int, StorageData>();
 
         for (int i = 0; i < length; i++)
         {
-            contents.Add(new StorageData(_packet.ReadString(), _packet.ReadInt()));
+            //contents.Add(new StorageData(_packet.ReadString(), _packet.ReadInt()));
+            contents.Add(_packet.ReadInt(), _packet.ReadStorageData());
         }
 
 
         ThreadManager.ExecuteOnMainThread(() =>
         {
-            HudManager.Instance.PopulateStorageContainer(contents);
+            HudManager.Instance.PopulateStorageContainer(contents, storageObjectId);
         });
     }
 
