@@ -14,7 +14,6 @@ public abstract class CharacterBrain : MonoBehaviour
     public int currentMana;
     internal Animator animator;
 
-    internal NavMeshAgent agent;
     internal Stats Stats;
     internal bool updateMove;
 
@@ -25,6 +24,7 @@ public abstract class CharacterBrain : MonoBehaviour
 
     internal Vector3? targetPosition;
     internal float? targetRotation;
+    internal bool IsMovementPaused { get; set; }
     internal Queue<MoveData> positions = new Queue<MoveData>();
 
     public abstract void CharacterDie();
@@ -35,7 +35,7 @@ public abstract class CharacterBrain : MonoBehaviour
         GetComponent<HPScript>().ChangeHP(healthChange, gameObject.transform.position);
     }
 
-	internal void InitializeData(CharacterData characterData)
+    internal void InitializeData(CharacterData characterData)
     {
         characterName = characterData.CharacterName;
     }
@@ -53,7 +53,7 @@ public abstract class CharacterBrain : MonoBehaviour
 
     public void FixedUpdate()
 	{
-        if (targetPosition.HasValue)
+        if (!IsMovementPaused && targetPosition.HasValue)
         {
             if (Vector3.Distance(transform.position, targetPosition.Value) > .01f)
             {
@@ -71,7 +71,7 @@ public abstract class CharacterBrain : MonoBehaviour
                 animator.SetBool("IsWalking", false);
             }
         }
-        else if(positions.Count > 0)
+        else if(!IsMovementPaused && positions.Count > 0)
         {
             UpdateTargetPosition();
         }

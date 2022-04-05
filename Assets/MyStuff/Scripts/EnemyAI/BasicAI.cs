@@ -29,7 +29,6 @@ public class BasicAI : CharacterBrain
 		Stats = GetComponent<Stats>();
 		hpScript = GetComponent<HPScript>();
 		animator = GetComponent<Animator>();
-		agent = GetComponent<NavMeshAgent>();
 	}
 
 	// Start is called before the first frame update
@@ -50,20 +49,6 @@ public class BasicAI : CharacterBrain
 			{
 				ability.SetupAbility(this);
 			}
-		}
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		//Animations
-		if (agent.velocity != Vector3.zero)
-		{
-			animator.SetBool("IsWalking", true);
-		}
-		else
-		{
-			animator.SetBool("IsWalking", false);
 		}
 	}
 	

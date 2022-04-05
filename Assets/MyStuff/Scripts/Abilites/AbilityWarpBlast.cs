@@ -35,8 +35,7 @@ public class AbilityWarpBlast : Ability
 			currentCooldown = maxCooldown;
 			owner.gameObject.transform.LookAt(targetPosition);
 			//teleport player
-			owner.gameObject.transform.position = targetPosition;
-			owner.agent.Warp(targetPosition);
+			owner.transform.position = targetPosition;
 			owner.GetComponent<PlayerMovement>().StopPlayerFromMoving();
 			owner.StopCharacterFromMoving();
 

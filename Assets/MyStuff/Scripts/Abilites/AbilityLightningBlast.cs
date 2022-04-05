@@ -23,7 +23,7 @@ public class AbilityLightningBlast : Ability
 		{
 			finishedCasting = true;
 			owner.animator.SetBool("Casting", false);
-			owner.agent.isStopped = false;
+			owner.IsMovementPaused = false;
 			owner.CurrentlyCastingAbility = null;
 			Destroy(lightingBallObject);
 			Destroy(castParticles);
@@ -37,7 +37,7 @@ public class AbilityLightningBlast : Ability
 	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
 		// TODO: smoothly transition to location and rotation as we cast.
-		owner.agent.Warp(startPosition); 
+		owner.transform.position = startPosition; 
 		Vector3 targetDirection = startPosition - transform.position;
 		//float singleStep = 3.5f * Time.deltaTime;
 		//Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
@@ -66,7 +66,7 @@ public class AbilityLightningBlast : Ability
 		var newPosition = owner.transform.position + owner.transform.forward * 1f;
 		castParticles = Instantiate(CastParticles, newPosition, owner.transform.rotation);
 		owner.animator.SetBool("Casting", true);
-		owner.agent.isStopped = true;
+		owner.IsMovementPaused = true;
 		yield return new WaitForSeconds(sec);
 		if (!IsCanceled)
 		{
@@ -74,7 +74,7 @@ public class AbilityLightningBlast : Ability
 			finishedCasting = true;
 			owner.animator.SetBool("Casting", false);
 			lightingBallObject.SetActive(true);
-			owner.agent.isStopped = false;
+			owner.IsMovementPaused = false;
 		}
 		else
 		{

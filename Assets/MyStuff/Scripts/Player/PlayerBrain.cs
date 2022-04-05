@@ -21,7 +21,6 @@ public class PlayerBrain : CharacterBrain
 	{
 		currentHealth = maxHealth;
 		currentMana = maxMana;
-		agent = GetComponent<NavMeshAgent>();
 		Stats = GetComponent<Stats>();
 		hpScript = GetComponent<HPScript>();
 		playerLook = GetComponent<PlayerLook>();

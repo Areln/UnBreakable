@@ -41,7 +41,7 @@ public class AbilityHammerDin : Ability
         IsCanceled = false;
         finishedCasting = false;
         owner.animator.SetBool("Casting", true);
-        owner.agent.isStopped = true;
+        owner.IsMovementPaused = true;
         owner.CurrentlyCastingAbility = this;
         yield return new WaitForSeconds(sec);
         if (!IsCanceled)
@@ -51,7 +51,7 @@ public class AbilityHammerDin : Ability
             owner.animator.SetBool("Casting", false);
             HammerDinSpin tempSpin = Instantiate(hammerDinPrefab, owner.transform.position, Quaternion.identity).GetComponentInChildren<HammerDinSpin>();
             tempSpin.SetupAbility(GetComponentInParent<CharacterBrain>());
-            owner.agent.isStopped = false;
+            owner.IsMovementPaused = false;
         }
         else
         {
@@ -73,7 +73,7 @@ public class AbilityHammerDin : Ability
         if (IsCanceled && !finishedCasting)
         {
             owner.animator.SetBool("Casting", false);
-            owner.agent.isStopped = false;
+            owner.IsMovementPaused = false;
             owner.CurrentlyCastingAbility = null;
         }
         if (currentCooldown > 0)

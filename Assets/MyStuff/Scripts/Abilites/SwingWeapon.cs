@@ -32,14 +32,14 @@ public class SwingWeapon : Ability
             currentCooldown = maxCooldown;
             owner.currentMana -= manaCost;
             owner.gameObject.transform.LookAt(targetPosition);
-            owner.agent.isStopped = true;
+            owner.IsMovementPaused = true;
             animator.SetTrigger("Attack");
         }
     }
 
     public void DoneCasting()
     {
-        owner.agent.isStopped = false;
+        owner.IsMovementPaused = false;
     }
 
     public override void SetupAbility(CharacterBrain _owner)
