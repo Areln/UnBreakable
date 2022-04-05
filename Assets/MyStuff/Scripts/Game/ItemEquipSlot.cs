@@ -9,6 +9,7 @@ public class ItemEquipSlot : ItemSlot
     public ArmorType slotArmorType;
     public WeaponType slotWeaponType;
 
+    // This is called when we are already dragging an item and we release it on this slot
     public override void OnDrop(PointerEventData eventData)
     {
         if (GameManager.Instance.DraggingObject)
@@ -17,29 +18,14 @@ public class ItemEquipSlot : ItemSlot
             if (EquipCheck(GameManager.Instance.DraggingObject.SlottedItem))
             {
                 GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.DraggingObject.SlottedItem.GetComponent<ItemEquipable>(), GameManager.Instance.DraggingObject);
-
-                // replacing an equipped item
-                //if (SlottedItem != null)
-                //{
-                //    var tempItem = SlottedItem;
-                //    SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
-                //    GameManager.Instance.DraggingObject.SetSlottedItem(tempItem);
-                //}
-                //else // not replacing and item
-                //{
-                //    SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
-                //    GameManager.Instance.DraggingObject.ClearSlot();
-                //}
             }
         }
     }
-
     bool EquipCheck(Item item)
     {
         if (typeof(ItemEquipable).IsAssignableFrom(item.GetType()))
         {
             // do stat check
-
             if (typeof(ItemArmor).IsAssignableFrom(item.GetType()) && slotEquipType == EquipType.Armor)
             {
                 ItemArmor itemArmor = item.GetComponent<ItemArmor>();

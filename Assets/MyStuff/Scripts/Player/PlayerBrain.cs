@@ -12,6 +12,8 @@ public class PlayerBrain : CharacterBrain
 	internal float manaRegenCurrentTime;
 	public int manaRegenAmount;
 
+	Transform ActiveWordObjectTransform;
+
 	//
 	public int interactableRange = 3;
 
@@ -125,11 +127,21 @@ public class PlayerBrain : CharacterBrain
 					if (temp != null && Vector3.Distance(gameObject.transform.position, temp.transform.position) <= interactableRange)
 					{
 						Debug.Log("Right Click " + temp.objectName);
+						SetActiveWorldObject(temp.transform);
 						temp.Activate(this);
 					}
 				}
 			}
 		}
+	}
+
+	public void SetActiveWorldObject(Transform transform) 
+	{
+		ActiveWordObjectTransform = transform;
+	}
+	public Transform GetActiveWorldObjectTransform()
+	{
+		return ActiveWordObjectTransform;
 	}
 
 	internal void InitializeData(PlayerData playerData)
