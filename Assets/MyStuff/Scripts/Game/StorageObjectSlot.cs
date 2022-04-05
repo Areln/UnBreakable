@@ -23,7 +23,7 @@ public class StorageObjectSlot : ItemSlot
                 // Get type of item then decide what to do
                 if (typeof(ItemEquipable).IsAssignableFrom(SlottedItem.GetType()))
                 {
-
+                    Debug.Log("Left Clicked Equipable");
                 }
                 else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
                 {
@@ -34,12 +34,14 @@ public class StorageObjectSlot : ItemSlot
                     Debug.Log("Left Clicked Consumable");
                 }
 
+                new CharacterRequestTakeItemFromStorage().WriteMessage(StorageObjectId, SlotIndex);
+
             }
             if (eventData.button == PointerEventData.InputButton.Right)
             {
                 if (typeof(ItemEquipable).IsAssignableFrom(SlottedItem.GetType()))
                 {
-                    new CharacterRequestTakeItemFromStorage().WriteMessage(StorageObjectId, SlotIndex);
+                    Debug.Log("Right Clicked Equipable");
                 }
                 else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
                 {
@@ -52,5 +54,11 @@ public class StorageObjectSlot : ItemSlot
             }
 
         }
+    }
+
+    // This is called when we are already dragging an item and we release it on this slot
+    public override void OnDrop(PointerEventData eventData) 
+    {
+        //GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.DraggingObject.SlottedItem.GetComponent<ItemEquipable>(), GameManager.Instance.DraggingObject);
     }
 }

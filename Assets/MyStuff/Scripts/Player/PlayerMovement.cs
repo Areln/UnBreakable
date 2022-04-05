@@ -33,6 +33,23 @@ public class PlayerMovement : MonoBehaviour
 			var markerPosition = new Vector3(position.x, 0, position.z);
 			destinationMarkerPlaced = Instantiate(destinationMarkerPrefab, markerPosition, Quaternion.identity);
 		}
+
+		// Distance check for StorageObject UI
+
+		try
+		{
+			if (brain.GetActiveWorldObjectTransform())
+			{
+				if (Vector3.Distance(brain.GetActiveWorldObjectTransform().position, transform.position) > brain.interactableRange)
+				{
+					HudManager.Instance.DisableContainerDisplay();
+				}
+			}
+		}
+		catch (System.Exception)
+		{
+			throw;
+		}
 	}
 
 

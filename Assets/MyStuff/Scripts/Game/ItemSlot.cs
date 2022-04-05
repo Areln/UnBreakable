@@ -23,7 +23,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         ClearSlot();
     }
 
-    internal void SetSlottedItem(Item item, int itemCount = 1)
+    internal virtual void SetSlottedItem(Item item, int itemCount = 1)
     {
         SlottedItem = item;
         SlottedItem.CurrentUseCount = itemCount;
@@ -42,7 +42,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         IsSlottedValue = true;
     }
 
-    public void ClearSlot()
+    public virtual void ClearSlot()
     {
         SlottedItem = null;
         ItemSprite.sprite = null;
@@ -51,6 +51,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         IsSlottedValue = false;
     }
 
+    // This is called when we are already dragging an item and we release it on this slot
     public virtual void OnDrop(PointerEventData eventData)
     {
         if (GameManager.Instance.DraggingObject)
@@ -63,7 +64,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
             }
 			else
             {
-
                 //if we are draggin from equip slot, then un equip the item
                 if (typeof(ItemEquipSlot).IsAssignableFrom(GameManager.Instance.DraggingObject.GetType()))
                 {
