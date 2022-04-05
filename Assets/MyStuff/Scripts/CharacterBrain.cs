@@ -69,6 +69,7 @@ public abstract class CharacterBrain : MonoBehaviour
 			{
                 targetPosition = null;
                 animator.SetBool("IsWalking", false);
+                updateMove = true;
             }
         }
         else if(!IsMovementPaused && positions.Count > 0)
