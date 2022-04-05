@@ -58,7 +58,7 @@ public class PlayerBrain : CharacterBrain
 
 				if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, LayerMask.GetMask("Ground")))
 				{
-					new CharacterMoveHandle().WriteMessage(hit.point);
+					new CharacterMoveHandle().WriteMessage(new Vector3(hit.point.x, transform.position.y, hit.point.z));
 				}
 			}
 			////////////////////////////////

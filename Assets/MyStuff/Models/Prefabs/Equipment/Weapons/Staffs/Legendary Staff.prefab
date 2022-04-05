@@ -1075,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8066638529411629179
 Transform:
   m_ObjectHideFlags: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   Description: 
   ItemSprite: {fileID: 21300000, guid: f8c0e80842c414e48b9e56261344109e, type: 3}
   MaxUseCount: 1
-  CurrentUseCount: 0
+  CurrentUseCount: 1
   MonetaryValue: 0
   EquipType: 0
   WeaponType: 0

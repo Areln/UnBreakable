@@ -8,9 +8,9 @@ namespace Server
     {
         internal NavMeshAgent agent;
 
-        internal void SetPath()
+        private void Start()
 		{
-
+			agent = GetComponent<NavMeshAgent>();
 		}
 
 		internal void StopPlayerFromMoving()
