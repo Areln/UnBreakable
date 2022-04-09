@@ -2342,7 +2342,6 @@ GameObject:
   - component: {fileID: 6621349970582242531}
   - component: {fileID: 6621349970582242532}
   - component: {fileID: 3567629000374291926}
-  - component: {fileID: 6621349970582242533}
   - component: {fileID: 5590686505320478841}
   - component: {fileID: 7191413033542379377}
   - component: {fileID: 1840425266}
@@ -2383,6 +2382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: 
+  Speed: 0
   maxHealth: 100
   currentHealth: 0
   maxMana: 100
@@ -2434,28 +2434,6 @@ MonoBehaviour:
   Dexterity: 10
   Intelligence: 10
   Vitality: 10
---- !u!195 &6621349970582242533
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6621349970582242535}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 100
-  avoidancePriority: 50
-  m_AngularSpeed: 9000
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!95 &5590686505320478841
 Animator:
   serializedVersion: 3
@@ -2519,7 +2497,7 @@ MonoBehaviour:
   RightLegArmorObject: {fileID: 0}
   LeftLegArmorObject: {fileID: 0}
   EquippedNecklacePiece: {fileID: 0}
-  KnecklacePieceTransform: {fileID: 0}
+  NecklacePieceTransform: {fileID: 0}
   EquippedRing1Piece: {fileID: 0}
   Ring1PieceTransform: {fileID: 0}
   EquippedRing2Piece: {fileID: 0}
