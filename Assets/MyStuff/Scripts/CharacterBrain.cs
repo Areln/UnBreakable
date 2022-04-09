@@ -100,7 +100,7 @@ public abstract class CharacterBrain : MonoBehaviour
             var currentRotation = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(currentRotation.x, abilityCastRotation.Value, currentRotation.z)), Speed * Time.fixedDeltaTime);
         }
-        else if (targetRotation.HasValue && transform.rotation.eulerAngles.y != targetRotation.Value && !abilityCastRotation.HasValue)
+        else if (targetRotation.HasValue && !Mathf.Approximately(transform.rotation.eulerAngles.y, targetRotation.Value) && !abilityCastRotation.HasValue)
 		{
             var currentRotation = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(currentRotation.x, targetRotation.Value, currentRotation.z)), Speed * Time.fixedDeltaTime);

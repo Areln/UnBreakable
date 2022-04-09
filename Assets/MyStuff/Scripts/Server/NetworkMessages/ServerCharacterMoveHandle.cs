@@ -42,12 +42,14 @@ namespace Server.Networking
 					_packet.Write(movingCharacter.transform.position.y);
 					_packet.Write(nextCorner.z);
 					var currentPos = (lastCorner.HasValue ? new Vector3(lastCorner.Value.x, movingCharacter.transform.position.y, lastCorner.Value.z) : movingCharacter.transform.position);
+
+					lastCorner = nextCorner;
 					float angleRad = 0f;
 
 					if (path.corners[0] == corner && path.corners.Length > 1)
 					{
-						var nextCornerr = new Vector3(path.corners[1].x, movingCharacter.transform.position.y, path.corners[1].z);
-						angleRad = Mathf.Atan2(nextCornerr.x - currentPos.x, nextCornerr.z - currentPos.z);
+						nextCorner = new Vector3(path.corners[1].x, movingCharacter.transform.position.y, path.corners[1].z);
+						angleRad = Mathf.Atan2(nextCorner.x - currentPos.x, nextCorner.z - currentPos.z);
 					}
 					else if (path.corners.Length > 1)
 					{
@@ -55,13 +57,12 @@ namespace Server.Networking
 					}
 					else
 					{
-						var nextCornerr = movingCharacter.transform.forward * 1;
-						angleRad = Mathf.Atan2(nextCornerr.x - currentPos.x, nextCornerr.z - currentPos.z);
+						nextCorner = movingCharacter.transform.position + movingCharacter.transform.forward;
+						angleRad = Mathf.Atan2(nextCorner.x - currentPos.x, nextCorner.z - currentPos.z);
 					}
 
 					float angle = (180 / Mathf.PI) * angleRad;
 					_packet.Write(angle);
-					lastCorner = nextCorner;
 				}
 
 				ServerSend.SendTcpDataToAllAuthenticated(_packet);
