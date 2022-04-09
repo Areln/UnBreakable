@@ -797,7 +797,7 @@ MonoBehaviour:
   isIdle: 0
   maxIdleTime: 3
   currentIdleTime: 0
-  WeaponHitBox: {fileID: 0}
+  WeaponHitBox: {fileID: 7046878812949386499}
   lootChestPrefab: {fileID: 8048190158033873050, guid: 97f1d6566dd800d40b6152194ba2184e,
     type: 3}
 --- !u!114 &6571871693066834084
@@ -1609,6 +1609,12 @@ PrefabInstance:
 --- !u!4 &4350745566420142886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4963209249315729362, guid: 1f717ed2752b2be45812eefe9b12d696,
+    type: 3}
+  m_PrefabInstance: {fileID: 8682984674100880628}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7046878812949386499 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1822729141701751287, guid: 1f717ed2752b2be45812eefe9b12d696,
     type: 3}
   m_PrefabInstance: {fileID: 8682984674100880628}
   m_PrefabAsset: {fileID: 0}
