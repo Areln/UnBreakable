@@ -36,7 +36,18 @@ namespace Server.Networking
 					_packet.Write(movingCharacter.transform.position.y);
 					_packet.Write(nextCorner.z);
 					var currentPos = (lastCorner.HasValue ? new Vector3(lastCorner.Value.x, movingCharacter.transform.position.y, lastCorner.Value.z) : movingCharacter.transform.position);
-					var angleRad = Mathf.Atan2(nextCorner.x - currentPos.x, nextCorner.z - currentPos.z); 
+					float angleRad = 0f;
+
+					if (path.corners[0] == corner && path.corners.Length > 1)
+					{
+						var nextCornerr = new Vector3(path.corners[1].x, movingCharacter.transform.position.y, path.corners[1].z);
+						angleRad = Mathf.Atan2(nextCornerr.x - currentPos.x, nextCornerr.z - currentPos.z);
+					}
+					else
+					{
+						angleRad = Mathf.Atan2(nextCorner.x - currentPos.x, nextCorner.z - currentPos.z);
+					}
+
 					float angle = (180 / Mathf.PI) * angleRad;
 					_packet.Write(angle);
 					lastCorner = nextCorner;

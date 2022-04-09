@@ -80,8 +80,8 @@ public abstract class CharacterBrain : MonoBehaviour
         if(targetRotation.HasValue && transform.rotation.eulerAngles.y != targetRotation.Value)
 		{
             var currentRotation = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(new Vector3(currentRotation.x, targetRotation.Value, currentRotation.z));
-		}
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(currentRotation.x, targetRotation.Value, currentRotation.z)), Speed * Time.fixedDeltaTime);
+        }
 		else
 		{
             targetRotation = null;
