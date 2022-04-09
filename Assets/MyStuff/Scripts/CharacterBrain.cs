@@ -148,7 +148,6 @@ public abstract class CharacterBrain : MonoBehaviour
     {
         float angleRad = Mathf.Atan2(targetPosition.x - startPosition.x, targetPosition.z - startPosition.z);
         float angle = (180 / Mathf.PI) * angleRad;
-        Debug.Log($"Angle: {angle}, Position: {startPosition}");
         abilityCastRotation = angle;
         abilityCastPosition = startPosition;
         abilities[abilityIndex].Activate(startPosition, targetPosition);
