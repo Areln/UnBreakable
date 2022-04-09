@@ -100,14 +100,7 @@ public class PlayerBrain : CharacterBrain
 			}
 			if (Input.GetKeyDown(KeyCode.S))
 			{
-				// stop char movement
-				if (CurrentlyCastingAbility)
-				{
-					CurrentlyCastingAbility.IsCanceled = true;
-					CurrentlyCastingAbility = null;
-				}
-				playerMovement.StopPlayerFromMoving();
-				StopCharacterFromMoving();
+				new CancelActionHandle().WriteMessage();
 			}
 			if (Input.GetKeyDown(KeyCode.B))
 			{
@@ -133,6 +126,19 @@ public class PlayerBrain : CharacterBrain
 				}
 			}
 		}
+	}
+
+	public void CancelAll(bool isAbilityCanceled)
+	{
+		// stop char ability
+		if (CurrentlyCastingAbility && isAbilityCanceled)
+		{
+			CurrentlyCastingAbility.IsCanceled = true;
+			CurrentlyCastingAbility = null;
+		}
+		// stop char movement
+		playerMovement.DestroyDestinationMarker();
+		StopCharacterFromMoving();
 	}
 
 	public void SetActiveWorldObject(Transform transform) 

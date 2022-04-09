@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 
-	internal void StopPlayerFromMoving()
+	internal void DestroyDestinationMarker()
 	{
 		Destroy(destinationMarkerPlaced);
 	}
