@@ -82,9 +82,9 @@ public class GameManager : MonoBehaviour
         return returnItem;
     }
 
-    internal CharacterBrain GetCharacter(int characterIdToMove)
+    internal CharacterBrain GetCharacter(int characterId)
     {
-        LoadedCharacters.TryGetValue(characterIdToMove, out CharacterBrain loadedCharacter);
+        LoadedCharacters.TryGetValue(characterId, out CharacterBrain loadedCharacter);
         return loadedCharacter;
     }
 

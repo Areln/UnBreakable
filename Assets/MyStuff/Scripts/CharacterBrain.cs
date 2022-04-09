@@ -27,6 +27,10 @@ public abstract class CharacterBrain : MonoBehaviour
     internal bool IsMovementPaused { get; set; }
     internal Queue<MoveData> positions = new Queue<MoveData>();
 
+    private const float catchUpSpeedMultiplier = 1.5f;
+    private const float hardCorrectionDistance = 2f;
+    private float catchUpSpeed;
+
     public abstract void CharacterDie();
 
     public void ChangeHealth(int healthChange)
@@ -58,7 +62,7 @@ public abstract class CharacterBrain : MonoBehaviour
             if (Vector3.Distance(transform.position, targetPosition.Value) > .01f)
             {
                 //move towards target
-                var newPosition = Vector3.MoveTowards(transform.position, targetPosition.Value, Speed * Time.fixedDeltaTime);
+                var newPosition = Vector3.MoveTowards(transform.position, targetPosition.Value, catchUpSpeed * Time.fixedDeltaTime);
                 transform.position = newPosition;
             }
             else if (positions.Count > 0)
@@ -88,10 +92,28 @@ public abstract class CharacterBrain : MonoBehaviour
         }
     }
 
-	private void UpdateTargetPosition()
+	private void UpdateTargetPosition(Vector3? startPosition = null)
     {
         var moveData = positions.Dequeue();
         targetPosition = moveData.Position;
+
+        if(startPosition.HasValue && startPosition.Value != targetPosition)
+        {
+            if (Vector3.Distance(startPosition.Value, transform.position) > hardCorrectionDistance)
+            {
+                catchUpSpeed = Speed;
+                transform.position = startPosition.Value;
+            }
+			else
+            {
+                catchUpSpeed = Speed * catchUpSpeedMultiplier;
+            }
+		}
+		else
+		{
+            catchUpSpeed = Speed;
+		}
+
         targetRotation = moveData.Rotation;
         animator.SetBool("IsWalking", true);
     }
@@ -100,7 +122,7 @@ public abstract class CharacterBrain : MonoBehaviour
     {
         updateMove = true;
         positions = new Queue<MoveData>(moveData);
-        UpdateTargetPosition();
+        UpdateTargetPosition(positions.First().Position);
     }
 
     internal virtual void CastAbility(int abilityIndex, Vector3 startPosition, Vector3 targetPosition)

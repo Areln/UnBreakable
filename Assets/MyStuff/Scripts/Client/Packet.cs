@@ -22,6 +22,7 @@ public enum Packets
 	equipItem,
 	healthUpdate,
 	characterDie,
+	cancelAction,
 	disconnect,
 }
 

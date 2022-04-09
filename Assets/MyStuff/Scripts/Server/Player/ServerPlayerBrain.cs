@@ -14,8 +14,22 @@ namespace Server
         public int manaRegenAmount;
 
         internal bool isMoving = false;
-        
-        public int interactableRange = 3;
+
+		internal bool CancelAll()
+        {
+            bool isAbilityCanceled = false;
+            if (CurrentlyCastingAbility)
+            {
+                CurrentlyCastingAbility.IsCanceled = true;
+                CurrentlyCastingAbility = null;
+                isAbilityCanceled = true;
+            }
+            StopCharacterFromMoving();
+
+            return isAbilityCanceled;
+        }
+
+		public int interactableRange = 3;
 
 
         // Start is called before the first frame update

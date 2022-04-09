@@ -36,7 +36,7 @@ public class AbilityWarpBlast : Ability
 			owner.gameObject.transform.LookAt(targetPosition);
 			//teleport player
 			owner.transform.position = targetPosition;
-			owner.GetComponent<PlayerMovement>().StopPlayerFromMoving();
+			owner.GetComponent<PlayerMovement>().DestroyDestinationMarker();
 			owner.StopCharacterFromMoving();
 
 			//instantiates particle object

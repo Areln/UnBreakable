@@ -45,7 +45,7 @@ namespace Server
 
 		public void StopCharacterFromMoving()
 		{
-			agent.destination = gameObject.transform.position;
+			SetCharacterPath(gameObject.transform.position);
 		}
 
 		public void SetCharacterPath(Vector3 newPosition)
