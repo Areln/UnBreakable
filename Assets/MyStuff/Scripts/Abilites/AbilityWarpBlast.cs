@@ -22,7 +22,6 @@ public class AbilityWarpBlast : Ability
 
 	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
-		owner.currentMana -= manaCost;
 		//cast setup successfull so set ability CD
 		currentCooldown = maxCooldown;
 		owner.gameObject.transform.LookAt(targetPosition);

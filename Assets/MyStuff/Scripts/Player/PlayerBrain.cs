@@ -34,24 +34,6 @@ public class PlayerBrain : CharacterBrain
 	// Update is called once per frame
 	void Update()
 	{
-		//Mana Regen
-		if (currentMana < maxMana)
-		{
-			if (manaRegenCurrentTime > 0)
-			{
-				manaRegenCurrentTime -= Time.deltaTime;
-			}
-			else
-			{
-				currentMana += manaRegenAmount;
-				manaRegenCurrentTime = manaRegenTime;
-				if (currentMana > maxMana)
-				{
-					currentMana = maxMana;
-				}
-			}
-		}
-
 		if (GetComponent<PlayerBrain>() == GameManager.Instance.ClientPlayer)
 		{
 			if (Input.GetMouseButtonDown(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.GetDraggingObject())

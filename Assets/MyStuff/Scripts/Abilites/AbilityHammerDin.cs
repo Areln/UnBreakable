@@ -18,7 +18,6 @@ public class AbilityHammerDin : Ability
         //uses mana
         if (owner.currentMana >= manaCost)
         {
-            owner.currentMana -= manaCost;
             currentCooldown = maxCooldown;
         }
         else

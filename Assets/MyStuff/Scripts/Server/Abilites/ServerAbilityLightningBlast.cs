@@ -32,6 +32,7 @@ namespace Server
 			if (currentCooldown <= 0 && manaCost <= owner.currentMana)
 			{
 				owner.CurrentlyCastingAbility = this;
+				owner.UpdateMana(-manaCost);
 				var newPos = targetPosition + -transform.up * 1;
 				this.targetPosition = newPos;
 				lightingBallObject = Instantiate(BlastPrefab, owner.transform.position, Quaternion.identity);
@@ -53,7 +54,6 @@ namespace Server
 
 		private IEnumerator CastSpell(float sec)
 		{
-			owner.UpdateMana(-manaCost);
 			IsCanceled = false;
 			finishedCasting = false;
 			currentCooldown = maxCooldown;

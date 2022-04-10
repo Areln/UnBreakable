@@ -51,7 +51,6 @@ public class AbilityLightningBlast : Ability
 
 	private IEnumerator CastSpell(float sec)
 	{
-		owner.currentMana -= manaCost; // TODO: server side this.
 		IsCanceled = false;
 		finishedCasting = false;
 		currentCooldown = maxCooldown; // TODO: server side this.

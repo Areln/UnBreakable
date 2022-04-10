@@ -31,7 +31,7 @@ namespace Server
 			animator = GetComponent<Animator>();
 		}
 
-		public void ChangeHealth(int healthChange)
+		public void UpdateHealth(int healthChange)
 		{
 			currentHealth += healthChange;
 			GetComponent<HPScript>().ChangeHP(healthChange, gameObject.transform.position);
@@ -42,6 +42,12 @@ namespace Server
 			{
 				CharacterDie();
 			}
+		}
+
+		internal void UpdateMana(int manaCost)
+		{
+			currentMana += manaCost;
+			new ServerManaUpdateHandle().WriteMessage(GetInstanceID(), manaCost);
 		}
 
 		public void StopCharacterFromMoving()
@@ -55,12 +61,6 @@ namespace Server
 			agent.SetDestination(newPosition);
 			agent.CalculatePath(newPosition, path);
 			new ServerCharacterMoveHandle().SendCharacterMovement(this, path);
-		}
-
-		internal void UpdateMana(int manaCost)
-		{
-			currentMana += manaCost;
-			new ServerManaUpdateHandle().WriteMessage(GetInstanceID(), manaCost);
 		}
 
 		public virtual void CastAbility(int abilityCastId, Vector3 targetPosition)

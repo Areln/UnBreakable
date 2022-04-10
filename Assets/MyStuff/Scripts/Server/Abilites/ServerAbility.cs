@@ -37,7 +37,7 @@ namespace Server
             if (characterBrainTakingDamage != null && characterBrainTakingDamage != owner)
             {
                 var damage = CalculateDamageDealt(owner);
-                characterBrainTakingDamage.ChangeHealth(damage);
+                characterBrainTakingDamage.UpdateHealth(damage);
             }
         }
     }

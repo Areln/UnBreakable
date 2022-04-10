@@ -55,7 +55,6 @@ namespace Server
                 }
                 else
                 {
-                    currentMana += manaRegenAmount;
                     UpdateMana(manaRegenAmount);
                     manaRegenCurrentTime = manaRegenTime;
                     if (currentMana > maxMana)
