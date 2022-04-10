@@ -66,6 +66,14 @@ public class GameManager : MonoBehaviour
             ItemDirectory.Add(item.GetComponent<Item>().InternalName, item);
         }
     }
+    public void SetDraggingObject(ItemSlot slot) 
+    {
+        DraggingObject = slot;
+    }
+    public ItemSlot GetDraggingObject()
+    {
+        return DraggingObject;
+    }
 
     [Command("SpawnAllItems")]
     public void SpawnAllItems()

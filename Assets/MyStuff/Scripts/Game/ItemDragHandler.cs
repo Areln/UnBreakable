@@ -7,7 +7,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 	public void OnBeginDrag(PointerEventData eventData)
     {
-        GameManager.Instance.DraggingObject = transform.GetComponentInParent<ItemSlot>();
+        GameManager.Instance.SetDraggingObject(transform.GetComponentInParent<ItemSlot>());
         parent = transform.parent;
         transform.SetParent(HudManager.Instance.ItemDragSlot, false);
     }
@@ -19,7 +19,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        GameManager.Instance.DraggingObject = null;
+        GameManager.Instance.SetDraggingObject(null);
         transform.localPosition = Vector2.zero;
         if (transform.parent == HudManager.Instance.ItemDragSlot)
         {

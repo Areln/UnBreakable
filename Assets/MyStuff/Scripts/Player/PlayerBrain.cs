@@ -54,7 +54,7 @@ public class PlayerBrain : CharacterBrain
 
 		if (GetComponent<PlayerBrain>() == GameManager.Instance.ClientPlayer)
 		{
-			if (Input.GetMouseButtonDown(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.DraggingObject)
+			if (Input.GetMouseButtonDown(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.GetDraggingObject())
 			{
 				RaycastHit hit;
 

@@ -10,12 +10,12 @@ public class ItemEquipSlot : ItemSlot
     // This is called when we are already dragging an item and we release it on this slot
     public override void OnDrop(PointerEventData eventData)
     {
-        if (GameManager.Instance.DraggingObject && GameManager.Instance.DraggingObject.IsSlotted())
+        if (GameManager.Instance.GetDraggingObject() && GameManager.Instance.GetDraggingObject().IsSlotted())
         {
             // can we equip?
-            if (EquipCheck(GameManager.Instance.DraggingObject.SlottedItem) && !typeof(StorageObjectSlot).IsAssignableFrom(GameManager.Instance.DraggingObject.GetType()))
+            if (EquipCheck(GameManager.Instance.GetDraggingObject().SlottedItem) && !typeof(StorageObjectSlot).IsAssignableFrom(GameManager.Instance.GetDraggingObject().GetType()))
             {
-                GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.DraggingObject.SlottedItem.GetComponent<ItemEquipable>(), GameManager.Instance.DraggingObject);
+                GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.GetDraggingObject().SlottedItem.GetComponent<ItemEquipable>(), GameManager.Instance.GetDraggingObject());
             }
         }
     }

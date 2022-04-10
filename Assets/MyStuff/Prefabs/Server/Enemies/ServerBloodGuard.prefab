@@ -1517,6 +1517,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteelChestpiece(RedTrim)
       objectReference: {fileID: 0}
+    - target: {fileID: 6833613713007867481, guid: 408ea053a8e21fe4fb97eed858a46aad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 408ea053a8e21fe4fb97eed858a46aad, type: 3}
 --- !u!114 &308860507659862116 stripped
