@@ -21,13 +21,14 @@ public class CharacterUnEquipItem : IHandle
             PlayerBrain character = (PlayerBrain)GameManager.Instance.GetCharacter(characterId);
             PlayerInventory charInv = character.GetComponent<PlayerInventory>();
 
+            // TODO: if slotindex is -1, display inventory is full message
             if (isArmor)
             {
-                charInv.UnEquipArmor((ArmorType)equipableType, HudManager.Instance.InventoryItemSlots[slotIndex]);
+                charInv.UnEquipArmor((ArmorType)equipableType, slotIndex == -1 ? null : HudManager.Instance.InventoryItemSlots[slotIndex]);
             }
             else
             {
-                charInv.UnEquipWeapon((WeaponType)equipableType, HudManager.Instance.InventoryItemSlots[slotIndex]);
+                charInv.UnEquipWeapon((WeaponType)equipableType, slotIndex == -1 ? null : HudManager.Instance.InventoryItemSlots[slotIndex]);
             }
         });
     }

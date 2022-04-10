@@ -194,7 +194,10 @@ public class PlayerBrain : CharacterBrain
 
 		foreach (var item in playerData.Items)
 		{
-			playerInventory.AddPrefabItemObjectToPlayerInventory(item.Key, GameManager.Instance.GetItem(item.Value.GetItemName()), item.Value.GetAmount());
+			if (item.Value.GetItemName() != string.Empty)
+			{
+				playerInventory.AddPrefabItemObjectToPlayerInventory(item.Key, GameManager.Instance.GetItem(item.Value.GetItemName()), item.Value.GetAmount());
+			}
 		}
 	}
 

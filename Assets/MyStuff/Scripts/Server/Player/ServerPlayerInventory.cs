@@ -99,7 +99,7 @@ namespace Server
             ServerUnEquipItem(weaponType);
             serverWeaponEquipSlots.Add(weaponType, Instantiate(GameManager.Instance.GetItem(internalName), EquipmentHolder).GetComponent<ItemEquipable>());
         }
-        public void ServerUnEquipItem(ItemEquipable item, int? slotIndex = null) 
+        public void ServerUnEquipItem(ItemEquipable item, int? slotIndex) 
         {
             if (typeof(ItemArmor).IsAssignableFrom(item.GetType()))
             {
