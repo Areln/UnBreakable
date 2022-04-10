@@ -110,7 +110,8 @@ namespace Server
                 ServerUnEquipItem(item.GetComponent<ItemWeapon>().WeaponType, slotIndex);
             }
         }
-        public void ServerUnEquipItem(ArmorType armorType, int? slotIndex = null)
+
+        public int? ServerUnEquipItem(ArmorType armorType, int? slotIndex = null)
         {
             if (serverArmorEquipSlots.TryGetValue(armorType, out ItemEquipable _itemEquipable))
             {
@@ -132,8 +133,10 @@ namespace Server
 
                 Destroy(_itemEquipable.gameObject);
             }
+            return slotIndex;
         }
-        public void ServerUnEquipItem(WeaponType weaponType, int? slotIndex = null)
+
+        public int? ServerUnEquipItem(WeaponType weaponType, int? slotIndex = null)
         {
             if (serverWeaponEquipSlots.TryGetValue(weaponType, out ItemEquipable _itemEquipable))
             {
@@ -155,6 +158,7 @@ namespace Server
 
                 Destroy(_itemEquipable.gameObject);
             }
+            return slotIndex;
         }
         #endregion
 

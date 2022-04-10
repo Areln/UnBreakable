@@ -21,20 +21,20 @@ namespace Server.Networking
             {
                 ServerPlayerBrain character = ServerGameManager.Instance.GetPlayer(_fromClientId);
                 ServerPlayerInventory charInv = character.GetComponent<ServerPlayerInventory>();
-                int? x = charInv.FindFirstOpenItemSlot();
+                int? slotIndex = null;
                 if (isArmor)
                 {
-                    charInv.ServerUnEquipItem((ArmorType)equipableType, x);
+                    slotIndex = charInv.ServerUnEquipItem((ArmorType)equipableType);
                 }
                 else 
                 {
-                    charInv.ServerUnEquipItem((WeaponType)equipableType, x);
+                    slotIndex = charInv.ServerUnEquipItem((WeaponType)equipableType);
                 }
 
-
-                WriteMessage(isArmor, character.GetInstanceID(), equipableType, x);
+                WriteMessage(isArmor, character.GetInstanceID(), equipableType, slotIndex);
             });
         }
+
         void WriteMessage(bool isArmor, int characterId, int equipableType, int? slotIndex) 
         {
             using (Packet _packet = new Packet(GetMessageId()))
