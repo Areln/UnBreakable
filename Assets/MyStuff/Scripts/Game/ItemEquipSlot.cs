@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 using UnityEngine.EventSystems;
 
 public class ItemEquipSlot : ItemSlot
@@ -12,10 +10,10 @@ public class ItemEquipSlot : ItemSlot
     // This is called when we are already dragging an item and we release it on this slot
     public override void OnDrop(PointerEventData eventData)
     {
-        if (GameManager.Instance.DraggingObject)
+        if (GameManager.Instance.DraggingObject && GameManager.Instance.DraggingObject.IsSlotted())
         {
             // can we equip?
-            if (EquipCheck(GameManager.Instance.DraggingObject.SlottedItem))
+            if (EquipCheck(GameManager.Instance.DraggingObject.SlottedItem) && !typeof(StorageObjectSlot).IsAssignableFrom(GameManager.Instance.DraggingObject.GetType()))
             {
                 GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(GameManager.Instance.DraggingObject.SlottedItem.GetComponent<ItemEquipable>(), GameManager.Instance.DraggingObject);
             }
