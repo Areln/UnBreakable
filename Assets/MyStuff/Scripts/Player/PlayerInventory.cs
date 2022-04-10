@@ -72,7 +72,7 @@ public class PlayerInventory : MonoBehaviour
 
         return slot;
     }
-    public ItemSlot AddPrefabItemObjectToPlayerInventory(int slotIndex, GameObject itemPrefab)
+    public ItemSlot AddPrefabItemObjectToPlayerInventory(int slotIndex, GameObject itemPrefab, int amount = 1)
     {
         // Instantiates Item's gameobject and sets the parent as the InventoryHolder
         GameObject _tempObject = Instantiate(itemPrefab, InventoryHolder);

@@ -14,6 +14,7 @@ public class CharacterUnEquipItem : IHandle
         bool isArmor = _packet.ReadBool();
         int characterId = _packet.ReadInt();
         int equipableType = _packet.ReadInt();
+        int slotIndex = _packet.ReadInt();
 
         ThreadManager.ExecuteOnMainThread(() =>
         {
@@ -22,11 +23,11 @@ public class CharacterUnEquipItem : IHandle
 
             if (isArmor)
             {
-                charInv.UnEquipArmor((ArmorType)equipableType);
+                charInv.UnEquipArmor((ArmorType)equipableType, HudManager.Instance.InventoryItemSlots[slotIndex]);
             }
             else
             {
-                charInv.UnEquipWeapon((WeaponType)equipableType);
+                charInv.UnEquipWeapon((WeaponType)equipableType, HudManager.Instance.InventoryItemSlots[slotIndex]);
             }
         });
     }

@@ -192,10 +192,9 @@ public class PlayerBrain : CharacterBrain
 			playerInventory.EquipItemToCharacter((ItemEquipable)tempSlot.SlottedItem, tempSlot);
 		}
 
-		foreach (string item in playerData.Items)
+		foreach (var item in playerData.Items)
 		{
-			new CharacterSpawnItem().WriteMessage(item);
-			//playerInventory.AddPrefabItemObjectToPlayerInventory(GameManager.Instance.GetItem(item));
+			playerInventory.AddPrefabItemObjectToPlayerInventory(item.Key, GameManager.Instance.GetItem(item.Value.GetItemName()), item.Value.GetAmount());
 		}
 	}
 

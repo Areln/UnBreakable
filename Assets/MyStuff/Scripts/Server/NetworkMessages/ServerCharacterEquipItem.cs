@@ -17,7 +17,7 @@ namespace Server.Networking
                 ServerPlayerBrain character = ServerGameManager.Instance.GetPlayer(_fromClientId);
                 ServerPlayerInventory charInv = character.GetComponent<ServerPlayerInventory>();
 
-                string itemInternalName = charInv.ServerGetInventoryItemFromIndex(itemSlotIndex);
+                string itemInternalName = charInv.ServerGetInventoryItemFromIndex(itemSlotIndex).GetItemName();
 
                 ItemEquipable item = ServerGameManager.Instance.SearchItems(itemInternalName).GetComponent<ItemEquipable>();
 

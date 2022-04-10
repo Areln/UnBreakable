@@ -32,16 +32,17 @@ namespace Server.Networking
                 }
 
 
-                WriteMessage(isArmor, character.GetInstanceID(), equipableType);
+                WriteMessage(isArmor, character.GetInstanceID(), equipableType, charInv.FindFirstOpenItemSlot());
             });
         }
-        void WriteMessage(bool isArmor, int characterId, int equipableType) 
+        void WriteMessage(bool isArmor, int characterId, int equipableType, int? slotIndex) 
         {
             using (Packet _packet = new Packet(GetMessageId()))
             {
                 _packet.Write(isArmor);
                 _packet.Write(characterId);
                 _packet.Write(equipableType);
+                _packet.Write(slotIndex.HasValue ? slotIndex.Value : -1);
 
                 ServerSend.SendTcpDataToAllAuthenticated(_packet);
             }

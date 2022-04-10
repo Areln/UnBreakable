@@ -34,7 +34,7 @@ public class StorageObjectSlot : ItemSlot
                     Debug.Log("Left Clicked Consumable");
                 }
 
-                new CharacterRequestTakeItemFromStorage().WriteMessage(StorageObjectId, SlotIndex);
+                SendRequestForItem();
 
             }
             if (eventData.button == PointerEventData.InputButton.Right)
@@ -54,6 +54,11 @@ public class StorageObjectSlot : ItemSlot
             }
 
         }
+    }
+
+    public void SendRequestForItem()
+    {
+        new CharacterRequestTakeItemFromStorage().WriteMessage(StorageObjectId, SlotIndex);
     }
 
     // This is called when we are already dragging an item and we release it on this slot

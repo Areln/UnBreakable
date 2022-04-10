@@ -51,13 +51,13 @@ public class PlayerDataHandle : IHandle
 		var offHand = _packet.ReadString();
 
 		// Inventory Data
-		var items = new List<string>();
+		var items = new Dictionary<int, StorageData>();
 		if (isClientPlayer)
 		{
 			var itemCount = _packet.ReadInt();
 			for (int i = 0; i < itemCount; i++)
 			{
-				items.Add(_packet.ReadString());
+				items.Add(_packet.ReadInt(), _packet.ReadStorageData());
 			}
 		}
 
@@ -97,7 +97,7 @@ public class PlayerData
 
 	public string[] Abilities { get; set; }
 
-	public List<string> Items { get; set; }
+	public Dictionary<int, StorageData> Items { get; set; }
 
 	public string EquippedHelmetPiece { get; set; }
 

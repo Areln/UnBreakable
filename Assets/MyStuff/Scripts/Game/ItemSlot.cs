@@ -69,6 +69,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
                 {
                     GameManager.Instance.GetDraggingObject().GetComponent<ItemEquipSlot>().UnEquipSlottedItem();
                 }
+                if (typeof(StorageObjectSlot).IsAssignableFrom(GameManager.Instance.GetDraggingObject().GetType()))
+                {
+                    GameManager.Instance.GetDraggingObject().GetComponent<StorageObjectSlot>().SendRequestForItem();
+                }
                 else
                 {
                     SetSlottedItem(GameManager.Instance.GetDraggingObject().SlottedItem);

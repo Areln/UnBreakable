@@ -76,7 +76,11 @@ public class StorageData
     {
         Set(itemName, amount);
     }
-
+    public void Clear()
+    {
+        ItemName = "";
+        Amount = 0;
+    }
     public void Set(string itemName, int amount) 
     {
         ItemName = itemName;

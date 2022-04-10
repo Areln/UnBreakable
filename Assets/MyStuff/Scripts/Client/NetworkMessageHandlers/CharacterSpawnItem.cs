@@ -13,14 +13,14 @@ public class CharacterSpawnItem : IHandle
         // read data from stream
         int fromId = _packet.ReadInt();
         int slotIndex = _packet.ReadInt();
-        string itemInternalName = _packet.ReadString();
+        StorageData itemStorageData = _packet.ReadStorageData();
 
         ThreadManager.ExecuteOnMainThread(() =>
         {
             PlayerBrain character = (PlayerBrain)GameManager.Instance.GetCharacter(fromId);
             if (character != null)
             {
-                character.playerInventory.AddPrefabItemObjectToPlayerInventory(slotIndex, GameManager.Instance.GetItem(itemInternalName));
+                character.playerInventory.AddPrefabItemObjectToPlayerInventory(slotIndex, GameManager.Instance.GetItem(itemStorageData.GetItemName()), itemStorageData.GetAmount());
             }
         });
     }

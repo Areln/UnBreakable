@@ -35,35 +35,49 @@ namespace Server
         public Transform OffHandWeaponTransform;
 
         //array 
-        public List<Item> InventoryItems = new List<Item>();
+        //public List<Item> InventoryItems = new List<Item>();
 
-        string[] serverInventory;
+        //string[] serverInventory;
+        internal Dictionary<int, StorageData> serverInventory = new Dictionary<int, StorageData>();
         internal Dictionary<ArmorType, ItemEquipable> serverArmorEquipSlots = new Dictionary<ArmorType, ItemEquipable>();
         internal Dictionary<WeaponType, ItemEquipable> serverWeaponEquipSlots = new Dictionary<WeaponType, ItemEquipable>();
 
-        void Awake()
+        private void Awake()
         {
-            serverInventory = new string[25];
+            for (int i = 0; i < 25; i++)
+            {
+                serverInventory.Add(i, new StorageData("", 0));
+            }
         }
 
         // Server Functions
         #region 
-        
+
         public void DropAllItemsFromInventory() 
         {
             
         }
 
-        public void AddToServerInventory(int index, string internalItemName) 
+        public StorageData AddToServerInventory(int index, string internalItemName, int amount) 
         {
-            serverInventory[index] = internalItemName;
-        }
-        public string ServerGetInventoryItemFromIndex(int index) 
-        {
+            serverInventory[index].Set(internalItemName, amount);
             return serverInventory[index];
+        }
+        public StorageData ServerGetInventoryItemFromIndex(int index) 
+        {
+            serverInventory.TryGetValue(index, out var item);
+            return item;
         }
         public void ServerEquipItem(ItemEquipable item, int? slotIndex = null)
         {
+            if (slotIndex != null)
+            {
+                if (serverInventory.TryGetValue((int)slotIndex, out var storage))
+                {
+                    storage.Clear();
+                }
+            }
+
             ServerUnEquipItem(item, slotIndex);
 
             if (typeof(ItemArmor).IsAssignableFrom(item.GetType()))
@@ -113,7 +127,7 @@ namespace Server
                 }
                 else
                 {
-                    serverInventory[slotIndex.Value] = _itemEquipable.InternalName;
+                    serverInventory[slotIndex.Value].Set(_itemEquipable.InternalName, _itemEquipable.CurrentUseCount);
                 }
 
                 Destroy(_itemEquipable.gameObject);
@@ -136,7 +150,7 @@ namespace Server
                 }
                 else
                 {
-                    serverInventory[slotIndex.Value] = _itemEquipable.InternalName;
+                    serverInventory[slotIndex.Value].Set(_itemEquipable.InternalName, _itemEquipable.CurrentUseCount);
                 }
 
                 Destroy(_itemEquipable.gameObject);
@@ -148,9 +162,9 @@ namespace Server
         #region
         public int? FindFirstOpenItemSlot()
         {
-            for (int i = 0; i < serverInventory.Length; i++)
+            for (int i = 0; i < serverInventory.Count; i++)
             {
-                if (string.IsNullOrWhiteSpace(serverInventory[i]))
+                if (string.IsNullOrWhiteSpace(serverInventory[i].GetItemName()))
                 {
                     return i;
                 }
@@ -158,38 +172,6 @@ namespace Server
             return null;
         }
 
-        public void AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab)
-        {
-            // Instantiates Item's gameobject and sets the parent as the InventoryHolder
-            GameObject _tempObject = Instantiate(itemPrefab, EquipmentHolder);
-
-            // Grab reference to the item script
-            Item _tempItem = _tempObject.GetComponent<Item>();
-
-            _tempItem.OnItemPickup();
-
-            InventoryItems.Add(_tempItem);
-        }
-
-        public void EquipItemToCharacter(ItemEquipable item)
-        {
-
-            bool successfullEquip = false;
-
-            if (typeof(ItemArmor).IsAssignableFrom(item.GetType()))
-            {
-                successfullEquip = EquipArmor(item.GetComponent<ItemArmor>());
-            }
-            else if (typeof(ItemWeapon).IsAssignableFrom(item.GetType()))
-            {
-                successfullEquip = EquipWeapon(item.GetComponent<ItemWeapon>());
-            }
-
-            if (successfullEquip)
-            {
-                item.OnEquip();
-            }
-        }
         bool EquipWeapon(ItemWeapon itemWeapon)
         {
             ItemWeapon _tempWeapon = GetEquippedWeapon(itemWeapon.WeaponType);

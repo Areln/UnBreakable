@@ -26,20 +26,19 @@ namespace Server.Networking
 
 					if (slotIndex != null)
 					{
-						character.GetComponent<ServerPlayerInventory>().AddToServerInventory(slotIndex.Value, itemInternalName);
-						WriteMessage(_fromClientId, character, slotIndex.Value, itemInternalName);
+						WriteMessage(_fromClientId, character, slotIndex.Value, character.GetComponent<ServerPlayerInventory>().AddToServerInventory(slotIndex.Value, itemInternalName, 1));
 					}
 				}
 			});
 		}
 
-		public void WriteMessage(int clientId, ServerCharacterBrain character, int slotIndex, string itemInternalName)
+		public void WriteMessage(int clientId, ServerCharacterBrain character, int slotIndex, StorageData itemStorageData)
 		{
 			using (Packet _packet = new Packet(GetMessageId()))
 			{
 				_packet.Write(character.GetInstanceID());
 				_packet.Write(slotIndex);
-				_packet.Write(itemInternalName);
+				_packet.Write(itemStorageData);
 
 				ServerSend.SendTcpDataAuthenticated(clientId, _packet);
 			}

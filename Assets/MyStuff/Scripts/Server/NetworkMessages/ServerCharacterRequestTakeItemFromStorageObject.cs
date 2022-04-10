@@ -30,8 +30,7 @@ namespace Server.Networking
                     int? x = _serverPlayerInventory.FindFirstOpenItemSlot();
                     if (x != null)
                     {
-                        _serverPlayerInventory.AddToServerInventory((int)x, item.GetItemName());
-                        WriteMessage(serverStorageObject.PeekingIds, _fromClientId, itemSlotId, serverStorageObject.GetItemFromSlotId(itemSlotId), (int)x);
+                        WriteMessage(serverStorageObject.PeekingIds, _fromClientId, itemSlotId, _serverPlayerInventory.AddToServerInventory(x.Value, item.GetItemName(), item.GetAmount()), x.Value);
                         serverStorageObject.ClearSlot(itemSlotId);
                     }
                 }

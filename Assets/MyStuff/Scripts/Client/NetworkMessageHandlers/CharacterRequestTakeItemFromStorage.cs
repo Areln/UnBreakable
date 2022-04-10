@@ -14,7 +14,7 @@ public class CharacterRequestTakeItemFromStorage : IHandle
         bool isFromClient = _packet.ReadBool();
         int fromId = _packet.ReadInt();
         int toId = 0;
-        StorageData item = new StorageData("", 0);
+        StorageData item = default;
 
         if (isFromClient)
         {

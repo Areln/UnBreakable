@@ -87,10 +87,14 @@ namespace Server.Networking
             if (isClientPlayer)
             {
                 // Inventory Data
-                _packet.Write(playerData.playerInventory.InventoryItems.Count);
-                foreach (var item in playerData.playerInventory.InventoryItems)
+                _packet.Write(playerData.playerInventory.serverInventory.Count);
+                for (int i = 0; i < playerData.playerInventory.serverInventory.Count; i++)
                 {
-                    _packet.Write(item.InternalName);
+                    var item = playerData.playerInventory.serverInventory[i];
+                    _packet.Write(i);
+                    _packet.Write(item);
+                    //_packet.Write(item?.GetItemName() != String.Empty ? item.GetItemName() : "");
+                    //_packet.Write(item.GetAmount());
                 }
             }
         }
