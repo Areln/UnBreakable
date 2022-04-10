@@ -22,29 +22,20 @@ public class AbilityWarpBlast : Ability
 
 	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
-		//checks if ability is on cooldown or if the player is casting an ability already.
-		if (currentCooldown > 0 || owner.CurrentlyCastingAbility != null)
-		{
-			return;
-		}
-		//uses mana
-		if (owner.currentMana >= manaCost)
-		{
-			owner.currentMana -= manaCost;
-			//cast setup successfull so set ability CD
-			currentCooldown = maxCooldown;
-			owner.gameObject.transform.LookAt(targetPosition);
-			//teleport player
-			owner.transform.position = targetPosition;
-			owner.GetComponent<PlayerMovement>().DestroyDestinationMarker();
-			owner.StopCharacterFromMoving();
+		owner.currentMana -= manaCost;
+		//cast setup successfull so set ability CD
+		currentCooldown = maxCooldown;
+		owner.gameObject.transform.LookAt(targetPosition);
+		//teleport player
+		owner.transform.position = targetPosition;
+		owner.GetComponent<PlayerMovement>().DestroyDestinationMarker();
+		owner.StopCharacterFromMoving();
 
-			//instantiates particle object
-			Instantiate(particlePrefab, transform.position, transform.rotation);
+		//instantiates particle object
+		Instantiate(particlePrefab, transform.position, transform.rotation);
 
-			//hitbox
-			HitCheck();
-		}
+		//hitbox
+		HitCheck();
 	}
 
 	private IEnumerator waitForSec(float sec)

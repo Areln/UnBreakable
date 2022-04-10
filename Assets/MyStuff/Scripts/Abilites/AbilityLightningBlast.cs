@@ -36,13 +36,6 @@ public class AbilityLightningBlast : Ability
 
 	public override void Activate(Vector3 startPosition, Vector3 targetPosition)
 	{
-		// TODO: smoothly transition to location and rotation as we cast.
-		owner.transform.position = startPosition; 
-		Vector3 targetDirection = startPosition - transform.position;
-		//float singleStep = 3.5f * Time.deltaTime;
-		//Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-		transform.rotation = Quaternion.LookRotation(targetDirection);
-
 		owner.CurrentlyCastingAbility = this;
 		var newPos = targetPosition + -transform.up * 1;
 		this.targetPosition = newPos;

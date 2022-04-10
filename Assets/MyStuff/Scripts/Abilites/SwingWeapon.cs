@@ -33,6 +33,10 @@ public class SwingWeapon : Ability
             owner.currentMana -= manaCost;
             owner.gameObject.transform.LookAt(targetPosition);
             owner.IsMovementPaused = true;
+            if (animator == null)
+            {
+                animator = gameObject.GetComponentInParent<Animator>();
+            }
             animator.SetTrigger("Attack");
         }
     }

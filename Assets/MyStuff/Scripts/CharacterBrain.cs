@@ -23,12 +23,14 @@ public abstract class CharacterBrain : MonoBehaviour
     internal Ability CurrentlyCastingAbility { get; set; }
 
     internal Vector3? targetPosition;
+    private Vector3? abilityCastPosition;
     internal float? targetRotation;
+    private float? abilityCastRotation;
     internal bool IsMovementPaused { get; set; }
     internal Queue<MoveData> positions = new Queue<MoveData>();
 
     private const float catchUpSpeedMultiplier = 1.5f;
-    private const float hardCorrectionDistance = 2f;
+    private const float hardCorrectionDistance = 1f;
     private float catchUpSpeed;
 
     public abstract void CharacterDie();
@@ -56,8 +58,19 @@ public abstract class CharacterBrain : MonoBehaviour
     }
 
     public void FixedUpdate()
-	{
-        if (!IsMovementPaused && targetPosition.HasValue)
+    {
+        if (CurrentlyCastingAbility == null)
+        {
+            abilityCastRotation = null;
+            abilityCastPosition = null;
+        }
+        // handle postion
+        if (abilityCastPosition.HasValue)
+		{
+            var newPosition = Vector3.MoveTowards(transform.position, abilityCastPosition.Value, catchUpSpeed * Time.fixedDeltaTime);
+            transform.position = newPosition;
+        }
+        else if (!IsMovementPaused && targetPosition.HasValue)
         {
             if (Vector3.Distance(transform.position, targetPosition.Value) > .01f)
             {
@@ -81,7 +94,13 @@ public abstract class CharacterBrain : MonoBehaviour
             UpdateTargetPosition();
         }
 
-        if(targetRotation.HasValue && transform.rotation.eulerAngles.y != targetRotation.Value)
+        // handle rotation
+        if(abilityCastRotation.HasValue)
+		{
+            var currentRotation = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(currentRotation.x, abilityCastRotation.Value, currentRotation.z)), Speed * Time.fixedDeltaTime);
+        }
+        else if (targetRotation.HasValue && !Mathf.Approximately(transform.rotation.eulerAngles.y, targetRotation.Value) && !abilityCastRotation.HasValue)
 		{
             var currentRotation = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(currentRotation.x, targetRotation.Value, currentRotation.z)), Speed * Time.fixedDeltaTime);
@@ -127,6 +146,10 @@ public abstract class CharacterBrain : MonoBehaviour
 
     internal virtual void CastAbility(int abilityIndex, Vector3 startPosition, Vector3 targetPosition)
     {
+        float angleRad = Mathf.Atan2(targetPosition.x - startPosition.x, targetPosition.z - startPosition.z);
+        float angle = (180 / Mathf.PI) * angleRad;
+        abilityCastRotation = angle;
+        abilityCastPosition = startPosition;
         abilities[abilityIndex].Activate(startPosition, targetPosition);
     }
 }

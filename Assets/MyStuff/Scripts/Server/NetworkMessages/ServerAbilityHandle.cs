@@ -39,22 +39,5 @@ namespace Server.Networking
 				ServerSend.SendTcpDataToAllAuthenticated(_packet);
 			}
 		}
-
-		public void SendCharacterMovement(ServerCharacterBrain movingCharacter, NavMeshPath path)
-		{
-			using (Packet _packet = new Packet(GetMessageId()))
-			{
-				_packet.Write(movingCharacter.GetInstanceID());
-				_packet.Write(path.corners.Length);
-				foreach (var corner in path.corners)
-				{
-					_packet.Write(corner.x);
-					_packet.Write(corner.y);
-					_packet.Write(corner.z);
-				}
-
-				ServerSend.SendTcpDataToAllAuthenticated(_packet);
-			}			
-		}
 	}
 }
