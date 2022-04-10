@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Server.Networking;
+using System.Collections;
 using UnityEngine;
 
 namespace Server
@@ -20,7 +21,7 @@ namespace Server
             //uses mana
             if (owner.currentMana >= manaCost)
             {
-                owner.currentMana -= manaCost;
+                owner.UpdateMana(-manaCost);
                 currentCooldown = maxCooldown;
             }
             else

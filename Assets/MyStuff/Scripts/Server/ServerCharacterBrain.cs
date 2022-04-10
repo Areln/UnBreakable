@@ -1,4 +1,5 @@
 ﻿using Server.Networking;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -54,6 +55,12 @@ namespace Server
 			agent.SetDestination(newPosition);
 			agent.CalculatePath(newPosition, path);
 			new ServerCharacterMoveHandle().SendCharacterMovement(this, path);
+		}
+
+		internal void UpdateMana(int manaCost)
+		{
+			currentMana += manaCost;
+			new ServerManaUpdateHandle().WriteMessage(GetInstanceID(), manaCost);
 		}
 
 		public virtual void CastAbility(int abilityCastId, Vector3 targetPosition)

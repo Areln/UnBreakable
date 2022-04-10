@@ -53,7 +53,7 @@ namespace Server
 
 		private IEnumerator CastSpell(float sec)
 		{
-			owner.currentMana -= manaCost;
+			owner.UpdateMana(-manaCost);
 			IsCanceled = false;
 			finishedCasting = false;
 			currentCooldown = maxCooldown;
