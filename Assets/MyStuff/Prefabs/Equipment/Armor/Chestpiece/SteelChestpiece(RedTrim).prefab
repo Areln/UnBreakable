@@ -255,7 +255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2370119961719065
 Transform:
   m_ObjectHideFlags: 0
@@ -341,19 +341,11 @@ MonoBehaviour:
   Description: Suwu
   ItemSprite: {fileID: 21300000, guid: 76ec1385a7472aa46b6610d92af62246, type: 3}
   MaxUseCount: 1
-  CurrentUseCount: 0
+  CurrentUseCount: 1
   MonetaryValue: 20
   EquipType: 1
-  EquipComponents: []
-  EquipRenderers:
-  - {fileID: 261584909293955824}
-  - {fileID: 4813571901676039283}
-  - {fileID: 7816448685620860357}
-  - {fileID: 7049996145156818111}
-  - {fileID: 3248751641829037151}
-  - {fileID: 6233073909528200558}
-  - {fileID: 5295386720940613212}
   ArmorType: 1
+  MirrorPrefab: {fileID: 0}
 --- !u!1 &7336080873479319719
 GameObject:
   m_ObjectHideFlags: 0

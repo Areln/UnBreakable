@@ -54,7 +54,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
     // This is called when we are already dragging an item and we release it on this slot
     public virtual void OnDrop(PointerEventData eventData)
     {
-        if (GameManager.Instance.DraggingObject)
+        if (GameManager.Instance.DraggingObject && GameManager.Instance.DraggingObject.IsSlotted())
         {
             if (SlottedItem != null)
             {
@@ -62,7 +62,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
                 //SetSlottedItem(GameManager.Instance.DraggingObject.SlottedItem);
                 //GameManager.Instance.DraggingObject.SetSlottedItem(tempItem);
             }
-			else
+            else
             {
                 //if we are draggin from equip slot, then un equip the item
                 if (typeof(ItemEquipSlot).IsAssignableFrom(GameManager.Instance.DraggingObject.GetType()))
@@ -76,7 +76,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
                 }
             }
         }
-	}
+    }
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
@@ -88,7 +88,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
                 if (typeof(ItemEquipable).IsAssignableFrom(SlottedItem.GetType()))
                 {
                     // Check stats if we can equip then handle inventory then equip item
-                   //GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquipable>(), this);
+                    //GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquipable>(), this);
                     new CharacterEquipItem().WriteMessage(SlotIndex);
                 }
                 else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
