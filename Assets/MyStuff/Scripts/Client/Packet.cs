@@ -21,6 +21,7 @@ public enum Packets
 	CharacterRequestTakeItemFromStorageObject,
 	equipItem,
 	healthUpdate,
+	manaUpdate,
 	characterDie,
 	cancelAction,
 	disconnect,

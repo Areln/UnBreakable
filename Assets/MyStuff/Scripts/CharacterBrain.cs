@@ -38,7 +38,14 @@ public abstract class CharacterBrain : MonoBehaviour
     public void ChangeHealth(int healthChange)
     {
         currentHealth += healthChange;
+        Mathf.Clamp(currentHealth, 0, maxHealth);
         GetComponent<HPScript>().ChangeHP(healthChange, gameObject.transform.position);
+    }
+
+    public void ChangeMana(int manaChange)
+    {
+        currentMana += manaChange;
+        Mathf.Clamp(currentMana, 0, maxMana);
     }
 
     internal void InitializeData(CharacterData characterData)

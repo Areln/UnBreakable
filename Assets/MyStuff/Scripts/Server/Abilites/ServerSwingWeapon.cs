@@ -32,7 +32,7 @@ namespace Server
             if (owner.currentMana >= manaCost)
             {
                 currentCooldown = maxCooldown;
-                owner.currentMana -= manaCost;
+                owner.UpdateMana(-manaCost);
                 owner.gameObject.transform.LookAt(targetPosition);
                 owner.agent.isStopped = true;
                 animator.SetTrigger("Attack");

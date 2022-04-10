@@ -32,7 +32,7 @@ namespace Server
 			//uses mana
 			if (owner.currentMana >= manaCost)
 			{
-				owner.currentMana -= manaCost;
+				owner.UpdateMana(-manaCost);
 				//cast setup successfull so set ability CD
 				currentCooldown = maxCooldown;
 				owner.gameObject.transform.LookAt(targetPosition);
