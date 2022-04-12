@@ -30,11 +30,6 @@ namespace Server.Networking
 				_packet.Write(path.corners.Length);
 				Vector3? lastCorner = null;
 
-				if(movingCharacter is ServerPlayerBrain)
-				{
-					Debug.Log(path.corners.Length);
-				}
-
 				foreach (var corner in path.corners)
 				{
 					var nextCorner = new Vector3(corner.x, movingCharacter.transform.position.y, corner.z);
