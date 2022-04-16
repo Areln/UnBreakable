@@ -38,10 +38,10 @@ public class PlayerBrain : CharacterBrain
 		{
 			if (Input.GetMouseButtonDown(0) && !GameManager.Instance.UsingUI && !GameManager.Instance.GetDraggingObject())
 			{
-				RaycastHit hit;
-
-				if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, LayerMask.GetMask("Ground")))
+				var mask = (1 << LayerMask.NameToLayer("Ground"));
+				if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, mask))
 				{
+					Debug.Log(transform.position.y);
 					new CharacterMoveHandle().WriteMessage(new Vector3(hit.point.x, transform.position.y, hit.point.z));
 				}
 			}

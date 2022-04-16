@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 		if (destinationMarkerPlaced == null && brain.targetPosition.HasValue && Vector3.Distance(transform.position, brain.targetPosition.Value) > .05f)
 		{
 			var position = brain.positions.Count > 0 ? brain.positions.Last().Position : brain.targetPosition.Value;
-			var markerPosition = new Vector3(position.x, 0, position.z);
+			var markerPosition = new Vector3(position.x, position.y-1.025f, position.z);
 			destinationMarkerPlaced = Instantiate(destinationMarkerPrefab, markerPosition, Quaternion.identity);
 		}
 
