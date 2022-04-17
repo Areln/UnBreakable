@@ -151,7 +151,7 @@ namespace Server
 		{
 			//drop loot
 			Vector3 dropPos = gameObject.transform.position;
-			dropPos.y = 0.5f;
+			
 			ServerStorageObject lootChest = Instantiate(lootChestPrefab, dropPos, gameObject.transform.rotation).GetComponent<ServerStorageObject>();
 			//add to servergamemanager
 			//send message to createstorage
