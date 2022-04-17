@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6486607390944742001}
   m_Layer: 0
-  m_Name: Flower
+  m_Name: RedFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 1089093536704216212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.069, z: 0}
-  m_LocalScale: {x: 0.26030487, y: 1.2088308, z: 0.26030487}
+  m_LocalScale: {x: 0.13897677, y: 0.6453948, z: 0.13897677}
   m_Children: []
   m_Father: {fileID: 6486607390944742001}
   m_RootOrder: 0
@@ -140,8 +140,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3085090026186969121}
   m_LocalRotation: {x: -0, y: -0.51556164, z: -0, w: 0.8568525}
-  m_LocalPosition: {x: -0.214, y: 0.558, z: -0.403}
-  m_LocalScale: {x: 0.61366004, y: 0.18947999, z: 0.69318}
+  m_LocalPosition: {x: -0.154, y: 0.4, z: -0.291}
+  m_LocalScale: {x: 0.5264081, y: 0.10116337, z: 0.37008885}
   m_Children: []
   m_Father: {fileID: 6486607390944742001}
   m_RootOrder: 3
@@ -219,8 +219,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4582643081076316836}
   m_LocalRotation: {x: -0, y: -0.51556164, z: -0, w: 0.8568525}
-  m_LocalPosition: {x: 0.222, y: 0.46, z: 0.418}
-  m_LocalScale: {x: 0.61366004, y: 0.18947999, z: 0.69318}
+  m_LocalPosition: {x: 0.136, y: 0.367, z: 0.257}
+  m_LocalScale: {x: 0.4538374, y: 0.10116337, z: 0.37008885}
   m_Children: []
   m_Father: {fileID: 6486607390944742001}
   m_RootOrder: 4
@@ -298,8 +298,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6593760247086812341}
   m_LocalRotation: {x: -0, y: -0.51556164, z: -0, w: 0.8568525}
-  m_LocalPosition: {x: 0.4, y: 0.51, z: -0.251}
-  m_LocalScale: {x: 0.61366004, y: 0.18947999, z: 0.69318}
+  m_LocalPosition: {x: 0.264, y: 0.384, z: -0.179}
+  m_LocalScale: {x: 0.3276331, y: 0.10116337, z: 0.46002045}
   m_Children: []
   m_Father: {fileID: 6486607390944742001}
   m_RootOrder: 2
@@ -377,8 +377,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7946219234240748279}
   m_LocalRotation: {x: -0, y: -0.51556164, z: -0, w: 0.8568525}
-  m_LocalPosition: {x: -0.434, y: 0.451, z: 0.23}
-  m_LocalScale: {x: 0.61366004, y: 0.18947999, z: 0.69318}
+  m_LocalPosition: {x: -0.3, y: 0.413, z: 0.16}
+  m_LocalScale: {x: 0.3276331, y: 0.10116337, z: 0.49488282}
   m_Children: []
   m_Father: {fileID: 6486607390944742001}
   m_RootOrder: 1
