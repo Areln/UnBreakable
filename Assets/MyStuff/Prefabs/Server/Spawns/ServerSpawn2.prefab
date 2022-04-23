@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 6915615910957516358}
   - component: {fileID: 4806219068401640923}
   m_Layer: 0
-  m_Name: ServerRegion2
+  m_Name: ServerSpawn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
