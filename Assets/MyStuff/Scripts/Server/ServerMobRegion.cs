@@ -7,6 +7,7 @@ namespace Server
     {
         public List<Transform> points = new List<Transform>();
         public List<ServerBasicAI> npcList = new List<ServerBasicAI>();
+        public ServerRegion serverRegion;
 
         public float MaxNPCCount = 4;
         public float maxMobRespawnTimer = 1;
@@ -48,7 +49,7 @@ namespace Server
                 currentMobRespawnTimer = maxMobRespawnTimer;
             }
 
-            ServerGameManager.Instance.Characters.Remove(_npc.GetInstanceID());
+            serverRegion.Characters.Remove(_npc.GetInstanceID());
             npcList.Remove(_npc);
             // TODO: Send remove message to clients
         }
@@ -57,7 +58,7 @@ namespace Server
         {
             Transform _point = GetRandomPoint();
             var character = Instantiate(EnemyPrefab, _point.transform.position, _point.transform.rotation).GetComponent<ServerBasicAI>();
-            ServerGameManager.Instance.Characters.Add(character.GetInstanceID(), character);
+            serverRegion.Characters.Add(character.GetInstanceID(), character);
             // Send spawn message to clients
             new ServerCharacterDataHandle().WriteCharacterData(character);
             return character.gameObject;

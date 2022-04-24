@@ -35,20 +35,25 @@ namespace Server.Networking
                 ServerSend.SendTcpDataToAllAuthenticated(_toClientId, _packet);
             }
 
-            // Send all players to the newly connected client
-            foreach (var player in ServerGameManager.Instance.ClientPlayers)
+            foreach (var region in ServerGameManager.Instance.LoadedRegions.Values)
             {
-                using (Packet _packet = new Packet((int)Packets.playerData))
+                // TODO: update this to only send data in regions near the player.
+                // Send all players to the newly connected client
+                foreach (var player in region.ClientPlayers)
                 {
-                    WritePlayerPacket(_packet, player.Value, player.Key == _toClientId);
-                    ServerSend.SendTcpDataAuthenticated(_toClientId, _packet);
+                    using (Packet _packet = new Packet((int)Packets.playerData))
+                    {
+                        WritePlayerPacket(_packet, player.Value, player.Key == _toClientId);
+                        ServerSend.SendTcpDataAuthenticated(_toClientId, _packet);
+                    }
+                } 
+                // Send all Characters to newly connected client
+                foreach (var character in region.Characters.Values)
+                {
+                    new ServerCharacterDataHandle().WriteCharacterData(_toClientId, character);
                 }
             }
-            // Send all Characters to newly connected client
-            foreach (var character in ServerGameManager.Instance.Characters.Values)
-            {
-                new ServerCharacterDataHandle().WriteCharacterData(_toClientId, character);
-            }
+           
 
         }
 

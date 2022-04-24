@@ -8,6 +8,7 @@ namespace Server
     {
         internal HPScript hpScript;
         internal ServerPlayerInventory playerInventory;
+        internal ServerRegion currentRegion;
 
         public float manaRegenTime;
         internal float manaRegenCurrentTime;
@@ -77,10 +78,11 @@ namespace Server
             //}
         }
 
-        internal void InitializeData(string username)
+        internal void InitializeData(string username, ServerRegion region)
         {
             characterName = username;
             LoadAbilities();
+            currentRegion = region;
 
             //foreach (GameObject item in ServerGameManager.Instance.PossibleItems)
             //{

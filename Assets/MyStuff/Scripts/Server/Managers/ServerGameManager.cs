@@ -38,11 +38,13 @@ namespace Server
             }
         }
 
-		internal Dictionary<int, ServerPlayerBrain> ClientPlayers = new Dictionary<int, ServerPlayerBrain>();
+		//internal Dictionary<int, ServerPlayerBrain> ClientPlayers = new Dictionary<int, ServerPlayerBrain>();
 
-        internal Dictionary<int, ServerBasicAI> Characters { get; set; } = new Dictionary<int, ServerBasicAI>();
+  //      internal Dictionary<int, ServerBasicAI> Characters { get; set; } = new Dictionary<int, ServerBasicAI>();
 
         internal Dictionary<int, ServerStorageObject> itemStorages = new Dictionary<int, ServerStorageObject>();
+
+        internal Dictionary<Coordinates, ServerRegion> LoadedRegions = new Dictionary<Coordinates, ServerRegion>();
 
         public List<GameObject> PossibleItems = new List<GameObject>();
 
@@ -66,7 +68,14 @@ namespace Server
 
         internal ServerPlayerBrain GetPlayer(int playerId)
         {
-            ClientPlayers.TryGetValue(playerId, out var player);
+            ServerPlayerBrain player = null;
+            foreach (var region in LoadedRegions.Values)
+            {
+                if(region.ClientPlayers.TryGetValue(playerId, out player))
+				{
+                    return player;
+				}
+            }
             return player;
         }
 
@@ -79,10 +88,20 @@ namespace Server
         internal ServerPlayerBrain LoadPlayer(int _clientId, string username)
         {
             // TODO: LoadFrom File or database if exists.
+            Coordinates defaultCoordinates = new Coordinates { X = 0, Y = 0 };
             var connectionPlayerGameObject = Instantiate(BasePlayerPrefab, SpawnPoint, Quaternion.identity);
             var playerBrain = connectionPlayerGameObject.GetComponent<ServerPlayerBrain>();
-            playerBrain.InitializeData(username);
-            ClientPlayers.Add(_clientId, playerBrain);
+            if (LoadedRegions.TryGetValue(defaultCoordinates, out var region))
+			{
+                region.ClientPlayers.Add(_clientId, playerBrain);
+            }
+			else
+			{
+                region = Instantiate(Resources.Load($"ServerRegions/ServerRegion{defaultCoordinates.X},{defaultCoordinates.Y}") as ServerRegion);
+                LoadedRegions.Add(defaultCoordinates, region);
+                region.ClientPlayers.Add(_clientId, playerBrain);
+            }
+            playerBrain.InitializeData(username, region);
             return playerBrain;
         }
     }

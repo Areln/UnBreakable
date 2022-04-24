@@ -733,7 +733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6844551357821381830}
   m_Layer: 0
-  m_Name: Region2
+  m_Name: Region-1,0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
