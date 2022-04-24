@@ -19,6 +19,8 @@ public enum Packets
 	CreateStorageObject,
 	CharacterRequestStorageObjectContents,
 	CharacterRequestTakeItemFromStorageObject,
+	CharacterDropItemFromInventory,
+	CharacterInventoryIndexSwap,
 	equipItem,
 	healthUpdate,
 	manaUpdate,

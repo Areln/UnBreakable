@@ -62,7 +62,15 @@ namespace Server
 			//{
 			//    currentPatrolTargetIndex = 0;
 			//}
-			MainTarget = GetRandomPoint().gameObject;
+			if (PatrolTargets.Count > 0)
+			{
+				MainTarget = GetRandomPoint().gameObject;
+			}
+			else
+			{
+				MainTarget = gameObject;
+			}
+
 		}
 
 		Transform GetRandomPoint()

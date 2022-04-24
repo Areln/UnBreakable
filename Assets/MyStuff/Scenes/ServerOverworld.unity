@@ -494,6 +494,7 @@ MonoBehaviour:
   BasePlayerPrefab: {fileID: 6621349970582242535, guid: f41ee6e07b635b5408438b5cb3a0f558,
     type: 3}
   SpawnPoint: {x: 206.22, y: 51.02549, z: -44.8}
+  defaultRegion: {fileID: 1884584893}
 --- !u!1 &1085187937
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +736,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2747081126434954987, guid: 58851edaf40cabc4487bdae77e9b4f0e,
+        type: 3}
+      propertyPath: serverRegion
+      value: 
+      objectReference: {fileID: 1884584893}
+    - target: {fileID: 4806219068009772238, guid: 58851edaf40cabc4487bdae77e9b4f0e,
+        type: 3}
+      propertyPath: serverRegion
+      value: 
+      objectReference: {fileID: 1884584893}
     - target: {fileID: 8051572422633573462, guid: 58851edaf40cabc4487bdae77e9b4f0e,
         type: 3}
       propertyPath: m_Name
@@ -787,3 +798,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1884584893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1655098505195769780, guid: 58851edaf40cabc4487bdae77e9b4f0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1726395846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7494825c506203e4ca85dcba11678ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

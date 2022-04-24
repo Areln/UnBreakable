@@ -25,6 +25,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
 
     internal virtual void SetSlottedItem(Item item, int itemCount = 1)
     {
+        if (item == null)
+        {
+            return;
+        }
         SlottedItem = item;
         SlottedItem.CurrentUseCount = itemCount;
         ItemSprite.sprite = item.ItemSprite;
@@ -75,8 +79,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
                 }
                 else
                 {
-                    SetSlottedItem(GameManager.Instance.GetDraggingObject().SlottedItem);
-                    GameManager.Instance.GetDraggingObject().ClearSlot();
+                    //SetSlottedItem(GameManager.Instance.GetDraggingObject().SlottedItem);
+                    //GameManager.Instance.ClientPlayer.playerInventory.SwapInventorySlots(SlotIndex, GameManager.Instance.DraggingObject.SlotIndex);
+                    new CharacterInventoryIndexSwap().WriteMessage(SlotIndex, GameManager.Instance.DraggingObject.SlotIndex);
                 }
             }
         }
@@ -93,7 +98,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
                 {
                     // Check stats if we can equip then handle inventory then equip item
                     //GameManager.Instance.ClientPlayer.playerInventory.EquipItemToCharacter(SlottedItem.GetComponent<ItemEquipable>(), this);
-                    new CharacterEquipItem().WriteMessage(SlotIndex);
+                    //new CharacterEquipItem().WriteMessage(SlotIndex);
+                    new CharacterDropItemFromInventory().WriteMessage(SlotIndex);
                 }
                 else if (typeof(ItemBasic).IsAssignableFrom(SlottedItem.GetType()))
                 {

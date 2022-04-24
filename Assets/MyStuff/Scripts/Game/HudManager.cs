@@ -87,6 +87,11 @@ public class HudManager : MonoBehaviour
     public Transform ContainerItemSlotsHolder;
     public List<ItemSlot> ContainerItemSlots = new List<ItemSlot>();
 
+    public void ClearInventorySlot(int slotIndex)
+    {
+        InventoryItemSlots[slotIndex].ClearSlot();
+    }
+
     internal void PopulateStorageContainer(Dictionary<int, StorageData> contents, int storageObjectId)
     {
         ClearContainerItemSlots();

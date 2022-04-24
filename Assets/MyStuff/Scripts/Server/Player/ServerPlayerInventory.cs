@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Server
@@ -23,6 +24,14 @@ namespace Server
         public Transform NecklacePieceTransform;
 
         public ItemArmor EquippedRing1Piece;
+
+        internal void SwapSlotIndex(int index1, int index2)
+        {
+            StorageData temp = serverInventory[index1];
+            serverInventory[index1] = serverInventory[index2];
+            serverInventory[index2] = temp;
+        }
+
         public Transform Ring1PieceTransform;
 
         public ItemArmor EquippedRing2Piece;

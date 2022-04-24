@@ -40,11 +40,11 @@ namespace Server
 
 		//internal Dictionary<int, ServerPlayerBrain> ClientPlayers = new Dictionary<int, ServerPlayerBrain>();
 
-  //      internal Dictionary<int, ServerBasicAI> Characters { get; set; } = new Dictionary<int, ServerBasicAI>();
+        //internal Dictionary<int, ServerBasicAI> Characters { get; set; } = new Dictionary<int, ServerBasicAI>();
 
         internal Dictionary<int, ServerStorageObject> itemStorages = new Dictionary<int, ServerStorageObject>();
 
-        internal Dictionary<Coordinates, ServerRegion> LoadedRegions = new Dictionary<Coordinates, ServerRegion>();
+        internal Dictionary<Coordinates, ServerRegion> LoadedRegions = new Dictionary<Coordinates, ServerRegion>(new Coordinates.EqualityComparer());
 
         public List<GameObject> PossibleItems = new List<GameObject>();
 
@@ -53,8 +53,12 @@ namespace Server
 
         static readonly Dictionary<string, GameObject> ItemDirectory = new Dictionary<string, GameObject>();
 
+        public ServerRegion defaultRegion;
+
         private void Awake()
         {
+            LoadedRegions.Add(new Coordinates() { X = 0, Y = 0 }, defaultRegion);
+
             foreach (GameObject item in PossibleItems)
             {
                 ItemDirectory.Add(item.GetComponent<Item>().InternalName, item);
@@ -91,13 +95,15 @@ namespace Server
             Coordinates defaultCoordinates = new Coordinates { X = 0, Y = 0 };
             var connectionPlayerGameObject = Instantiate(BasePlayerPrefab, SpawnPoint, Quaternion.identity);
             var playerBrain = connectionPlayerGameObject.GetComponent<ServerPlayerBrain>();
+
             if (LoadedRegions.TryGetValue(defaultCoordinates, out var region))
 			{
                 region.ClientPlayers.Add(_clientId, playerBrain);
             }
 			else
 			{
-                region = Instantiate(Resources.Load($"ServerRegions/ServerRegion{defaultCoordinates.X},{defaultCoordinates.Y}") as ServerRegion);
+                var gameObject = Instantiate(Resources.Load($"ServerRegions/ServerRegion{defaultCoordinates.X},{defaultCoordinates.Y}") as GameObject);
+                region = gameObject.GetComponent<ServerRegion>();
                 LoadedRegions.Add(defaultCoordinates, region);
                 region.ClientPlayers.Add(_clientId, playerBrain);
             }

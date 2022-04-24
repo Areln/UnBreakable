@@ -39,8 +39,16 @@ public class PlayerInventory : MonoBehaviour
     public Transform OffHandWeaponTransform;
 
     //array 
-    public List<Item> InventoryItems = new List<Item>();
+    [SerializeField]
+    public Dictionary<int, Item> InventoryItems = new Dictionary<int, Item>();
 
+    private void Start()
+    {
+        for (int i = 0; i < 24; i++)
+        {
+            InventoryItems.Add(i, null);
+        }
+    }
 
     // 
     #region
@@ -54,6 +62,24 @@ public class PlayerInventory : MonoBehaviour
     }
     #endregion
 
+    public void SwapInventorySlots(int slot1, int slot2) 
+    {
+        Item temp = InventoryItems[slot1];
+        InventoryItems[slot1] = InventoryItems[slot2];
+        HudManager.Instance.InventoryItemSlots[slot1].ClearSlot();
+        HudManager.Instance.InventoryItemSlots[slot2].ClearSlot();
+        HudManager.Instance.InventoryItemSlots[slot1].SetSlottedItem(InventoryItems[slot1]);
+        InventoryItems[slot2] = temp;
+        HudManager.Instance.InventoryItemSlots[slot2].SetSlottedItem(InventoryItems[slot2]);
+    }
+
+    public void ClearInventorySlot(int slotIndex)
+    {
+        HudManager.Instance.InventoryItemSlots[slotIndex].ClearSlot();
+        var temp = InventoryItems[slotIndex].gameObject;
+        InventoryItems[slotIndex] = null;
+        Destroy(temp);
+    }
 
     public ItemSlot AddPrefabItemObjectToPlayerInventory(GameObject itemPrefab)
     {
@@ -68,7 +94,9 @@ public class PlayerInventory : MonoBehaviour
         // Find the first open inventory slot and set the slotted item. we should have already checked if player's inventory is full
         var slot = FindFirstOpenItemSlot();
         slot.SetSlottedItem(_tempItem);
-        InventoryItems.Add(_tempItem);
+        InventoryItems[slot.SlotIndex] = _tempItem;
+        //InventoryItems.TryGetValue(slot.SlotIndex, out var item);
+        //item = _tempItem;
 
         return slot;
     }
@@ -85,7 +113,9 @@ public class PlayerInventory : MonoBehaviour
         // Find the first open inventory slot and set the slotted item. we should have already checked if player's inventory is full
         var slot = GetSlotFromIndex(slotIndex);
         slot.SetSlottedItem(_tempItem);
-        InventoryItems.Add(_tempItem);
+        InventoryItems[slot.SlotIndex] = _tempItem;
+        //InventoryItems.TryGetValue(slot.SlotIndex, out var item);
+        //item = _tempItem;
 
         return slot;
     }
