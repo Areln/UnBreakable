@@ -10,7 +10,7 @@ public class SignInManager : MonoBehaviour
     public GameObject LoginScreen;
     internal static SignInManager Instance;
 
-	internal void Awake()
+    internal void Awake()
     {
         if (Instance == null)
         {
@@ -26,11 +26,11 @@ public class SignInManager : MonoBehaviour
     public void SignUpPressed()
     {
         SignUpManager.Instance.SignUpScreen.SetActive(true);
-        LoginScreen.SetActive(false);        
+        LoginScreen.SetActive(false);
     }
 
     public void SignInPressed()
-	{
+    {
         new SignInHandle().WriteMessage(LoginUsername.text, LoginPassword.text);
         SceneManager.LoadScene("Overworld");
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Server
 {
-	public class ServerGameManager : MonoBehaviour
+    public class ServerGameManager : MonoBehaviour
     {
         private static ServerGameManager m_Instance;
 
@@ -39,7 +39,7 @@ namespace Server
             }
         }
 
-		//internal Dictionary<int, ServerPlayerBrain> ClientPlayers = new Dictionary<int, ServerPlayerBrain>();
+        //internal Dictionary<int, ServerPlayerBrain> ClientPlayers = new Dictionary<int, ServerPlayerBrain>();
 
         //internal Dictionary<int, ServerBasicAI> Characters { get; set; } = new Dictionary<int, ServerBasicAI>();
 
@@ -66,7 +66,7 @@ namespace Server
             }
         }
 
-        public void AddNewItemStorageToList(ServerStorageObject worldObjectChest) 
+        public void AddNewItemStorageToList(ServerStorageObject worldObjectChest)
         {
             itemStorages.Add(worldObjectChest.GetInstanceID(), worldObjectChest);
         }
@@ -76,10 +76,10 @@ namespace Server
             ServerPlayerBrain player = null;
             foreach (var region in LoadedRegions.Values)
             {
-                if(region.ClientPlayers.TryGetValue(playerId, out player))
-				{
+                if (region.ClientPlayers.TryGetValue(playerId, out player))
+                {
                     return player;
-				}
+                }
             }
             return player;
         }
@@ -98,11 +98,11 @@ namespace Server
             var playerBrain = connectionPlayerGameObject.GetComponent<ServerPlayerBrain>();
 
             if (LoadedRegions.TryGetValue(defaultCoordinates, out var region))
-			{
+            {
                 region.ClientPlayers.Add(_clientId, playerBrain);
             }
-			else
-			{
+            else
+            {
                 LoadRegion(defaultCoordinates);
                 region.ClientPlayers.Add(_clientId, playerBrain);
             }
@@ -110,24 +110,24 @@ namespace Server
             regionsToSendToPlayer.Add(region);
 
             new ServerRegionLoadHandle().WriteMessage(_clientId, regionsToSendToPlayer.Select(x => x.Location).ToList());
-            
+
             playerBrain.InitializeData(username, region);
             return playerBrain;
         }
 
         internal ServerRegion LoadRegion(Coordinates coords)
-		{
-			try
+        {
+            try
             {
                 var gameObject = Instantiate(Resources.Load($"ServerRegions/ServerRegion{coords.X},{coords.Y}") as GameObject);
                 var region = gameObject.GetComponent<ServerRegion>();
                 LoadedRegions.Add(coords, region);
                 return region;
             }
-			catch
-			{
+            catch
+            {
                 // handle error when an area has not been made or doesnt exist.
-			}
+            }
             return null;
         }
 
@@ -137,10 +137,10 @@ namespace Server
             // Up
             var nextCoords = new Coordinates() { X = startCoords.X, Y = startCoords.Y + 1 };
             if (!LoadedRegions.ContainsKey(nextCoords))
-			{
+            {
                 var region = LoadRegion(nextCoords);
-                if(region != null)
-				{
+                if (region != null)
+                {
                     loadedRegions.Add(region);
                 }
             }
