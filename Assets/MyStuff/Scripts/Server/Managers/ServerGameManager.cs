@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Server.Networking;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Server
@@ -102,13 +103,82 @@ namespace Server
             }
 			else
 			{
-                var gameObject = Instantiate(Resources.Load($"ServerRegions/ServerRegion{defaultCoordinates.X},{defaultCoordinates.Y}") as GameObject);
-                region = gameObject.GetComponent<ServerRegion>();
-                LoadedRegions.Add(defaultCoordinates, region);
+                LoadRegion(defaultCoordinates);
                 region.ClientPlayers.Add(_clientId, playerBrain);
             }
+            var regionsToSendToPlayer = LoadNearbyRegions(defaultCoordinates);
+            regionsToSendToPlayer.Add(region);
+
+            new ServerRegionLoadHandle().WriteMessage(_clientId, regionsToSendToPlayer.Select(x => x.Location).ToList());
+            
             playerBrain.InitializeData(username, region);
             return playerBrain;
+        }
+
+        internal ServerRegion LoadRegion(Coordinates coords)
+		{
+			try
+            {
+                var gameObject = Instantiate(Resources.Load($"ServerRegions/ServerRegion{coords.X},{coords.Y}") as GameObject);
+                var region = gameObject.GetComponent<ServerRegion>();
+                LoadedRegions.Add(coords, region);
+                return region;
+            }
+			catch
+			{
+                // handle error when an area has not been made or doesnt exist.
+			}
+            return null;
+        }
+
+        internal List<ServerRegion> LoadNearbyRegions(Coordinates startCoords)
+        {
+            var loadedRegions = new List<ServerRegion>();
+            // Up
+            var nextCoords = new Coordinates() { X = startCoords.X, Y = startCoords.Y + 1 };
+            if (!LoadedRegions.ContainsKey(nextCoords))
+			{
+                var region = LoadRegion(nextCoords);
+                if(region != null)
+				{
+                    loadedRegions.Add(region);
+                }
+            }
+
+            // Right
+            nextCoords = new Coordinates() { X = startCoords.X + 1, Y = startCoords.Y };
+            if (!LoadedRegions.ContainsKey(nextCoords))
+            {
+                var region = LoadRegion(nextCoords);
+                if (region != null)
+                {
+                    loadedRegions.Add(region);
+                }
+            }
+
+            // Down
+            nextCoords = new Coordinates() { X = startCoords.X, Y = startCoords.Y - 1 };
+            if (!LoadedRegions.ContainsKey(nextCoords))
+            {
+                var region = LoadRegion(nextCoords);
+                if (region != null)
+                {
+                    loadedRegions.Add(region);
+                }
+            }
+
+            // Left
+            nextCoords = new Coordinates() { X = startCoords.X - 1, Y = startCoords.Y };
+            if (!LoadedRegions.ContainsKey(nextCoords))
+            {
+                var region = LoadRegion(nextCoords);
+                if (region != null)
+                {
+                    loadedRegions.Add(region);
+                }
+            }
+
+            return loadedRegions;
         }
     }
 }

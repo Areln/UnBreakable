@@ -26,6 +26,7 @@ public enum Packets
 	manaUpdate,
 	characterDie,
 	cancelAction,
+	loadRegions,
 	disconnect,
 }
 
